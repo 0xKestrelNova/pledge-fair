@@ -30,6 +30,7 @@ import {
   fmtUsd,
   formatFreshness,
   versionLine,
+  shipDetails,
   packTag,
   statusRank,
   tagsOf,
@@ -201,6 +202,7 @@ function renderCurrent() {
   el.innerHTML = `
     <div class="name"><a href="${esc(s.wikiUrl)}" target="_blank" rel="noopener">${esc(s.name)}</a></div>
     <div class="tags">${tagsOf(s, $("conciergeMode").checked)}</div>
+    <div class="shipCard">${shipDetails(s)}</div>
     <div class="stats">
       <div class="stat"><div class="l">Pledge</div><div class="v amber mono">${fmtUsd(s.pledge)}</div></div>
       <div class="stat"><div class="l">Prix en jeu</div>
@@ -242,15 +244,20 @@ const TABLE_IDS = {
 };
 
 /**
- * État de tri (colonne + sens), de filtre texte et de déploiement, indépendant
- * par tableau. `expanded` : false = tronqué aux ROW_LIMIT premières lignes.
+ * État de tri (colonne + sens), de filtre texte, de déploiement du tableau et
+ * de fiches dépliées, indépendant par tableau.
+ *
+ * `expanded` : false = tableau tronqué aux ROW_LIMIT premières lignes.
+ * `open` : noms des vaisseaux dont la fiche est dépliée — des *noms*, pas des
+ * indices de ligne, pour que la fiche reste ouverte quand on retrie, qu'on
+ * filtre ou qu'on déploie le tableau.
  */
 const tableState = {
-  avail: { sort: null, dir: 1, filter: "", expanded: false },
-  pack: { sort: null, dir: 1, filter: "", expanded: false },
-  unavail: { sort: null, dir: 1, filter: "", expanded: false },
+  avail: { sort: null, dir: 1, filter: "", expanded: false, open: new Set() },
+  pack: { sort: null, dir: 1, filter: "", expanded: false, open: new Set() },
+  unavail: { sort: null, dir: 1, filter: "", expanded: false, open: new Set() },
   // groupe par défaut : En vente, Pack, Pas en vente
-  noInGame: { sort: "status", dir: 1, filter: "", expanded: false },
+  noInGame: { sort: "status", dir: 1, filter: "", expanded: false, open: new Set() },
 };
 
 /** Troncature à appliquer au rendu : levée tant que le tableau est déployé. */
@@ -287,6 +294,48 @@ function toggleExpand(key) {
   renderTables();
 }
 
+/**
+ * Nom du vaisseau dont le bouton de fiche doit reprendre le focus après rendu,
+ * pour la même raison que focusExpanded ci-dessus : le tableau est régénéré
+ * par innerHTML, donc le bouton cliqué n'existe plus.
+ */
+let focusDetail = null;
+
+function toggleDetail(key, name) {
+  const open = tableState[key].open;
+  if (open.has(name)) open.delete(name);
+  else open.add(name);
+  focusDetail = name;
+  renderTables();
+}
+
+/**
+ * Cellule d'en-tête de la colonne de dépliage. Non triable, mais pas muette :
+ * un <th> vide laisserait un lecteur d'écran annoncer une colonne sans nom.
+ */
+const thDetail = () => '<th class="det"><span class="srOnly">Fiche vaisseau</span></th>';
+
+/**
+ * Bouton de dépliage d'une ligne. Le clic est capté par délégation sur la
+ * ligne entière (voir init) : cliquer n'importe où sur la ligne déplie la
+ * fiche, et ce bouton donne le même geste au clavier, avec l'état annoncé par
+ * aria-expanded — pas seulement signalé par le chevron.
+ */
+function tdDetail(r, expanded) {
+  return `<td class="det"><button type="button" class="rowToggle" aria-expanded="${expanded}" aria-label="Fiche de ${esc(r.name)}">${expanded ? "▾" : "▸"}</button></td>`;
+}
+
+/** Ligne de fiche insérée sous la ligne du vaisseau, quand elle est dépliée. */
+function detailRow(r, cols) {
+  return `
+    <tr class="detailRow"><td class="detailCell" colspan="${cols}">
+      <div class="detailInner">${shipDetails(r)}</div>
+    </td></tr>`;
+}
+
+/** Nombre de colonnes d'un en-tête, pour le colspan de la ligne de fiche. */
+const countCols = (head) => (head.match(/<th/g) || []).length;
+
 /* ---------------------------------------------------------------------------
  * Rendu des tableaux
  * ------------------------------------------------------------------------- */
@@ -311,29 +360,8 @@ function ratioTable(key, rows, opts = {}) {
   // les visibles : déployer le tableau ne redimensionne donc pas les barres
   // déjà affichées.
   const maxRatio = Math.max(...res.all.map((r) => r.ratio));
-  const tr = res.rows
-    .map(
-      (r) => `
-    <tr>
-      <td class="ship"><a href="${esc(r.wikiUrl)}" target="_blank" rel="noopener">${esc(r.name)}</a></td>
-      <td class="${r.concept ? "blu" : "pos"}">${r.concept ? "Concept" : "Fly Ready"}</td>
-      ${opts.showPack ? `<td>${packTag(r)}</td>` : ""}
-      <td class="mono amb">${fmtUsd(r.pledge)}</td>
-      ${upgrade ? `<td class="mono">+${fmtUsd(r.cost)}</td>` : ""}
-      <td class="mono">${fmtN(r.auec)}<span class="loc">${esc(r.loc)}</span></td>
-      <td class="mono pos">${fmtN(r.ratio)}<span class="gainbar" data-w="${((r.ratio / maxRatio) * 90).toFixed(0)}"></span></td>
-      ${
-        upgrade
-          ? `<td class="mono ${r.gain == null ? "" : r.gain >= 0 ? "pos" : "neg"}">${r.gain == null ? "—" : (r.gain >= 0 ? "+" : "") + r.gain.toFixed(0) + " %"}</td>
-      <td class="mono">${fmtN(r.marginal)}</td>`
-          : ""
-      }
-    </tr>`,
-    )
-    .join("");
-  return `<div class="tblscroll"><table>
-    <thead><tr>
-      ${thSort(st, "name", "Vaisseau")}${thSort(st, "concept", "Concept")}
+  const head = `<tr>
+      ${thDetail()}${thSort(st, "name", "Vaisseau")}${thSort(st, "concept", "Concept")}
       ${opts.showPack ? thSort(st, "packName", "Statut pledge store") : ""}
       ${thSort(st, "pledge", "Pledge")}${upgrade ? thSort(st, "cost", "Coût upgrade") : ""}
       ${thSort(st, "auec", "Prix en jeu (aUEC)")}
@@ -349,11 +377,33 @@ function ratioTable(key, rows, opts = {}) {
             )
           : ""
       }
-    </tr></thead><tbody>${tr}</tbody></table></div>${expandButton({
-      total: res.all.length,
-      limit: ROW_LIMIT,
-      expanded: st.expanded,
-    })}`;
+    </tr>`;
+  const cols = countCols(head);
+  const tr = res.rows
+    .map((r) => {
+      const open = st.open.has(r.name);
+      return `
+    <tr class="shipRow${open ? " open" : ""}" data-detail="${esc(r.name)}">
+      ${tdDetail(r, open)}
+      <td class="ship"><a href="${esc(r.wikiUrl)}" target="_blank" rel="noopener">${esc(r.name)}</a></td>
+      <td class="${r.concept ? "blu" : "pos"}">${r.concept ? "Concept" : "Fly Ready"}</td>
+      ${opts.showPack ? `<td>${packTag(r)}</td>` : ""}
+      <td class="mono amb">${fmtUsd(r.pledge)}</td>
+      ${upgrade ? `<td class="mono">+${fmtUsd(r.cost)}</td>` : ""}
+      <td class="mono">${fmtN(r.auec)}<span class="loc">${esc(r.loc)}</span></td>
+      <td class="mono pos">${fmtN(r.ratio)}<span class="gainbar" data-w="${((r.ratio / maxRatio) * 90).toFixed(0)}"></span></td>
+      ${
+        upgrade
+          ? `<td class="mono ${r.gain == null ? "" : r.gain >= 0 ? "pos" : "neg"}">${r.gain == null ? "—" : (r.gain >= 0 ? "+" : "") + r.gain.toFixed(0) + " %"}</td>
+      <td class="mono">${fmtN(r.marginal)}</td>`
+          : ""
+      }
+    </tr>${open ? detailRow(r, cols) : ""}`;
+    })
+    .join("");
+  return `<div class="tblscroll"><table><thead>${head}</thead><tbody>${tr}</tbody></table></div>${expandButton(
+    { total: res.all.length, limit: ROW_LIMIT, expanded: st.expanded },
+  )}`;
 }
 
 /** Tableau des candidats sans prix en jeu connu (groupe noInGame). */
@@ -364,27 +414,28 @@ function noInGameTable(key, rows, opts = {}) {
   rows = rows.map((r) => ({ ...r, status: statusRank(r, conciergeMode) }));
   const res = applyTableState(st, rows, ["name"], limitFor(st));
   if (!res.all.length) return '<div class="none">Aucun vaisseau ne remplit les critères.</div>';
+  const head = `<tr>
+      ${thDetail()}${thSort(st, "name", "Vaisseau")}${thSort(st, "concept", "Concept")}${thSort(st, "status", "Statut pledge store")}
+      ${thSort(st, "pledge", "Pledge")}${upgrade ? thSort(st, "cost", "Coût upgrade") : ""}
+    </tr>`;
+  const cols = countCols(head);
   const tr = res.rows
-    .map(
-      (r) => `
-    <tr>
+    .map((r) => {
+      const open = st.open.has(r.name);
+      return `
+    <tr class="shipRow${open ? " open" : ""}" data-detail="${esc(r.name)}">
+      ${tdDetail(r, open)}
       <td class="ship"><a href="${esc(r.wikiUrl)}" target="_blank" rel="noopener">${esc(r.name)}</a></td>
       <td class="${r.concept ? "blu" : "pos"}">${r.concept ? "Concept" : "Fly Ready"}</td>
       <td>${tagsOf(r, conciergeMode, false)}</td>
       <td class="mono amb">${fmtUsd(r.pledge)}</td>
       ${upgrade ? `<td class="mono">+${fmtUsd(r.cost)}</td>` : ""}
-    </tr>`,
-    )
+    </tr>${open ? detailRow(r, cols) : ""}`;
+    })
     .join("");
-  return `<div class="tblscroll"><table>
-    <thead><tr>
-      ${thSort(st, "name", "Vaisseau")}${thSort(st, "concept", "Concept")}${thSort(st, "status", "Statut pledge store")}
-      ${thSort(st, "pledge", "Pledge")}${upgrade ? thSort(st, "cost", "Coût upgrade") : ""}
-    </tr></thead><tbody>${tr}</tbody></table></div>${expandButton({
-      total: res.all.length,
-      limit: ROW_LIMIT,
-      expanded: st.expanded,
-    })}`;
+  return `<div class="tblscroll"><table><thead>${head}</thead><tbody>${tr}</tbody></table></div>${expandButton(
+    { total: res.all.length, limit: ROW_LIMIT, expanded: st.expanded },
+  )}`;
 }
 
 /**
@@ -433,6 +484,17 @@ function renderTables() {
     const btn = $(TABLE_IDS[focusExpanded]).querySelector("button[data-expand]");
     if (btn) btn.focus();
     focusExpanded = null;
+  }
+  if (focusDetail) {
+    for (const id of Object.values(TABLE_IDS)) {
+      const row = $(id).querySelector(`tr[data-detail="${CSS.escape(focusDetail)}"]`);
+      const btn = row && row.querySelector("button.rowToggle");
+      if (btn) {
+        btn.focus();
+        break;
+      }
+    }
+    focusDetail = null;
   }
   // Les compteurs de section restent le total du groupe (avant filtre et
   // troncature) : c'est ce qu'on veut savoir d'une section repliée.
@@ -499,7 +561,15 @@ function init() {
         sortTable(key, th.dataset.col);
         return;
       }
-      if (e.target.closest("button[data-expand]")) toggleExpand(key);
+      if (e.target.closest("button[data-expand]")) {
+        toggleExpand(key);
+        return;
+      }
+      // Le lien vers le wiki garde son comportement propre : on ne déplie pas
+      // la fiche en même temps qu'on ouvre un onglet.
+      if (e.target.closest("a")) return;
+      const row = e.target.closest("tr[data-detail]");
+      if (row) toggleDetail(key, row.dataset.detail);
     });
   }
 

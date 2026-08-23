@@ -32,6 +32,11 @@ import {
   uexPayload,
   buildUexRoster,
   parseShipMatrix,
+  decodeEntities,
+  truncateText,
+  normalizeShipSize,
+  normalizePadType,
+  safeImageUrl,
   parseWikiConciergePacks,
   parseRsiResponse,
   loadPackagesFile,
@@ -726,7 +731,7 @@ test("buildDataset : le Ship Matrix a le dernier mot sur le statut Concept", () 
     null,
     null,
     null,
-    { carrack: true },
+    { carrack: { concept: true } },
     {},
   );
   assert.equal(overridden[0].concept, true);
@@ -741,10 +746,107 @@ test("buildDataset : sans entrée Ship Matrix correspondante, on garde le statut
     null,
     null,
     null,
-    { carrack: false },
+    { carrack: { concept: false } },
     {},
   ); // pas d'entrée « nox »
   assert.equal(ships[0].concept, true); // repli sur le concept UEX
+});
+
+test("buildDataset : entrée Ship Matrix sans production_status → repli sur UEX", () => {
+  // Ces entrées sont désormais conservées pour leur taille / description ;
+  // elles ne doivent pas pour autant écraser le statut Concept d'UEX.
+  const pledge = [{ key: "1", name: "Anvil Carrack", pledge: 600, available: true, concept: true }];
+  const ships = buildDataset(
+    {},
+    pledge,
+    null,
+    null,
+    null,
+    null,
+    {
+      carrack: { concept: null, size: "Large", description: "Un explorateur.", manufacturer: null },
+    },
+    {},
+  );
+  assert.equal(ships[0].concept, true);
+  assert.equal(ships[0].size, "Large");
+});
+
+// ---------------------------------------------------------------------------
+// buildDataset — champs de fiche
+// ---------------------------------------------------------------------------
+
+test("buildDataset remplit les champs de fiche depuis UEX et le Ship Matrix", () => {
+  const pledge = [
+    {
+      key: "1",
+      name: "Anvil Carrack",
+      pledge: 600,
+      available: true,
+      concept: false,
+      imageUrl: "https://assets.uexcorp.space/img/carrack.jpg",
+      scu: 456,
+      manufacturer: "Anvil Aerospace",
+      padType: "L",
+    },
+  ];
+  const matrix = {
+    carrack: {
+      concept: false,
+      size: "Large",
+      description: "Un vaisseau d'exploration.",
+      manufacturer: "Anvil Aerospace (matrix)",
+    },
+  };
+  const [ship] = buildDataset({}, pledge, null, null, null, null, matrix, {});
+  assert.equal(ship.imageUrl, "https://assets.uexcorp.space/img/carrack.jpg");
+  assert.equal(ship.scu, 456);
+  assert.equal(ship.size, "Large");
+  assert.equal(ship.description, "Un vaisseau d'exploration.");
+  assert.equal(ship.padType, "L");
+  // UEX est prioritaire sur le Ship Matrix pour le constructeur (quasi complet).
+  assert.equal(ship.manufacturer, "Anvil Aerospace");
+});
+
+test("buildDataset : constructeur du Ship Matrix en repli quand UEX ne l'a pas", () => {
+  const pledge = [
+    { key: "1", name: "Anvil Carrack", pledge: 600, available: true, concept: false },
+  ];
+  const matrix = { carrack: { concept: false, manufacturer: "Anvil Aerospace" } };
+  const [ship] = buildDataset({}, pledge, null, null, null, null, matrix, {});
+  assert.equal(ship.manufacturer, "Anvil Aerospace");
+});
+
+test("buildDataset : champs de fiche absents → null, jamais undefined", () => {
+  // La page distingue « aucune soute » (scu 0) de « information absente »
+  // (null) : les clés doivent exister et valoir null, pas disparaître.
+  const pledge = [
+    { key: "1", name: "Anvil Carrack", pledge: 600, available: true, concept: false },
+  ];
+  const [ship] = buildDataset({}, pledge, null, null, null, null, null, {});
+  for (const f of ["imageUrl", "manufacturer", "size", "description", "padType", "scu"]) {
+    assert.ok(f in ship, `champ ${f} attendu`);
+    assert.equal(ship[f], null, `champ ${f} attendu à null`);
+  }
+});
+
+test("buildDataset : scu à 0 est conservé tel quel, pas transformé en null", () => {
+  // 141 vaisseaux sur 280 n'ont pas de soute : « aucune soute » est une
+  // information, à distinguer d'une donnée manquante.
+  const pledge = [
+    { key: "1", name: "Anvil Carrack", pledge: 600, available: true, concept: false, scu: 0 },
+  ];
+  const [ship] = buildDataset({}, pledge, null, null, null, null, null, {});
+  assert.equal(ship.scu, 0);
+});
+
+test("buildDataset : vaisseau connu du seul catalogue en jeu → fiche du Ship Matrix", () => {
+  const inGame = { 9: { name: "Drake Cutlass", locations: [{ loc: "Area18", auec: 100 }] } };
+  const matrix = { cutlass: { concept: false, size: "Medium", description: "Polyvalent." } };
+  const [ship] = buildDataset(inGame, [], null, null, null, null, matrix, {});
+  assert.equal(ship.size, "Medium");
+  assert.equal(ship.description, "Polyvalent.");
+  assert.equal(ship.imageUrl, null); // aucune ligne UEX /vehicles à joindre
 });
 
 test("buildDataset : un vaisseau indisponible cité dans un pack storefront devient packageOnly", () => {
@@ -873,6 +975,44 @@ test("buildUexRoster ignore les achats sans prix ou vers un véhicule inconnu", 
   assert.deepEqual(inGame["1"].locations, [{ loc: "NB Int", auec: 1000000 }]);
 });
 
+test("buildUexRoster retient photo, SCU, constructeur et type de pad", () => {
+  const vehicles = [
+    {
+      id: 1,
+      name_full: "Anvil Carrack",
+      is_concept: 0,
+      url_photo: "https://assets.uexcorp.space/img/carrack.jpg",
+      scu: 456,
+      company_name: "Anvil Aerospace",
+      pad_type: "L",
+    },
+  ];
+  const [ship] = buildUexRoster(vehicles, [], []).pledge;
+  assert.equal(ship.imageUrl, "https://assets.uexcorp.space/img/carrack.jpg");
+  assert.equal(ship.scu, 456);
+  assert.equal(ship.manufacturer, "Anvil Aerospace");
+  assert.equal(ship.padType, "L");
+});
+
+test("buildUexRoster écarte une URL de photo non conforme", () => {
+  const vehicles = [
+    {
+      id: 1,
+      name_full: "Anvil Carrack",
+      is_concept: 0,
+      url_photo: "https://ailleurs.example/carrack.jpg",
+      scu: 0,
+      company_name: "Grey&apos;s Market",
+      pad_type: "",
+    },
+  ];
+  const [ship] = buildUexRoster(vehicles, [], []).pledge;
+  assert.equal(ship.imageUrl, null);
+  assert.equal(ship.padType, null);
+  assert.equal(ship.scu, 0); // « aucune soute », pas « information absente »
+  assert.equal(ship.manufacturer, "Grey's Market"); // entité décodée
+});
+
 // ---------------------------------------------------------------------------
 // parseShipMatrix
 // ---------------------------------------------------------------------------
@@ -881,12 +1021,199 @@ test("parseShipMatrix marque comme concept les vaisseaux « in-concept »", () =
   const ships = [
     { name: "Carrack", production_status: "flight-ready" },
     { name: "Zeus", production_status: "In-Concept" }, // casse indifférente
-    { name: "SansStatut" }, // ignoré
+    { name: "SansRien" }, // ni statut ni champ de fiche : ignoré
   ];
   const result = parseShipMatrix(ships);
-  assert.equal(result.carrack, false);
-  assert.equal(result.zeus, true);
-  assert.equal("sansstatut" in result, false);
+  assert.equal(result.carrack.concept, false);
+  assert.equal(result.zeus.concept, true);
+  assert.equal("sansrien" in result, false);
+});
+
+test("parseShipMatrix retient taille, description et constructeur", () => {
+  const ships = [
+    {
+      name: "Carrack",
+      production_status: "flight-ready",
+      size: "large", // casse incohérente côté source
+      description: "  Un vaisseau   d'exploration.  ",
+      manufacturer: { name: "Anvil Aerospace" },
+    },
+  ];
+  const { carrack } = parseShipMatrix(ships);
+  assert.equal(carrack.size, "Large");
+  assert.equal(carrack.description, "Un vaisseau d'exploration."); // espaces normalisés
+  assert.equal(carrack.manufacturer, "Anvil Aerospace");
+});
+
+test("parseShipMatrix garde une entrée sans statut mais avec des champs de fiche", () => {
+  // Elle sert à la fiche ; son `concept` à null fait retomber l'appelant sur
+  // ce que dit UEX, au lieu de conclure « pas concept ».
+  const { zeus } = parseShipMatrix([{ name: "Zeus", size: "Medium" }]);
+  assert.equal(zeus.concept, null);
+  assert.equal(zeus.size, "Medium");
+});
+
+test("parseShipMatrix : champs de fiche absents ou inconnus → null", () => {
+  const { carrack } = parseShipMatrix([
+    { name: "Carrack", production_status: "flight-ready", size: "gigantesque" },
+  ]);
+  assert.equal(carrack.size, null); // valeur hors vocabulaire RSI
+  assert.equal(carrack.description, null);
+  assert.equal(carrack.manufacturer, null);
+});
+
+test("parseShipMatrix décode les entités des textes du wiki RSI", () => {
+  const { market } = parseShipMatrix([
+    {
+      name: "Market",
+      production_status: "flight-ready",
+      manufacturer: { name: "Grey&apos;s Market" },
+      description: "Vendu par Musashi &amp; Co.",
+    },
+  ]);
+  // Sans décodage, esc() ré-échapperait et la page afficherait « &apos; ».
+  assert.equal(market.manufacturer, "Grey's Market");
+  assert.equal(market.description, "Vendu par Musashi & Co.");
+});
+
+// ---------------------------------------------------------------------------
+// decodeEntities
+// ---------------------------------------------------------------------------
+
+test("decodeEntities décode les entités nommées rencontrées dans les sources", () => {
+  assert.equal(decodeEntities("Grey&apos;s Market &amp; Co"), "Grey's Market & Co");
+  assert.equal(decodeEntities("&lt;tag&gt; &quot;cité&quot;"), '<tag> "cité"');
+});
+
+test("decodeEntities décode les formes numériques", () => {
+  assert.equal(decodeEntities("Grey&#39;s"), "Grey's");
+  assert.equal(decodeEntities("Grey&#x27;s"), "Grey's");
+});
+
+test("decodeEntities laisse intacte une entité inconnue", () => {
+  // Mieux vaut un « &frac12; » littéral qu'une transformation hasardeuse.
+  assert.equal(decodeEntities("un &frac12; tour"), "un &frac12; tour");
+});
+
+test("decodeEntities renvoie null sur une entrée non textuelle", () => {
+  assert.equal(decodeEntities(null), null);
+  assert.equal(decodeEntities(undefined), null);
+  assert.equal(decodeEntities(42), null);
+});
+
+// ---------------------------------------------------------------------------
+// truncateText
+// ---------------------------------------------------------------------------
+
+test("truncateText laisse un texte court intact", () => {
+  assert.equal(truncateText("Un vaisseau d'exploration.", 200), "Un vaisseau d'exploration.");
+});
+
+test("truncateText normalise les espaces et les retours à la ligne", () => {
+  assert.equal(truncateText("  Un  vaisseau\n d'exploration. "), "Un vaisseau d'exploration.");
+});
+
+test("truncateText coupe sur une frontière de mot et ajoute une ellipse", () => {
+  const out = truncateText("alpha bravo charlie delta echo", 18);
+  assert.ok(out.length <= 19, `trop long : ${out}`);
+  assert.ok(out.endsWith("…"));
+  assert.doesNotMatch(out, /\s…$/); // pas d'espace avant l'ellipse
+  assert.ok("alpha bravo charlie delta echo".startsWith(out.slice(0, -1)));
+});
+
+test("truncateText ne laisse pas de ponctuation orpheline avant l'ellipse", () => {
+  assert.equal(truncateText("alpha bravo, charlie delta", 13), "alpha bravo…");
+});
+
+test("truncateText coupe net un mot plus long que la limite", () => {
+  // Aucun espace exploitable : on coupe dans le mot plutôt que de tout perdre.
+  const out = truncateText("a".repeat(50), 10);
+  assert.equal(out, "a".repeat(10) + "…");
+});
+
+test("truncateText renvoie null sur une entrée vide ou non textuelle", () => {
+  assert.equal(truncateText(""), null);
+  assert.equal(truncateText("   "), null);
+  assert.equal(truncateText(null), null);
+  assert.equal(truncateText(undefined), null);
+});
+
+// ---------------------------------------------------------------------------
+// normalizeShipSize / normalizePadType
+// ---------------------------------------------------------------------------
+
+test("normalizeShipSize uniformise la casse incohérente du Ship Matrix", () => {
+  assert.equal(normalizeShipSize("Large"), "Large");
+  assert.equal(normalizeShipSize("large"), "Large");
+  assert.equal(normalizeShipSize("CAPITAL"), "Capital");
+  assert.equal(normalizeShipSize(" medium "), "Medium");
+});
+
+test("normalizeShipSize reconnaît snub et vehicle", () => {
+  assert.equal(normalizeShipSize("snub"), "Snub");
+  assert.equal(normalizeShipSize("vehicle"), "Vehicle");
+});
+
+test("normalizeShipSize renvoie null hors du vocabulaire RSI", () => {
+  assert.equal(normalizeShipSize("gigantesque"), null);
+  assert.equal(normalizeShipSize(""), null);
+  assert.equal(normalizeShipSize(null), null);
+  assert.equal(normalizeShipSize(3), null);
+});
+
+test("normalizePadType ne retient que XS/S/M/L/XL", () => {
+  assert.equal(normalizePadType("xs"), "XS");
+  assert.equal(normalizePadType(" L "), "L");
+  assert.equal(normalizePadType(""), null); // 45 véhicules ont un pad_type vide
+  assert.equal(normalizePadType(null), null);
+  assert.equal(normalizePadType("XXL"), null);
+});
+
+// ---------------------------------------------------------------------------
+// safeImageUrl — validation côté serveur des URLs d'image
+// ---------------------------------------------------------------------------
+
+test("safeImageUrl accepte les hôtes de la liste blanche en https", () => {
+  for (const host of [
+    "assets.uexcorp.space",
+    "cdn.uexcorp.space",
+    "media.robertsspaceindustries.com",
+    "robertsspaceindustries.com",
+  ]) {
+    assert.equal(safeImageUrl(`https://${host}/img/x.jpg`), `https://${host}/img/x.jpg`);
+  }
+});
+
+test("safeImageUrl refuse tout schéma autre que https", () => {
+  assert.equal(safeImageUrl("http://assets.uexcorp.space/x.jpg"), null);
+  assert.equal(safeImageUrl("javascript:alert(1)"), null);
+  assert.equal(safeImageUrl("data:image/svg+xml;base64,PHN2Zy8+"), null);
+  assert.equal(safeImageUrl("//assets.uexcorp.space/x.jpg"), null);
+});
+
+test("safeImageUrl compare l'hôte exactement, sans suffixe ni sous-domaine", () => {
+  // La comparaison doit résister aux hôtes construits pour ressembler.
+  assert.equal(safeImageUrl("https://assets.uexcorp.space.evil.tld/x.jpg"), null);
+  assert.equal(safeImageUrl("https://evil-assets.uexcorp.space/x.jpg"), null);
+  assert.equal(safeImageUrl("https://x.assets.uexcorp.space/x.jpg"), null);
+  assert.equal(safeImageUrl("https://uexcorp.space/x.jpg"), null);
+});
+
+test("safeImageUrl refuse une entrée vide ou non analysable", () => {
+  assert.equal(safeImageUrl(""), null);
+  assert.equal(safeImageUrl("   "), null);
+  assert.equal(safeImageUrl("pas une url"), null);
+  assert.equal(safeImageUrl(null), null);
+  assert.equal(safeImageUrl(undefined), null);
+  assert.equal(safeImageUrl(42), null);
+});
+
+test("safeImageUrl : la liste blanche est injectable pour les tests", () => {
+  assert.equal(
+    safeImageUrl("https://exemple.test/x.jpg", ["exemple.test"]),
+    "https://exemple.test/x.jpg",
+  );
+  assert.equal(safeImageUrl("https://assets.uexcorp.space/x.jpg", ["exemple.test"]), null);
 });
 
 test("parseShipMatrix renvoie null quand rien n'est exploitable", () => {

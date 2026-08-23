@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-23T11:28:32.591Z",
+    "generatedAt": "2026-08-23T12:26:35.501Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -20,7 +20,13 @@
       "wikiUrl": "https://starcitizen.tools/Avenger_Stalker",
       "auec": 1508220,
       "loc": "New Deal Lorville",
-      "ratio": 25137
+      "ratio": 25137,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/26/images/87590eba5d68d68b70f7c0b465d6b586ac051544.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "Initially designed as a frontline carrier for the military, the Avenger Stalker took a different path, ultimately having a long and storied career as the standard patrol craft of the UEE Advocacy…",
+      "padType": "S"
     },
     {
       "name": "Aegis Avenger Titan",
@@ -33,7 +39,13 @@
       "wikiUrl": "https://starcitizen.tools/Avenger_Titan",
       "auec": 1290370,
       "loc": "New Deal Lorville",
-      "ratio": 21506.17
+      "ratio": 21506.17,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/27/images/53a2a6891549d33f5feb7dbe7db08105567e2585.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 8,
+      "description": "With extra room in the back, the Titan’s hold is free to carry cargo. Couple that with the Avenger’s tried and true combat abilities and you’ve got a light cargo hauler that’s more than capable of…",
+      "padType": "S"
     },
     {
       "name": "Aegis Avenger Titan Renegade",
@@ -46,7 +58,13 @@
       "wikiUrl": "https://starcitizen.tools/Avenger_Titan_Renegade",
       "auec": 1759590,
       "loc": "New Deal Lorville",
-      "ratio": 23461.2
+      "ratio": 23461.2,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/28/images/8639165d6a5528db25b027597f35d9fa61bfb3fe.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 8,
+      "description": "Created as part of the ‘Masters of Flight’ series in conjunction with the flight-sim Arena Commander, the Renegade pays tribute to famed pilot Danny Solomon for his notable work with the Advocacy to…",
+      "padType": "S"
     },
     {
       "name": "Aegis Avenger Warlock",
@@ -59,7 +77,13 @@
       "wikiUrl": "https://starcitizen.tools/Avenger_Warlock",
       "auec": 2136640,
       "loc": "New Deal Lorville",
-      "ratio": 25136.94
+      "ratio": 25136.94,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/29/images/655a7d45b9e9d1208a7d5078142c0c2faa9e3142.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "Outfitted with a Behring REP-8 EMP Generator, the Warlock makes non-lethal suppression possible via a powerful electromagnetic wave capable of disabling any electronics within the blast radius. *This…",
+      "padType": "S"
     },
     {
       "name": "Aegis Eclipse",
@@ -72,7 +96,13 @@
       "wikiUrl": "https://starcitizen.tools/Eclipse",
       "auec": 7541100,
       "loc": "New Deal Lorville",
-      "ratio": 25137
+      "ratio": 25137,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/69/images/a9adc0c96890a54dbcf82ec142c4bad396e3ad60.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Aegis Eclipse is a bomber designed to get in and strike before it's even spotted. After extensive service with the UEE, this high-tech military stalwart is making its debut on the civilian market…",
+      "padType": "S"
     },
     {
       "name": "Aegis Gladius",
@@ -85,7 +115,13 @@
       "wikiUrl": "https://starcitizen.tools/Gladius",
       "auec": 2262330,
       "loc": "New Deal Lorville",
-      "ratio": 25137
+      "ratio": 25137,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/93/images/ccbe613a7f6dc74f0b8645e79cd4e8cf6ec19ce6.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Gladius is an older design which has been updated over the years to keep up with modern technology. In military circles, the Gladius is beloved for its performance and its simplicity. A fast…",
+      "padType": "S"
     },
     {
       "name": "Aegis Gladius Pirate",
@@ -98,7 +134,13 @@
       "wikiUrl": "https://starcitizen.tools/Gladius_Pirate",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/94/images/6cead5adae3309c69c8431de051dd18534301760.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "S"
     },
     {
       "name": "Aegis Gladius Valiant",
@@ -111,7 +153,13 @@
       "wikiUrl": "https://starcitizen.tools/Gladius_Valiant",
       "auec": 2765070,
       "loc": "New Deal Lorville",
-      "ratio": 25137
+      "ratio": 25137,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/95/images/7ae40846f431b16f513f47683c0bf459a632ea01.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "Created as part of the ‘Masters of Flight’ series in conjunction with the flight-sim Arena Commander, the Valiant pays tribute to famed defense pilot Condi Hillard for being the first Human on record…",
+      "padType": "S"
     },
     {
       "name": "Aegis Hammerhead",
@@ -124,7 +172,13 @@
       "wikiUrl": "https://starcitizen.tools/Hammerhead",
       "auec": 34466600,
       "loc": "New Deal Lorville",
-      "ratio": 47540.14
+      "ratio": 47540.14,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/97/images/35ab1ab33ee510c29d42a5a0a5d5523533e4807f.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Large",
+      "scu": 40,
+      "description": "A fast patrol ship with multiple turrets designed to combat fighters, the Hammerhead is equally suited to support larger capital ships in a fleet or act as a flagship for fighter groups.",
+      "padType": "L"
     },
     {
       "name": "Aegis Hammerhead Best In Show Edition",
@@ -137,7 +191,13 @@
       "wikiUrl": "https://starcitizen.tools/Hammerhead_Best_In_Show_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/98/images/c879d61cf1045553a170c3a159970607645cfaee.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 40,
+      "description": null,
+      "padType": "L"
     },
     {
       "name": "Aegis Idris-M",
@@ -150,7 +210,13 @@
       "wikiUrl": "https://starcitizen.tools/Idris-M",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/108/cover/a3ae5100560b0268f4b618b883408257aca1f518.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Capital",
+      "scu": 1326,
+      "description": "Larger than a bomber but smaller than a ship of the line, frigates occupy an interesting space in the pantheon of warships. While they lack the heavy armor and the capital weaponry of a cruiser…",
+      "padType": "XL"
     },
     {
       "name": "Aegis Idris-P",
@@ -163,7 +229,13 @@
       "wikiUrl": "https://starcitizen.tools/Idris-P",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/109/cover/aa501fb7751db3b2897773773a614c8f9c08c50b.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Capital",
+      "scu": 1374,
+      "description": "The Aegis Idris has long served the UEE Navy as its go-to frigate, striking fear into every soul unfortunate enough to meet it. Fly the civilianized Idris-P to experience the full might of Humanity’s…",
+      "padType": "XL"
     },
     {
       "name": "Aegis Javelin",
@@ -176,7 +248,13 @@
       "wikiUrl": "https://starcitizen.tools/Javelin",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uploads/2/a8d320286d9e255d1f361d9ce97c6a0ee5d1d28e.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Capital",
+      "scu": 0,
+      "description": "Designed for use by the UEE military, the Javelin is a massive, modular capital ship that can be appropriated for entrepreneurial use. With a detailed interior, plenty of modular room options and a…",
+      "padType": "XL"
     },
     {
       "name": "Aegis Nautilus",
@@ -189,7 +267,13 @@
       "wikiUrl": "https://starcitizen.tools/Nautilus",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/134/images/a017346d9958e3dd0de6b3ad2cae9d2fd9daa505.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Large",
+      "scu": 64,
+      "description": "With four centuries of distinguished service under its belt, The Aegis Dynamics Nautilus tactical minelayer represents the ultimate in strategic combat engineering, with fully-integrated…",
+      "padType": "L"
     },
     {
       "name": "Aegis Nautilus Solstice Edition",
@@ -202,7 +286,13 @@
       "wikiUrl": "https://starcitizen.tools/Nautilus_Solstice_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/135/images/f557aec2cfb5e2ba57cea0365f2ac633740f27b6.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Large",
+      "scu": 64,
+      "description": "With four centuries of distinguished service under its belt, The Aegis Dynamics Nautilus tactical minelayer represents the ultimate in strategic combat engineering, with fully-integrated…",
+      "padType": "L"
     },
     {
       "name": "Aegis Reclaimer",
@@ -215,7 +305,13 @@
       "wikiUrl": "https://starcitizen.tools/Reclaimer",
       "auec": 30164400,
       "loc": "New Deal Lorville",
-      "ratio": 75411
+      "ratio": 75411,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/159/images/32abf483ae38996841074e439447b2d4a92905a0.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Capital",
+      "scu": 420,
+      "description": "The Aegis Reclaimer is an industrial salvage ship. Equipped with a reinforced cargo bay, a long-range jump drive and launch pods for unmanned drones, the Reclaimer is an ideal ship for taking…",
+      "padType": "XL"
     },
     {
       "name": "Aegis Reclaimer Best In Show Edition",
@@ -228,7 +324,13 @@
       "wikiUrl": "https://starcitizen.tools/Reclaimer_Best_In_Show_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/160/images/122f12efc6417468d58d54508856a375dc98018b.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 180,
+      "description": null,
+      "padType": "XL"
     },
     {
       "name": "Aegis Redeemer",
@@ -241,7 +343,13 @@
       "wikiUrl": "https://starcitizen.tools/Redeemer",
       "auec": 9803430,
       "loc": "New Deal Lorville",
-      "ratio": 29707.36
+      "ratio": 29707.36,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/161/images/9cabf1b59c07066cf56211155a1a1720ae01f955.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Large",
+      "scu": 2,
+      "description": "Designed by Star Citizen's backers, the Aegis Redeemer is a powerful fighting ship capable of holding its own in combat with a powerful weapons payload. Dotted with turrets and missiles, the Redeemer…",
+      "padType": "M"
     },
     {
       "name": "Aegis Retaliator",
@@ -254,7 +362,13 @@
       "wikiUrl": "https://starcitizen.tools/Retaliator",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/166/images/bd43e96407868c7ce7ab87a9056a2f3b84d52464.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Large",
+      "scu": 74,
+      "description": "One of the UEE Navy’s most powerful warbirds, the Retaliator was designed from the ground up to take down enemy capital ships. A key component of the UEEN fleet, Retaliator squadrons have served with…",
+      "padType": "M"
     },
     {
       "name": "Aegis Retaliator Bomber",
@@ -267,7 +381,13 @@
       "wikiUrl": "https://starcitizen.tools/Retaliator_Bomber",
       "auec": 7541100,
       "loc": "New Deal Lorville",
-      "ratio": 27422.18
+      "ratio": 27422.18,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/167/images/4983938ad15e79d524b61fd6c5e446ec5eb8ddd2.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 74,
+      "description": null,
+      "padType": "M"
     },
     {
       "name": "Aegis Retaliator Cargo Module - Bow",
@@ -280,7 +400,13 @@
       "wikiUrl": "https://starcitizen.tools/Retaliator_Cargo_Module_-_Bow",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://media.robertsspaceindustries.com/a65x238zcvb44/source.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 38,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Aegis Retaliator Cargo Module - Stern",
@@ -293,7 +419,13 @@
       "wikiUrl": "https://starcitizen.tools/Retaliator_Cargo_Module_-_Stern",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://media.robertsspaceindustries.com/zerppr59t3lxy/source.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 36,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Aegis Retaliator Dropship Front Module",
@@ -306,7 +438,13 @@
       "wikiUrl": "https://starcitizen.tools/Retaliator_Dropship_Front_Module",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Aegis Retaliator Living Front Module",
@@ -319,7 +457,13 @@
       "wikiUrl": "https://starcitizen.tools/Retaliator_Living_Front_Module",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Aegis Retaliator Living Rear Module",
@@ -332,7 +476,13 @@
       "wikiUrl": "https://starcitizen.tools/Retaliator_Living_Rear_Module",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Aegis Retaliator Torpedo Module – Bow",
@@ -345,7 +495,13 @@
       "wikiUrl": "https://starcitizen.tools/Retaliator_Torpedo_Module_%E2%80%93_Bow",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://media.robertsspaceindustries.com/kiaqt9hbhd6lv/source.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Aegis Retaliator Torpedo Module – Stern",
@@ -358,7 +514,13 @@
       "wikiUrl": "https://starcitizen.tools/Retaliator_Torpedo_Module_%E2%80%93_Stern",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://media.robertsspaceindustries.com/mq5s868bcx1qc/source.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Aegis Sabre",
@@ -371,7 +533,13 @@
       "wikiUrl": "https://starcitizen.tools/Sabre",
       "auec": 4273290,
       "loc": "New Deal Lorville",
-      "ratio": 25137
+      "ratio": 25137,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/170/images/14b43bf4841b130c9c4c00f1d9ac8c9468348fed.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "Part of Aegis Dynamics’ Phase Two of new ship models, the Sabre was designed as a space superiority fighter for those situations where you need to leave a lighter footprint. Designed to be a rapid…",
+      "padType": "S"
     },
     {
       "name": "Aegis Sabre Comet",
@@ -384,7 +552,13 @@
       "wikiUrl": "https://starcitizen.tools/Sabre_Comet",
       "auec": 4650340,
       "loc": "New Deal Lorville",
-      "ratio": 25136.97
+      "ratio": 25136.97,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/171/images/30ca377b23d56887ce04dafb1b8a3479df11cfe1.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "Created as part of the ‘Masters of Flight’ series in conjunction with the flight-sim Arena Commander, the Comet pays tribute to famed pilot Captain Kamur Dalion for his work with Aegis to usher in a…",
+      "padType": "S"
     },
     {
       "name": "Aegis Sabre Firebird",
@@ -397,7 +571,13 @@
       "wikiUrl": "https://starcitizen.tools/Sabre_Firebird",
       "auec": 5580410,
       "loc": "New Deal Lorville",
-      "ratio": 30164.38
+      "ratio": 30164.38,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/228/images/18a11e66045d481c72f70cd38e67d4f48f9132ec.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "A high-speed fighter specializing in rapid barrages from its bespoke missile array. Built to destroy threats before they can react, it’s equally at home heading out on long-range missions or…",
+      "padType": "S"
     },
     {
       "name": "Aegis Sabre Peregrine",
@@ -410,7 +590,13 @@
       "wikiUrl": "https://starcitizen.tools/Sabre_Peregrine",
       "auec": 3845960,
       "loc": "New Deal Lorville",
-      "ratio": 20788.97
+      "ratio": 20788.97,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/232/cover/c6414b1ab77e5c605ac45cbe8f9c40cc4f965d0e.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "The fastest Sabre model yet conceived, the Peregrine takes the infamous military-born chassis and tunes it for pure unadulterated speed.",
+      "padType": "S"
     },
     {
       "name": "Aegis Sabre Raven",
@@ -423,7 +609,13 @@
       "wikiUrl": "https://starcitizen.tools/Sabre_Raven",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/172/images/432908dffb8b0d6d0ee3aa51c5661c0cc4e4c348.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "Part of Aegis Dynamics’ Phase Two of new ship models, the Sabre was designed as a space superiority fighter for those situations where you need to leave a lighter footprint. They have raised the bar…",
+      "padType": "S"
     },
     {
       "name": "Aegis Tiburon",
@@ -436,7 +628,13 @@
       "wikiUrl": "https://starcitizen.tools/Tiburon",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/285/168aef9e37f1a634a44fd1a9acf7bd35ac4600c7.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Large",
+      "scu": 64,
+      "description": "A ferocious and forward-facing force capable of eliminating the deadliest prey out there. Assemble a crew of military-minded recruits to discharge every weapon, gun, and missile the Tiburon has at…",
+      "padType": "L"
     },
     {
       "name": "Aegis Vanguard Harbinger",
@@ -449,7 +647,13 @@
       "wikiUrl": "https://starcitizen.tools/Vanguard_Harbinger",
       "auec": 8200400,
       "loc": "New Deal Lorville",
-      "ratio": 28277.24
+      "ratio": 28277.24,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/196/images/5a740e3fff1d6600e1e8a3f72e08b9f2fa531ebb.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Medium",
+      "scu": 0,
+      "description": "The Vanguard Harbinger is Earth’s standard fighter-bomber, converting the standard Warden model’s escape pod into a potent bomb bay. The extended range of the Vanguard and the relatively small…",
+      "padType": "M"
     },
     {
       "name": "Aegis Vanguard Hoplite",
@@ -462,7 +666,13 @@
       "wikiUrl": "https://starcitizen.tools/Vanguard_Hoplite",
       "auec": 6645250,
       "loc": "New Deal Lorville",
-      "ratio": 27688.54
+      "ratio": 27688.54,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/197/images/401903cdc8748d2b04e0285e8fffa3282c3919e4.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Medium",
+      "scu": 0,
+      "description": "The Vanguard Hoplite is a cross between the winning Vanguard deep space fighter and a dedicated boarding ship. Adapted from proven assault ship designs, the Hoplite is the perfect tool for inserting…",
+      "padType": "M"
     },
     {
       "name": "Aegis Vanguard Sentinel",
@@ -475,7 +685,13 @@
       "wikiUrl": "https://starcitizen.tools/Vanguard_Sentinel",
       "auec": 7776700,
       "loc": "New Deal Lorville",
-      "ratio": 28278.91
+      "ratio": 28278.91,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/198/images/852fbd3c23fcebc859194ff1d2d4ca9270d6e85c.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Medium",
+      "scu": 0,
+      "description": "The Vanguard Sentinel is a ship that’s designed to fight smart instead of taking enemies head on. The conversion features an AR cockpit, an external e-War pod, decoy missiles and a set of EMP…",
+      "padType": "M"
     },
     {
       "name": "Aegis Vanguard Warden",
@@ -488,7 +704,13 @@
       "wikiUrl": "https://starcitizen.tools/Vanguard_Warden",
       "auec": 7354900,
       "loc": "New Deal Lorville",
-      "ratio": 28288.08
+      "ratio": 28288.08,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/199/images/d28fa48a38dc4505d5b0ad0e17b45d54dc79bf5b.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Medium",
+      "scu": 0,
+      "description": "The A3G Vanguard Warden is one of Aegis Dynamics' most versatile and deadly long-range fighters. With an extra heavy frame, and an extra nasty loadout, the Warden is an absolute beast on the…",
+      "padType": "M"
     },
     {
       "name": "Aegis Vulcan",
@@ -501,7 +723,13 @@
       "wikiUrl": "https://starcitizen.tools/Vulcan",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/200/images/11cc4c58d570c043d12886f1c81466df8321ab56.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Medium",
+      "scu": 12,
+      "description": "Refuel. Repair. Rearm. Become a one-person support crew with Aegis Dynamics’ versatile Vulcan, supplying aid to pilots on the fly. Whether pinned down under heavy fire and in need of ammunition, low…",
+      "padType": "M"
     },
     {
       "name": "Anvil Arrow",
@@ -514,7 +742,13 @@
       "wikiUrl": "https://starcitizen.tools/Arrow",
       "auec": 1984500,
       "loc": "Astro Armada",
-      "ratio": 26460
+      "ratio": 26460,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/20/images/8a37bdfc747d887e4ee57778f8c5995f63b382b1.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Meet Anvil's ‘light fighter of the future’. Featuring an ultra-aerodynamic frame, slight profile, and the most advanced manoeuvring thruster tech available, it’s the most agile ship in its class. It…",
+      "padType": "S"
     },
     {
       "name": "Anvil Asgard",
@@ -527,7 +761,13 @@
       "wikiUrl": "https://starcitizen.tools/Asgard",
       "auec": 17860500,
       "loc": "Astro Armada",
-      "ratio": 51030
+      "ratio": 51030,
+      "imageUrl": "https://robertsspaceindustries.com/i/21fecfb7fd03bdc6a6cfc08fe8f3f550918be64c/ADdPNihJzmPbNuTnFsH1DqUeqBRpXdSXVVtgJTyDDgscGKrzJuoFjReskUYyWuMwVwX7aHFB7RafQL9iXAMt7wLj8/star-citizen-anvl-asgard-gal-asgard-valkyrie-4k-hintofcloud.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Large",
+      "scu": 180,
+      "description": "A heavily armored vehicle-dropship equipped for boundless resilience in the hottest combat zones. Power through relentless fire to deliver vital reinforcements, hold the front line, and keep the…",
+      "padType": null
     },
     {
       "name": "Anvil Auxilia",
@@ -540,7 +780,13 @@
       "wikiUrl": "https://starcitizen.tools/Auxilia",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Anvil Aerospace",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Anvil Ballista",
@@ -553,7 +799,13 @@
       "wikiUrl": "https://starcitizen.tools/Ballista",
       "auec": 1407670,
       "loc": "New Deal Lorville",
-      "ratio": 10054.79
+      "ratio": 10054.79,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/30/images/41143535b3ce35c42b503a673e885a8e5cbdeedd.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "S"
     },
     {
       "name": "Anvil Ballista Dunestalker",
@@ -566,7 +818,13 @@
       "wikiUrl": "https://starcitizen.tools/Ballista_Dunestalker",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/31/images/6ec98121107a1a651d32671cce8a8802f2981260.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Vehicle",
+      "scu": 0,
+      "description": null,
+      "padType": "S"
     },
     {
       "name": "Anvil Ballista Snowblind",
@@ -579,7 +837,13 @@
       "wikiUrl": "https://starcitizen.tools/Ballista_Snowblind",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/32/images/762d13bcd731e01c7c82cd62c440681b9ff147e2.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Vehicle",
+      "scu": 0,
+      "description": null,
+      "padType": "S"
     },
     {
       "name": "Anvil C8 Pisces",
@@ -592,7 +856,13 @@
       "wikiUrl": "https://starcitizen.tools/C8_Pisces",
       "auec": 745290,
       "loc": "Astro Armada",
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/36/images/c41eb40f4bb87a8034c36d63761a71727e7ebbed.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 4,
+      "description": "Additional firepower turns the base Pisces into a highly capable mini-explorer. Ideal for inter-system travel or investigating tight spots inaccessible to larger ships, it’s a small ship ready for…",
+      "padType": "XS"
     },
     {
       "name": "Anvil C8R Pisces Rescue",
@@ -605,7 +875,13 @@
       "wikiUrl": "https://starcitizen.tools/C8R_Pisces_Rescue",
       "auec": 555660,
       "loc": "Astro Armada",
-      "ratio": 8548.62
+      "ratio": 8548.62,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/37/images/a305542c8d681f6138e016cbe20c71715ca77575.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "XS"
     },
     {
       "name": "Anvil C8X Pisces Expedition",
@@ -618,7 +894,13 @@
       "wikiUrl": "https://starcitizen.tools/C8X_Pisces_Expedition",
       "auec": 515970,
       "loc": "Astro Armada",
-      "ratio": 11466
+      "ratio": 11466,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/38/images/fd8189c9da3e5e98df5dea8f4cb02f2d9892356c.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 4,
+      "description": "Additional firepower turns the base Pisces into a highly capable mini-explorer. Ideal for inter-system travel or investigating tight spots inaccessible to larger ships, it’s a small ship ready for…",
+      "padType": "XS"
     },
     {
       "name": "Anvil Carrack",
@@ -631,7 +913,13 @@
       "wikiUrl": "https://starcitizen.tools/Carrack",
       "auec": 34398000,
       "loc": "Astro Armada",
-      "ratio": 57330
+      "ratio": 57330,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/39/images/b3d02bd705d95af9d9bb79a77645e57a910f9ac4.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Large",
+      "scu": 456,
+      "description": "The Anvil Carrack features reinforced fuel tanks for long-duration flight, an advanced jump drive, and a dedicated computer core for jump charting operations. Originally a military exclusive, the…",
+      "padType": null
     },
     {
       "name": "Anvil Carrack Expedition",
@@ -644,7 +932,13 @@
       "wikiUrl": "https://starcitizen.tools/Carrack_Expedition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/40/images/5bd94dcf335c2c5c5d66de012adda839a6103160.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Large",
+      "scu": 456,
+      "description": "The Anvil Carrack features reinforced fuel tanks for long-duration flight, an advanced jump drive, and a dedicated computer core for jump charting operations. Originally a military exclusive, the…",
+      "padType": "L"
     },
     {
       "name": "Anvil Centurion",
@@ -657,7 +951,13 @@
       "wikiUrl": "https://starcitizen.tools/Centurion",
       "auec": 1106030,
       "loc": "New Deal Lorville",
-      "ratio": 10054.82
+      "ratio": 10054.82,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/44/images/4e63d7c68e9881abd5299c11e660037b26cfbae9.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": null,
+      "scu": 0,
+      "description": "Built on Anvil’s popular Atlas Platform, the Centurion presents a tactical solution for short-range anti-aircraft operations. Dominate any combat zone by assuring immediate threats from above are…",
+      "padType": "S"
     },
     {
       "name": "Anvil Crucible",
@@ -670,7 +970,13 @@
       "wikiUrl": "https://starcitizen.tools/Crucible",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/51/images/95d951e6555a835f8d1f2e31747e7d24e24ccf36.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Large",
+      "scu": 240,
+      "description": "A so-called “flying toolbox,” the Crucible is Anvil Aerospace’s first dedicated repair ship. Featuring a rotating control bridge and a detachable pressurized workspace, the Crucible is a versatile…",
+      "padType": "M"
     },
     {
       "name": "Anvil F7A Hornet Mk I",
@@ -683,7 +989,13 @@
       "wikiUrl": "https://starcitizen.tools/F7A_Hornet_Mk_I",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/72/images/b3dca3fc13a0c9cd64877293c7251ec993928db6.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "A space combat legend of centuries past.",
+      "padType": "S"
     },
     {
       "name": "Anvil F7A Hornet Mk II",
@@ -696,7 +1008,13 @@
       "wikiUrl": "https://starcitizen.tools/F7A_Hornet_Mk_II",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/223/cover/9d3880e8e0788e81a578292c17d741824dba3e62.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "The UEE Navy's premier carrier-based fighter craft, the F7A is the front-line attack ship for military combat missions. While not outfitted for long range runs, the Hornet can take her share of…",
+      "padType": "S"
     },
     {
       "name": "Anvil F7C Hornet Mk I",
@@ -709,7 +1027,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C_Hornet_Mk_I",
       "auec": 2910600,
       "loc": "Astro Armada",
-      "ratio": 23284.8
+      "ratio": 23284.8,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/73/images/25cc54963c0a10132b5ba922d8b5cb6731feadbd.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "To the enemy, it is a weapon never to be underestimated. To allies, it's a savior. The F7C Hornet is the same dependable and resilient multi-purpose fighter that has become the face of the UEE Navy…",
+      "padType": "S"
     },
     {
       "name": "Anvil F7C Hornet Mk II",
@@ -722,7 +1046,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C_Hornet_Mk_II",
       "auec": 4650340,
       "loc": "New Deal Lorville",
-      "ratio": 26573.37
+      "ratio": 26573.37,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/73/cover/e86892cc0096b47700875c66ecd909161bcfd6fc.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 2,
+      "description": "Tame the power, speed, and offensive punch of the UEE Navy’s premier carrier-based fighter, made famous by its dominating role in the Vanduul war. Sporting a pair of daunting Size 4 Gatlings and a…",
+      "padType": "S"
     },
     {
       "name": "Anvil F7C Hornet Wildfire Mk I",
@@ -735,7 +1065,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C_Hornet_Wildfire_Mk_I",
       "auec": 4630500,
       "loc": "Astro Armada",
-      "ratio": 26460
+      "ratio": 26460,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/74/images/58787cd1af76736bdad96e2a7b942e06c2423d24.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Created as part of the ‘Masters of Flight’ series in conjunction with the flight-sim Arena Commander, the Wildfire pays tribute to famed pilot Aria Reilly for her distinguished service with the…",
+      "padType": "S"
     },
     {
       "name": "Anvil F7C-M Super Hornet Heartseeker Mk I",
@@ -748,7 +1084,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C-M_Super_Hornet_Heartseeker_Mk_I",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/76/images/1ba796ceb40a245855dd69619d05df9c43c57771.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Designed for pilots whose true love is the pulse-pounding thrill of a harrowing dogfight, Anvil's limited-edition Heartseeker is 'the one' for true combat die-hards. Loaded with top-of-the-line near…",
+      "padType": "S"
     },
     {
       "name": "Anvil F7C-M Super Hornet Mk I",
@@ -761,7 +1103,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C-M_Super_Hornet_Mk_I",
       "auec": 4762800,
       "loc": "Astro Armada",
-      "ratio": 26460
+      "ratio": 26460,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/75/images/4e6cd93f82815f05a44a6542e2ca264f2734c6bd.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "The closest to the Military load-out as is legally possible for a Civilian model, the F7C-M Super Hornet reattaches the ball turret and offers near milspec parts under the hood. Proving that two…",
+      "padType": null
     },
     {
       "name": "Anvil F7C-M Super Hornet Mk II",
@@ -774,7 +1122,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C-M_Super_Hornet_Mk_II",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/250/cover/c541d7cad22a9e393ca119d92c54e7b6c6cc4074.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Super Hornet is back and upgraded to Mk II spec, making it deadlier than ever. The only Hornet model with two seats, it features a dedicated gunner’s turret for increased firepower, accuracy, and…",
+      "padType": "S"
     },
     {
       "name": "Anvil F7C-R Hornet Tracker Mk I",
@@ -787,7 +1141,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C-R_Hornet_Tracker_Mk_I",
       "auec": 3210480,
       "loc": "Astro Armada",
-      "ratio": 21403.2
+      "ratio": 21403.2,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/77/images/cb5bf72e49a6a8dd92c2cffec1c3ca5b67457fd2.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "If the Ghost is made to hide, the Tracker is made to seek. The F7C-R Tracker boasts an advanced radar suite making it ideal for deep-space explorers who require depth and accuracy in their scan…",
+      "padType": "S"
     },
     {
       "name": "Anvil F7C-R Hornet Tracker Mk II",
@@ -800,7 +1160,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C-R_Hornet_Tracker_Mk_II",
       "auec": 4882860,
       "loc": "New Deal Lorville",
-      "ratio": 26393.84
+      "ratio": 26393.84,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/246/cover/53419299013010aaa31fdcc96b98ab804a5406fc.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Formidable fighter with enhanced scanning capabilities.",
+      "padType": "S"
     },
     {
       "name": "Anvil F7C-S Hornet Ghost Mk I",
@@ -813,7 +1179,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C-S_Hornet_Ghost_Mk_I",
       "auec": 3307500,
       "loc": "Astro Armada",
-      "ratio": 23625
+      "ratio": 23625,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/78/images/8c57b5af954718af08cca370c3419d57671829b4.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Through a combination of low-emission drives, low-draw weapons, and Void Armor technology capable of diffusing scans, the F7C-S Ghost is built for the pilot who wants to keep a low profile. The Ghost…",
+      "padType": "S"
     },
     {
       "name": "Anvil F7C-S Hornet Ghost Mk II",
@@ -826,7 +1198,13 @@
       "wikiUrl": "https://starcitizen.tools/F7C-S_Hornet_Ghost_Mk_II",
       "auec": 5115370,
       "loc": "New Deal Lorville",
-      "ratio": 27650.65
+      "ratio": 27650.65,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/247/cover/48afdb584321fe21476ec79977f81ffc0df34d86.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Low-signature fighter built for scouting and ambushing unaware foes.",
+      "padType": "S"
     },
     {
       "name": "Anvil F8C Lightning",
@@ -839,7 +1217,13 @@
       "wikiUrl": "https://starcitizen.tools/F8C_Lightning",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/79/images/461c8a45366fc9deba785b7e4799b07bcc53a05a.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Few vehicles inspire the same awe as the legendary F8 Lightning. A force to be reckoned with, it has protected Humanity countless times from countless threats at home and far from civilization.",
+      "padType": "S"
     },
     {
       "name": "Anvil F8C Lightning Executive Edition",
@@ -852,7 +1236,13 @@
       "wikiUrl": "https://starcitizen.tools/F8C_Lightning_Executive_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/222/images/a02efbac5848017ff1d1ffd4efe1e63f6bd1e358.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Few vehicles inspire the same awe as the legendary F8 Lightning. A force to be reckoned with, it has protected Humanity countless times from countless threats at home and far from civilization.",
+      "padType": "S"
     },
     {
       "name": "Anvil Gladiator",
@@ -865,7 +1255,13 @@
       "wikiUrl": "https://starcitizen.tools/Gladiator",
       "auec": 4365900,
       "loc": "Astro Armada",
-      "ratio": 26460
+      "ratio": 26460,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/92/images/089898a043bb795f90b629f94729bb127e121b30.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "The civilian model of the Gladiator appeals to those that want to explore the ‘Verse with a bit of added security. Supporting a maximum of two, the Gladiator is perfectly equipped to explore and…",
+      "padType": "S"
     },
     {
       "name": "Anvil Hawk",
@@ -878,7 +1274,13 @@
       "wikiUrl": "https://starcitizen.tools/Hawk",
       "auec": 2646000,
       "loc": "Astro Armada",
-      "ratio": 26460
+      "ratio": 26460,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/99/images/84fdf0a5b61ff43a75cf4338e51b096d385c37f2.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "A small, light fighter with an emphasis on weaponry, the Hawk boasts an impressive arsenal of lethal and non-lethal weapons, making it a perfect ship for independent bounty hunters or local security…",
+      "padType": "S"
     },
     {
       "name": "Anvil Hurricane",
@@ -891,7 +1293,13 @@
       "wikiUrl": "https://starcitizen.tools/Hurricane",
       "auec": 5556600,
       "loc": "Astro Armada",
-      "ratio": 26460
+      "ratio": 26460,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/107/images/4e89381213048ead780f2ec1cbec55243d0e85a5.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Big things do come in small packages: the Hurricane is a fighting spacecraft that packs a deadly punch into a slight fuselage. The spacecraft compensates for its lack of creature comforts with its…",
+      "padType": "S"
     },
     {
       "name": "Anvil Legionnaire",
@@ -904,7 +1312,13 @@
       "wikiUrl": "https://starcitizen.tools/Legionnaire",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/114/images/95e19524e6538a29acaaf2bcd9c44d299d34dd76.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Anvil Legionnaire presents the civilian market with a military style boarding vessel capable of occupying ships of varying sizes, crews, and capacities. High-performance jump seats safely…",
+      "padType": "M"
     },
     {
       "name": "Anvil Liberator",
@@ -917,7 +1331,13 @@
       "wikiUrl": "https://starcitizen.tools/Liberator",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/115/images/df7bf40914447aee31f01819b9d332de54b11416.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Large",
+      "scu": 400,
+      "description": "Anvil continues its tradition of excellence with the Liberator, an open-air vehicle carrier that applies the tradition of long-range transport to a smaller scale. Designed with the same quantum drive…",
+      "padType": "M"
     },
     {
       "name": "Anvil Odin",
@@ -930,7 +1350,13 @@
       "wikiUrl": "https://starcitizen.tools/Odin",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles//c50b6a445528dbeb8d67d2548c72815d3040ec63.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Capital",
+      "scu": 6000,
+      "description": "Centuries of conflict, innovation, and sacrifice have led to Anvil’s most ambitious undertaking yet. An entirely new classification of combat vessel, the Odin Battlecruiser carries naval tradition…",
+      "padType": null
     },
     {
       "name": "Anvil Paladin",
@@ -943,7 +1369,13 @@
       "wikiUrl": "https://starcitizen.tools/Paladin",
       "auec": 15876000,
       "loc": "Astro Armada",
-      "ratio": 45360
+      "ratio": 45360,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/249/cover/2871b5e180d3a89c5557455285f17936a61ef511.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Medium",
+      "scu": 4,
+      "description": "A formidable gunship with durable armor and immense firepower. Capable of hitting multiple targets simultaneously, the missiles, side turrets, and moveable central turret provide almost complete…",
+      "padType": null
     },
     {
       "name": "Anvil Spartan",
@@ -956,7 +1388,13 @@
       "wikiUrl": "https://starcitizen.tools/Spartan",
       "auec": 804384,
       "loc": "New Deal Lorville",
-      "ratio": 10054.8
+      "ratio": 10054.8,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/177/images/d64f3dad594ad583779d2235ee29a2bd080581b1.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": null,
+      "scu": 0,
+      "description": "Built on Anvil’s robust Atlas Platform, the same chassis used for their devastating Ballista air defense system, the Spartan takes armored personal transport to the next level. A fully armored hold…",
+      "padType": "S"
     },
     {
       "name": "Anvil Terrapin",
@@ -969,7 +1407,13 @@
       "wikiUrl": "https://starcitizen.tools/Terrapin",
       "auec": 5433120,
       "loc": "Astro Armada",
-      "ratio": 24696
+      "ratio": 24696,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/191/images/47804ec4f63aa8d9954fb9b43efdad70e48a74ef.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Outfitted with long-range scanners and encased in heavy armor and oversized shields, the U4A-3 Terrapin can face potentially hazardous circumstances with confidence, making it the ultimate combat…",
+      "padType": "M"
     },
     {
       "name": "Anvil Terrapin Medic",
@@ -982,7 +1426,13 @@
       "wikiUrl": "https://starcitizen.tools/Terrapin_Medic",
       "auec": 5704770,
       "loc": "Astro Armada",
-      "ratio": 25930.77
+      "ratio": 25930.77,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/248/cover/81514109082f2036fcc40cbbc1431e0e182395f9.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Small",
+      "scu": 0,
+      "description": "Durable, heavily armored rescue ship that can take on any battlefield or environ.",
+      "padType": "M"
     },
     {
       "name": "Anvil Valkyrie",
@@ -995,7 +1445,13 @@
       "wikiUrl": "https://starcitizen.tools/Valkyrie",
       "auec": 19845000,
       "loc": "Astro Armada",
-      "ratio": 52920
+      "ratio": 52920,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/194/images/303b1601c6fb87b1461f9e74507b29610caad2f6.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Large",
+      "scu": 90,
+      "description": "In the days of antiquity, the Valkyrie were believed to choose who would live and who would die on the field of war. Now, Anvil is putting that choice in your hands. Seize fate and turn the tide of…",
+      "padType": "M"
     },
     {
       "name": "Anvil Valkyrie Liberator Edition",
@@ -1008,7 +1464,13 @@
       "wikiUrl": "https://starcitizen.tools/Valkyrie_Liberator_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/195/images/6f6a4189c22bbcadee1cb3fecbf13bc7ead14749.jpg",
+      "manufacturer": "Anvil Aerospace",
+      "size": "Large",
+      "scu": 30,
+      "description": "For over a century, Anvil ships have distinguished themselves in countless civilian and military combat operations. Honor that proud tradition with the limited Liberator Edition Valkyrie, featuring…",
+      "padType": "M"
     },
     {
       "name": "Aopoa Khartu-al",
@@ -1021,7 +1483,13 @@
       "wikiUrl": "https://starcitizen.tools/Khartu-al",
       "auec": 7229250,
       "loc": "Astro Armada",
-      "ratio": 42525
+      "ratio": 42525,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/111/images/f1e18ae5b60e218cdb6577c13121441c9a24eb5f.jpg",
+      "manufacturer": "Aopoa",
+      "size": "Medium",
+      "scu": 0,
+      "description": "The Xi'an Aopoa corporation manufactures an export model of the Qhire Khartu, the Khartu-al, for sale to Human civilians. The export model features the same Xi'an maneuvering rig, but control…",
+      "padType": "S"
     },
     {
       "name": "Aopoa Nox",
@@ -1034,7 +1502,13 @@
       "wikiUrl": "https://starcitizen.tools/Nox",
       "auec": 722925,
       "loc": "Astro Armada",
-      "ratio": 16065
+      "ratio": 16065,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/138/images/d2e156b5fea10fc97a8efa9619c4826b0c5d973d.jpg",
+      "manufacturer": "Aopoa",
+      "size": "Small",
+      "scu": 0,
+      "description": "Hit the skids with the 2947 Nox. This speedy and maneuverable open-canopy racer from Aopoa is capable of zipping along planet surfaces or deep space. Available for the first time in Human space, the…",
+      "padType": "XS"
     },
     {
       "name": "Aopoa Nox Kue",
@@ -1047,7 +1521,13 @@
       "wikiUrl": "https://starcitizen.tools/Nox_Kue",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/139/images/821fdd81758758588b545d8b6879950519995080.jpg",
+      "manufacturer": "Aopoa",
+      "size": "Small",
+      "scu": 0,
+      "description": "Deriving its name from the Xi’an word for ‘thrust,’ the Nox Kue delivers that and more. This limited version of the open-canopy racer features a stunning brushed-silver finish and was specifically…",
+      "padType": "XS"
     },
     {
       "name": "Aopoa San tok.Yāi",
@@ -1060,7 +1540,13 @@
       "wikiUrl": "https://starcitizen.tools/San_tok.Y%C4%81i",
       "auec": 9355500,
       "loc": "Astro Armada",
-      "ratio": 42525
+      "ratio": 42525,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/173/images/a7db914199a1266a54a7b85aae8cef4c3f279048.jpg",
+      "manufacturer": "Aopoa",
+      "size": "Small",
+      "scu": 0,
+      "description": "Meet the next evolution of Xi'an tech and design innovation. The San’tok.yāi is a fighter that literally flies circles around the competition.",
+      "padType": "S"
     },
     {
       "name": "Argo ATLS",
@@ -1073,7 +1559,13 @@
       "wikiUrl": "https://starcitizen.tools/ATLS",
       "auec": 71820,
       "loc": "New Deal Lorville",
-      "ratio": 1795.5
+      "ratio": 1795.5,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/233/cover/5630aed6ce3b9eaef6015c72c1df3b4f52579be0.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Single-handedly load and unload the biggest haulers with the power of Argo. The ATLS power suit’s unique exo-frame helps you work quickly, easily, and safely – whatever the task.",
+      "padType": "XS"
     },
     {
       "name": "Argo ATLS GEO",
@@ -1086,7 +1578,13 @@
       "wikiUrl": "https://starcitizen.tools/ATLS_GEO",
       "auec": 86184,
       "loc": "New Deal Lorville",
-      "ratio": 1915.2
+      "ratio": 1915.2,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/252/cover/c504cb0f6d2e3a83cef46b5e536eeb56bc05c657.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Medium",
+      "scu": 0.8,
+      "description": "Built on the proven ATLS power suit chassis, the GEO is outfitted with bespoke mining components and a Jump Pack to open up the most inaccessible (and prosperous) corners of the galaxy.",
+      "padType": null
     },
     {
       "name": "Argo ATLS IKTI",
@@ -1099,7 +1597,13 @@
       "wikiUrl": "https://starcitizen.tools/ATLS_IKTI",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Argo Astronautics",
+      "size": null,
+      "scu": 0.8,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Argo ATLS IKTI GEO",
@@ -1112,7 +1616,13 @@
       "wikiUrl": "https://starcitizen.tools/ATLS_IKTI_GEO",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Argo Astronautics",
+      "size": null,
+      "scu": 0.8,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Argo ATLS IKTI GEO Rad",
@@ -1125,7 +1635,13 @@
       "wikiUrl": "https://starcitizen.tools/ATLS_IKTI_GEO_Rad",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Argo Astronautics",
+      "size": null,
+      "scu": 0.8,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Argo ATLS IKTI Rad",
@@ -1138,7 +1654,13 @@
       "wikiUrl": "https://starcitizen.tools/ATLS_IKTI_Rad",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Argo Astronautics",
+      "size": null,
+      "scu": 0.8,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Argo CSV-FM",
@@ -1151,7 +1673,13 @@
       "wikiUrl": "https://starcitizen.tools/CSV-FM",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/244/cover/c39bb03f9eee1d45739f4320de8fca9660203280.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": null,
+      "scu": 4,
+      "description": null,
+      "padType": "XS"
     },
     {
       "name": "Argo CSV-SM",
@@ -1164,7 +1692,13 @@
       "wikiUrl": "https://starcitizen.tools/CSV-SM",
       "auec": 359100,
       "loc": "New Deal Lorville",
-      "ratio": 7980
+      "ratio": 7980,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/240/cover/bd8900005379040b805f1803464d46d5d8cb19ce.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Medium",
+      "scu": 4,
+      "description": "The CSV-SM is the logistical lifeblood of any hangar or outpost operation. Move essential materials freely and easily.",
+      "padType": "XS"
     },
     {
       "name": "Argo MOLE",
@@ -1177,7 +1711,13 @@
       "wikiUrl": "https://starcitizen.tools/MOLE",
       "auec": 8483740,
       "loc": "New Deal Lorville",
-      "ratio": 26932.51
+      "ratio": 26932.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/122/images/cb849fb690e804a450a85bba9e5df3cb5cc1a05e.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Medium",
+      "scu": 32,
+      "description": "ARGO’s pragmatic no-nonsense approach to ship design is celebrated in the unmistakable silhouette of the MOLE. Just one look at this machine and you know it means business. Tap into your full…",
+      "padType": "M"
     },
     {
       "name": "Argo MOLE Carbon Edition",
@@ -1190,7 +1730,13 @@
       "wikiUrl": "https://starcitizen.tools/MOLE_Carbon_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/123/images/15637edecb8efb9cf8792aff81953fa4e5da9134.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Medium",
+      "scu": 96,
+      "description": "ARGO’s pragmatic no-nonsense approach to ship design is celebrated in the unmistakable silhouette of the MOLE. Just one look at this machine and you know it means business. Tap into your full…",
+      "padType": "M"
     },
     {
       "name": "Argo MOLE Talus Edition",
@@ -1203,7 +1749,13 @@
       "wikiUrl": "https://starcitizen.tools/MOLE_Talus_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/124/images/f2c1ad32e4361d5d23c27eaa1111106148f277be.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Medium",
+      "scu": 96,
+      "description": "ARGO’s pragmatic no-nonsense approach to ship design is celebrated in the unmistakable silhouette of the MOLE. Just one look at this machine and you know it means business. Tap into your full…",
+      "padType": "M"
     },
     {
       "name": "Argo MOTH",
@@ -1216,7 +1768,13 @@
       "wikiUrl": "https://starcitizen.tools/MOTH",
       "auec": 8483740,
       "loc": "New Deal Lorville",
-      "ratio": 26932.51
+      "ratio": 26932.51,
+      "imageUrl": "https://cdn.uexcorp.space/uid6/resources/vehicles//ab216970a17e65c8c53748943e7a6d0a6c02f1c6.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Medium",
+      "scu": 224,
+      "description": "A medium salvager built to bridge the gap between light salvage and full industrial undertakings. With Argo’s industrial heritage leading the design, the MOTH is the natural next step for those…",
+      "padType": null
     },
     {
       "name": "Argo MPUV Cargo",
@@ -1229,7 +1787,13 @@
       "wikiUrl": "https://starcitizen.tools/MPUV_Cargo",
       "auec": 314213,
       "loc": "New Deal Lorville",
-      "ratio": 8977.51
+      "ratio": 8977.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/125/images/8b33b273bb319a5261fc89dcf7ac73df414a85cf.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Small",
+      "scu": 2,
+      "description": "The ARGO Astronautics MPUV-1C (commonly ‘Argo Cargo’) is a dedicated merchant transfer ship, a ubiquitous intergalactic stevedore. Vast numbers of Argo Cargos are responsible for loading and…",
+      "padType": "XS"
     },
     {
       "name": "Argo MPUV Personnel",
@@ -1242,7 +1806,13 @@
       "wikiUrl": "https://starcitizen.tools/MPUV_Personnel",
       "auec": 359100,
       "loc": "New Deal Lorville",
-      "ratio": 8977.5
+      "ratio": 8977.5,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/126/images/ea587bf494d8b92ad8f0bfd1178758bb8debdb28.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Small",
+      "scu": 0,
+      "description": "The ARGO Astronautics MPUV-1P (commonly ‘Argo Personnel.’) is geared towards a simple but incredibly important responsibility: moving groups of people from place to place. The UEE Navy uses MPUV-1Ps…",
+      "padType": "XS"
     },
     {
       "name": "Argo MPUV Tractor",
@@ -1255,7 +1825,13 @@
       "wikiUrl": "https://starcitizen.tools/MPUV_Tractor",
       "auec": 395010,
       "loc": "New Deal Lorville",
-      "ratio": 9875.25
+      "ratio": 9875.25,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/227/cover/59132f09780aec9573affc077012f9c0a06baf4f.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Small",
+      "scu": 16,
+      "description": "The MPUV Tractor features dual tractor beams for effortless cargo handling alongside the sturdy, reliable design you expect from Argo. Load and unload any size freighter with ease.",
+      "padType": "XS"
     },
     {
       "name": "Argo RAFT",
@@ -1268,7 +1844,13 @@
       "wikiUrl": "https://starcitizen.tools/RAFT",
       "auec": 3366560,
       "loc": "New Deal Lorville",
-      "ratio": 17718.74
+      "ratio": 17718.74,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/151/images/a65f70d2d0ca6dbc3e610b06847130ef434bb5d2.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Medium",
+      "scu": 192,
+      "description": "As it does with all its industrial concerns, Argo takes cargo transport very seriously, on every scale. The RAFT is no exception, able to carry a total hauling capacity of 192 SCU. Perfect for…",
+      "padType": "S"
     },
     {
       "name": "Argo SRV",
@@ -1281,7 +1863,13 @@
       "wikiUrl": "https://starcitizen.tools/SRV",
       "auec": 3770550,
       "loc": "New Deal Lorville",
-      "ratio": 22851.82
+      "ratio": 22851.82,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/181/images/a96e4578f04e6fdc4a5b3ba2a9a4f4b4d6e83945.jpg",
+      "manufacturer": "Argo Astronautics",
+      "size": "Medium",
+      "scu": 12,
+      "description": "Leave no one behind. The SRV is a specialized recovery ship built for the extremes. From search-and-rescue to moving cargo containers, its innovative tractor-beam system makes towing effortless…",
+      "padType": "M"
     },
     {
       "name": "Banu Defender",
@@ -1294,7 +1882,13 @@
       "wikiUrl": "https://starcitizen.tools/Defender",
       "auec": 6237000,
       "loc": "Astro Armada",
-      "ratio": 28350
+      "ratio": 28350,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/66/images/c5aba978b7833579f5d6d02283eb9723dc242dee.jpg",
+      "manufacturer": "Banu Souli",
+      "size": "Small",
+      "scu": 0,
+      "description": "Meet the Banu Defender, a multi-crew fighter whose patchwork design highlights technology from a variety of species. Featuring modest accommodations for its crew and easy access to components, the…",
+      "padType": "M"
     },
     {
       "name": "Banu Merchantman",
@@ -1307,7 +1901,13 @@
       "wikiUrl": "https://starcitizen.tools/Merchantman",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/120/images/2c99310801ce0b0bc55c476a4ca0a882d51a0dd0.jpg",
+      "manufacturer": "Banu Souli",
+      "size": "Large",
+      "scu": 2880,
+      "description": "Banu traders are renowned for their merchant prowess, traveling the spacelanes and trading with everyone from humans to the Vanduul! Their sturdy, dedicated trading ships are prized beyond all other…",
+      "padType": "XL"
     },
     {
       "name": "C.O. HoverQuad",
@@ -1320,7 +1920,13 @@
       "wikiUrl": "https://starcitizen.tools/HoverQuad",
       "auec": 53865,
       "loc": "New Deal Lorville",
-      "ratio": 1795.5
+      "ratio": 1795.5,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/101/images/34f1512ebffaad5ee94c119e0cb4db9f8031627c.jpg",
+      "manufacturer": "Consolidated Outland",
+      "size": "Small",
+      "scu": 0,
+      "description": "You know that place where the roads end, and sky runs out? That little place at the very edge of adventure, where there’s nowhere to go but forward? Where over every dune, and around every patch of…",
+      "padType": "XS"
     },
     {
       "name": "C.O. Mustang Alpha",
@@ -1333,7 +1939,13 @@
       "wikiUrl": "https://starcitizen.tools/Mustang_Alpha",
       "auec": 610470,
       "loc": "New Deal Lorville",
-      "ratio": 20349
+      "ratio": 20349,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/128/images/7e179350ff2356f3c2697c02784ee0df40e7da27.jpg",
+      "manufacturer": "Consolidated Outland",
+      "size": "Small",
+      "scu": 4,
+      "description": "Inspired by Consolidated Outland CEO Silas Koerner’s cutting edge vision, the Mustang Alpha is a sleek, stylish spacecraft that uses ultralight alloys to push power ratios to the limits, albeit…",
+      "padType": "S"
     },
     {
       "name": "C.O. Mustang Alpha Vindicator",
@@ -1346,7 +1958,13 @@
       "wikiUrl": "https://starcitizen.tools/Mustang_Alpha_Vindicator",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/129/images/ef45f98a471073e46a3e23b3341da8a54fd3f804.jpg",
+      "manufacturer": "Consolidated Outland",
+      "size": "Small",
+      "scu": 4,
+      "description": "Make the ultimate statement and show the universe that you are a paragon of style and a bulwark of freedom. With this limited Vindicator Edition livery, the maverick designers at Consolidated Outland…",
+      "padType": "S"
     },
     {
       "name": "C.O. Mustang Beta",
@@ -1359,7 +1977,13 @@
       "wikiUrl": "https://starcitizen.tools/Mustang_Beta",
       "auec": 622440,
       "loc": "New Deal Lorville",
-      "ratio": 15561
+      "ratio": 15561,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/130/images/d1ca9330cb447c04eadb0b26b08b44bb32bdc1cc.jpg",
+      "manufacturer": "Consolidated Outland",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Mustang Beta, with its unprecedented range, is made for long duration flights. The factory standard Tarsus Leaper Jump Engine enables the Beta to travel to the galaxy’s farthest systems with…",
+      "padType": "S"
     },
     {
       "name": "C.O. Mustang Delta",
@@ -1372,7 +1996,13 @@
       "wikiUrl": "https://starcitizen.tools/Mustang_Delta",
       "auec": 1228500,
       "loc": "Astro Armada",
-      "ratio": 18900
+      "ratio": 18900,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/131/images/2b46b873658c8621841bccbb3a509a7e190470d9.jpg",
+      "manufacturer": "Consolidated Outland",
+      "size": "Small",
+      "scu": 0,
+      "description": "While it may not be able to go toe to toe with some of the military specific ships, by reinforcing the Mustang’s already strong hull construction with Consolidated Outland’s own line of Cavalry Class…",
+      "padType": "S"
     },
     {
       "name": "C.O. Mustang Gamma",
@@ -1385,7 +2015,13 @@
       "wikiUrl": "https://starcitizen.tools/Mustang_Gamma",
       "auec": 1178100,
       "loc": "Astro Armada",
-      "ratio": 21420
+      "ratio": 21420,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/132/images/069f94fcb132bff94c7b233d69b81d5ea0ef1e62.jpg",
+      "manufacturer": "Consolidated Outland",
+      "size": "Small",
+      "scu": 0,
+      "description": "Consolidated Outland’s design and engineering teams have managed to tweak and refine the Mustang into an admirable racer. The end result, the Mustang Gamma, has smooth acceleration, and power on…",
+      "padType": "S"
     },
     {
       "name": "C.O. Mustang Omega",
@@ -1398,7 +2034,13 @@
       "wikiUrl": "https://starcitizen.tools/Mustang_Omega",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/133/images/c2f34311c806ec399bf66bda8b336c2ba88c1377.jpg",
+      "manufacturer": "Consolidated Outland",
+      "size": "Small",
+      "scu": 0,
+      "description": "Consolidated Outland teamed up with custom tuning company Accelerated Mass Design to create a limited edition racer that features a ramped up fuel intake for faster recycling of the ship’s already…",
+      "padType": "S"
     },
     {
       "name": "C.O. Nomad",
@@ -1411,7 +2053,13 @@
       "wikiUrl": "https://starcitizen.tools/Nomad",
       "auec": 1436400,
       "loc": "New Deal Lorville",
-      "ratio": 17955
+      "ratio": 17955,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/136/images/980c86cc64d484f3681f69b3bec3c90751947a38.jpg",
+      "manufacturer": "Consolidated Outland",
+      "size": "Small",
+      "scu": 24,
+      "description": "Imagine the versatility of a medium-sized, multi-purpose freighter packed into a compact frame. Imagine a ship designed for lone pilots finding their way across a galaxy teeming with possibilities…",
+      "padType": "S"
     },
     {
       "name": "C.O. Pioneer",
@@ -1424,7 +2072,13 @@
       "wikiUrl": "https://starcitizen.tools/Pioneer",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/146/images/65f4b66685ea27b27630bbc3c534850485093a22.jpg",
+      "manufacturer": "Consolidated Outland",
+      "size": "Capital",
+      "scu": 1000,
+      "description": "After their auspicious debut with the Mustang, Consolidated Outland has gone and changed the game again with the reveal of the Pioneer. This self-contained mobile construction yard is capable of…",
+      "padType": "XL"
     },
     {
       "name": "Crusader A1 Spirit",
@@ -1437,7 +2091,13 @@
       "wikiUrl": "https://starcitizen.tools/A1_Spirit",
       "auec": 4961250,
       "loc": "New Deal Crusader",
-      "ratio": 24806.25
+      "ratio": 24806.25,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/178/images/b0add60a6b57ddb91bbfda8f0a8709306ca90f6d.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Crusader Industries brings its usual commitment to excellence directly to the civilian market with the A1 Spirit, a mid-size multi-purpose starship equipped as a light bomber but packing enough…",
+      "padType": "S"
     },
     {
       "name": "Crusader A2 Hercules Starlifter",
@@ -1450,7 +2110,13 @@
       "wikiUrl": "https://starcitizen.tools/A2_Hercules_Starlifter",
       "auec": 37800200,
       "loc": "New Deal Crusader",
-      "ratio": 50400.27
+      "ratio": 50400.27,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/14/images/50bd9b4ba6b6df25dc9319bc2710c710d5a0766c.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": null,
+      "scu": 234,
+      "description": null,
+      "padType": "L"
     },
     {
       "name": "Crusader Ares Inferno Starfighter",
@@ -1463,7 +2129,13 @@
       "wikiUrl": "https://starcitizen.tools/Ares_Inferno_Starfighter",
       "auec": 4725000,
       "loc": "New Deal Crusader",
-      "ratio": 18900
+      "ratio": 18900,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/17/images/982620e4c09e30662313f08e654420f3238e53c5.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "S"
     },
     {
       "name": "Crusader Ares Ion Starfighter",
@@ -1476,7 +2148,13 @@
       "wikiUrl": "https://starcitizen.tools/Ares_Ion_Starfighter",
       "auec": 4725000,
       "loc": "New Deal Crusader",
-      "ratio": 18900
+      "ratio": 18900,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/18/images/b1a2d0c797be2bf18cd75cc0fb774e1297833e98.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "S"
     },
     {
       "name": "Crusader C1 Spirit",
@@ -1489,7 +2167,13 @@
       "wikiUrl": "https://starcitizen.tools/C1_Spirit",
       "auec": 3118500,
       "loc": "New Deal Crusader",
-      "ratio": 24948
+      "ratio": 24948,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/179/images/47b9c657057777c322256e759bb4b8fe0bc2a768.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": "Medium",
+      "scu": 64,
+      "description": "Crusader Industries brings its usual commitment to excellence directly to the civilian market with the C1 Spirit, a multi-purpose starship tuned for mid-range cargo delivery and courier work with…",
+      "padType": "S"
     },
     {
       "name": "Crusader C2 Hercules Starlifter",
@@ -1502,7 +2186,13 @@
       "wikiUrl": "https://starcitizen.tools/C2_Hercules_Starlifter",
       "auec": 18900000,
       "loc": "Astro Armada",
-      "ratio": 47250
+      "ratio": 47250,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/35/images/77b00aae9d72ebc646948afe0106e804b5db53b0.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": null,
+      "scu": 696,
+      "description": null,
+      "padType": "L"
     },
     {
       "name": "Crusader E1 Spirit",
@@ -1515,7 +2205,13 @@
       "wikiUrl": "https://starcitizen.tools/E1_Spirit",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/180/images/ab8bd1a2881ad2fbef102c8ca7112ef10a806cd8.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Crusader Industries brings its usual commitment to excellence directly to the civilian market with the E1 Spirit, a mid-size multi-purpose starship aiming to redefine executive travel with VIP…",
+      "padType": "S"
     },
     {
       "name": "Crusader Genesis Starliner",
@@ -1528,7 +2224,13 @@
       "wikiUrl": "https://starcitizen.tools/Genesis_Starliner",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/91/images/e72164e9d9a9d704f24e36294c417d1bc6d5c98c.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": null,
+      "scu": 300,
+      "description": null,
+      "padType": "M"
     },
     {
       "name": "Crusader Intrepid",
@@ -1541,7 +2243,13 @@
       "wikiUrl": "https://starcitizen.tools/Intrepid",
       "auec": 1173060,
       "loc": "New Deal Lorville",
-      "ratio": 18047.08
+      "ratio": 18047.08,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/236/cover/291652bd5065c42e860fc62ba78bd832057c6006.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": "Small",
+      "scu": 8,
+      "description": "Versatile starter ship and light hauler built with true Crusader quality.",
+      "padType": "S"
     },
     {
       "name": "Crusader M2 Hercules Starlifter",
@@ -1554,7 +2262,13 @@
       "wikiUrl": "https://starcitizen.tools/M2_Hercules_Starlifter",
       "auec": 28009800,
       "loc": "New Deal Lorville",
-      "ratio": 53865
+      "ratio": 53865,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/117/images/434bd7136a4f9ecf26408afc0e204c8078bfe155.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": null,
+      "scu": 522,
+      "description": null,
+      "padType": "L"
     },
     {
       "name": "Crusader Mercury Star Runner",
@@ -1567,7 +2281,13 @@
       "wikiUrl": "https://starcitizen.tools/Mercury_Star_Runner",
       "auec": 12285000,
       "loc": "New Deal Crusader",
-      "ratio": 47250
+      "ratio": 47250,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/121/images/43917165a465b77d0a4a05bd4af1e9bb4ebdd5fe.jpg",
+      "manufacturer": "Crusader Industries",
+      "size": null,
+      "scu": 114,
+      "description": null,
+      "padType": "M"
     },
     {
       "name": "Drake Buccaneer",
@@ -1580,7 +2300,13 @@
       "wikiUrl": "https://starcitizen.tools/Buccaneer",
       "auec": 1580040,
       "loc": "New Deal Lorville",
-      "ratio": 14364
+      "ratio": 14364,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/34/images/ef106457f50e3b074e88c5f718bfec3739fc8ba7.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Buccaneer has been designed from the ground up to fly and fight the way you live. No leather interiors or hyperpillows here: the ‘Bucc is a scrapper designed to maneuver and fight above its…",
+      "padType": "S"
     },
     {
       "name": "Drake Caterpillar",
@@ -1593,7 +2319,13 @@
       "wikiUrl": "https://starcitizen.tools/Caterpillar",
       "auec": 11850300,
       "loc": "New Deal Lorville",
-      "ratio": 35910
+      "ratio": 35910,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/41/images/044f906c0b0581b8088ce4a54cc3efcb2a8ce355.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Large",
+      "scu": 576,
+      "description": "First introduced in 2871, Drake Interplanetary’s Caterpillar has long proven to be a reliable, cost-effective multi-role vessel, capable of being outfitted for everything from mercantile operations…",
+      "padType": "L"
     },
     {
       "name": "Drake Caterpillar Best In Show Edition",
@@ -1606,7 +2338,13 @@
       "wikiUrl": "https://starcitizen.tools/Caterpillar_Best_In_Show_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/42/images/42b0b999159017655e80dc29f35eb357a9f38a61.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": null,
+      "scu": 576,
+      "description": null,
+      "padType": "L"
     },
     {
       "name": "Drake Caterpillar Pirate Edition",
@@ -1619,7 +2357,13 @@
       "wikiUrl": "https://starcitizen.tools/Caterpillar_Pirate_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/43/images/98ecdd657f7a94b773da944e8bf1eac0657c25c1.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": null,
+      "scu": 576,
+      "description": null,
+      "padType": "L"
     },
     {
       "name": "Drake Clipper",
@@ -1632,7 +2376,13 @@
       "wikiUrl": "https://starcitizen.tools/Clipper",
       "auec": 3619730,
       "loc": "New Deal Lorville",
-      "ratio": 24131.53
+      "ratio": 24131.53,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/268/ffe77901b8cbc87ed01ec814e7b6abe43dba4252.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 12,
+      "description": "A solo-flyable ship with multipurpose capabilities, built for freethinkers and lone travelers. Drake’s signature industrial design and evocative asymmetrical aesthetic make the Clipper a visual…",
+      "padType": null
     },
     {
       "name": "Drake Corsair",
@@ -1645,7 +2395,13 @@
       "wikiUrl": "https://starcitizen.tools/Corsair",
       "auec": 6224400,
       "loc": "New Deal Lorville",
-      "ratio": 24897.6
+      "ratio": 24897.6,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/50/images/9523d8ee9760041b070e6e1be75abe9f9f822344.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Large",
+      "scu": 72,
+      "description": "Heed the call of uncharted space and harness the spirit of exploration with the Drake Corsair, a worthy companion, supporting you in battle, discovery, and delivery, wherever the winds of adventure…",
+      "padType": "M"
     },
     {
       "name": "Drake Cutlass Black",
@@ -1658,7 +2414,13 @@
       "wikiUrl": "https://starcitizen.tools/Cutlass_Black",
       "auec": 2010960,
       "loc": "New Deal Lorville",
-      "ratio": 18281.45
+      "ratio": 18281.45,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/52/images/9b0974527f8d53e7d83559465873a50a8d5bc845.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Medium",
+      "scu": 46,
+      "description": "Drake Interplanetary claims that the Cutlass Black is a low-cost, easy-to-maintain solution for local in-system militia units. The larger-than-average cargo hold, RIO seat and dedicated tractor mount…",
+      "padType": "M"
     },
     {
       "name": "Drake Cutlass Black Best In Show Edition",
@@ -1671,7 +2433,13 @@
       "wikiUrl": "https://starcitizen.tools/Cutlass_Black_Best_In_Show_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/53/images/e04b2f5132b118ac81fc9d9bbd9ac5e9f2f70539.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": null,
+      "scu": 46,
+      "description": null,
+      "padType": "M"
     },
     {
       "name": "Drake Cutlass Blue",
@@ -1684,7 +2452,13 @@
       "wikiUrl": "https://starcitizen.tools/Cutlass_Blue",
       "auec": 3519180,
       "loc": "New Deal Lorville",
-      "ratio": 20109.6
+      "ratio": 20109.6,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/54/images/95cc996103d0c7744e00d31d77298faafc0884e4.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Medium",
+      "scu": 12,
+      "description": "Sleek, mean, and royal. The Cutlass Blue adds missiles, a more aggressive engine, and Durasteel holding cells in the cargo bay to the standard model. The Cutlass Blue is the outworld militia standard…",
+      "padType": "M"
     },
     {
       "name": "Drake Cutlass Red",
@@ -1697,7 +2471,13 @@
       "wikiUrl": "https://starcitizen.tools/Cutlass_Red",
       "auec": 2714800,
       "loc": "New Deal Lorville",
-      "ratio": 20109.63
+      "ratio": 20109.63,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/55/images/2f95d35748f0c172ddb730fc9818f40a9b4ea0e8.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Medium",
+      "scu": 12,
+      "description": "Is there a doctor in the house? The Cutlass Red converts the standard cargo hold to a well-equipped medical facility including two Medical Beds. This star bound ambulance features the Nav-E7 Long…",
+      "padType": "M"
     },
     {
       "name": "Drake Cutlass Steel",
@@ -1710,7 +2490,13 @@
       "wikiUrl": "https://starcitizen.tools/Cutlass_Steel",
       "auec": 3797480,
       "loc": "New Deal Lorville",
-      "ratio": 16159.49
+      "ratio": 16159.49,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/56/images/610ad8272554fd9fdd980d661b897e8df8b0ff00.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Drake knows that it’s a dog-eat-dog ‘verse out there. Away from the so-called protection of the UEE the law of the jungle prevails – whoever has the guns, and the personnel makes the rules. Drake has…",
+      "padType": "M"
     },
     {
       "name": "Drake Cutter",
@@ -1723,7 +2509,13 @@
       "wikiUrl": "https://starcitizen.tools/Cutter",
       "auec": 603288,
       "loc": "New Deal Lorville",
-      "ratio": 13406.4
+      "ratio": 13406.4,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/57/images/205f7273a3cc600819bb26687d1158769cb553b3.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 4,
+      "description": "Designed for hard-working folks of all stripes, the Cutter packs 4 SCU of cargo room and plenty of wallop into a rough and tumble, compact frame. It’s a ship that truly embodies the spirit of Drake…",
+      "padType": "S"
     },
     {
       "name": "Drake Cutter Rambler",
@@ -1736,7 +2528,13 @@
       "wikiUrl": "https://starcitizen.tools/Cutter_Rambler",
       "auec": 703836,
       "loc": "New Deal Lorville",
-      "ratio": 14076.72
+      "ratio": 14076.72,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/59/images/b1e10d6b84e3fe10e49a6e6674f2582e69942ec3.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 2,
+      "description": "The pilot-favorite Cutter chassis outfitted for long hauls and extended engagements. Go ahead, take the scenic route.",
+      "padType": "S"
     },
     {
       "name": "Drake Cutter Scout",
@@ -1749,7 +2547,13 @@
       "wikiUrl": "https://starcitizen.tools/Cutter_Scout",
       "auec": 670320,
       "loc": "New Deal Lorville",
-      "ratio": 13406.4
+      "ratio": 13406.4,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/58/images/408fd63dfc2f88d68de7c194806fd3c2e9816a59.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 2,
+      "description": "Building on the do-it-all attitude of the original Cutter, the Scout takes its combat and utility abilities further with improved weapons and scanning components. Support a small fleet or go it alone…",
+      "padType": "S"
     },
     {
       "name": "Drake Dragonfly Black",
@@ -1762,7 +2566,13 @@
       "wikiUrl": "https://starcitizen.tools/Dragonfly_Black",
       "auec": 325584,
       "loc": "New Deal Lorville",
-      "ratio": 8139.6
+      "ratio": 8139.6,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/67/images/a8c7fa5cbdb7bab91b742233d8083e60ddfdedc1.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Drake Dragonfly is the perfect snub ship for anyone looking to live on the edge. With nothing separating the pilot from the dangers of space, the Dragonfly is as much an adventure as a ship…",
+      "padType": "XS"
     },
     {
       "name": "Drake Dragonfly Yellowjacket",
@@ -1775,7 +2585,13 @@
       "wikiUrl": "https://starcitizen.tools/Dragonfly_Yellowjacket",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/68/images/4ad16242dcb1d8233ba1c7dbb18bf0a34bd8ed5a.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Drake Dragonfly is the perfect snub ship for anyone looking to live on the edge. With nothing separating the pilot from the dangers of space, the Dragonfly is as much an adventure as a ship…",
+      "padType": "XS"
     },
     {
       "name": "Drake Golem",
@@ -1788,7 +2604,13 @@
       "wikiUrl": "https://starcitizen.tools/Golem",
       "auec": 1005480,
       "loc": "New Deal Lorville",
-      "ratio": 16758
+      "ratio": 16758,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/251/cover/7a87caaa802eb50c1eab8efdded7bf888c87e949.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 32,
+      "description": "The Drake Golem is an accessible tool built to end the corporate monopoly on mining and place your future firmly within your grasp. Focused and highly capable yet accessible to all, it’s the ideal…",
+      "padType": null
     },
     {
       "name": "Drake Golem Ox",
@@ -1801,7 +2623,13 @@
       "wikiUrl": "https://starcitizen.tools/Golem_Ox",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/269/08d5221d75082eddf66f918c399d559f5b9e4d29.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 64,
+      "description": "A Drake workhorse for the hauling world. With a generous cargo capacity, external storage, and easy off-loading, the OX puts function and performance above all else for solo pilots.",
+      "padType": null
     },
     {
       "name": "Drake Herald",
@@ -1814,7 +2642,13 @@
       "wikiUrl": "https://starcitizen.tools/Herald",
       "auec": 1220940,
       "loc": "New Deal Lorville",
-      "ratio": 14364
+      "ratio": 14364,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/100/images/d44e4d093e22e1a17a2211a419ae98587d62beb7.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Drake Herald is a small, armored ship designed to safely get information from Point A to Point B. Featuring a powerful central engine (for high speed transit and generating the power needed for…",
+      "padType": "S"
     },
     {
       "name": "Drake Ironclad",
@@ -1827,7 +2661,13 @@
       "wikiUrl": "https://starcitizen.tools/Ironclad",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uploads/2/c5d64a5cdee2028ba5604054094ec4cda0059928.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Large",
+      "scu": 2200,
+      "description": "The Ironclad gives deep-space hauling the respect it deserves, preparing you for the inherent risks. Heavy-duty durability and deadly weapons protect a vast payload of open-roof and ramp-accessible…",
+      "padType": "L"
     },
     {
       "name": "Drake Ironclad Assault",
@@ -1840,7 +2680,13 @@
       "wikiUrl": "https://starcitizen.tools/Ironclad_Assault",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uploads/2/bbcddd039585e7564b77961994c2979c46ffbf7f.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Large",
+      "scu": 1440,
+      "description": "With space for cargo, troops and small vehicles and ships, this Heavy Dropship brings more than just immense firepower and durability to the battlefield, it brings the ultimate combined arms platform.",
+      "padType": null
     },
     {
       "name": "Drake Kraken",
@@ -1853,7 +2699,13 @@
       "wikiUrl": "https://starcitizen.tools/Kraken",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/112/images/382b2a0f9fdf37866c4d35a5a5405fd51095d45b.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Capital",
+      "scu": 3792,
+      "description": "The Kraken is a protector and a beacon of freedom in a too-often cruel universe. For those tasked with safekeeping Citizens unable to protect themselves, the Kraken is both a sanctuary and a…",
+      "padType": "XL"
     },
     {
       "name": "Drake Kraken Privateer",
@@ -1866,7 +2718,13 @@
       "wikiUrl": "https://starcitizen.tools/Kraken_Privateer",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/113/images/e0d3ee13378c46afc4e09776c0ba163526043a42.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Capital",
+      "scu": 768,
+      "description": "The Kraken is a protector and a beacon of freedom in a too-often cruel universe. For those tasked with safekeeping Citizens unable to protect themselves, the Kraken is both a sanctuary and a…",
+      "padType": "XL"
     },
     {
       "name": "Drake MULE",
@@ -1879,7 +2737,13 @@
       "wikiUrl": "https://starcitizen.tools/MULE",
       "auec": 64638,
       "loc": "New Deal Lorville",
-      "ratio": 1436.4
+      "ratio": 1436.4,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/127/images/8ef5ed13fc66e1df23c515c16e64a19bc9e8b226.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Medium",
+      "scu": 2,
+      "description": "The Drake Mule is your go-to workhorse for all sorts of loading and hauling jobs, a six-wheeled beast of burden that’s always determined to execute the mission at hand. Whether you need to transport…",
+      "padType": "XS"
     },
     {
       "name": "Drake Pitbull",
@@ -1892,7 +2756,13 @@
       "wikiUrl": "https://starcitizen.tools/Pitbull",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles//13c27ba6f52459f44247db1989415b2bd44c3a46.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 0,
+      "description": "A snub fighter built for close-range skirmishes and vicious scraps. All engines and guns, this snub fighter uses speed and maneuverability to get in close for the kill. Small, simple, and seriously…",
+      "padType": null
     },
     {
       "name": "Drake Vulture",
@@ -1905,7 +2775,13 @@
       "wikiUrl": "https://starcitizen.tools/Vulture",
       "auec": 2513700,
       "loc": "New Deal Lorville",
-      "ratio": 14364
+      "ratio": 14364,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/201/images/8fe269cab8d0f7190a96f8cf4a26b7f6c9582dcd.jpg",
+      "manufacturer": "Drake Interplanetary",
+      "size": "Small",
+      "scu": 12,
+      "description": "Answer to no one, cut out the middle man, and throw caution to the wind. Rip wrecks like a pro and carve out your own place in the great big empty behind the stick of this rough, rugged salvage…",
+      "padType": "S"
     },
     {
       "name": "Esperia Blade",
@@ -1918,7 +2794,13 @@
       "wikiUrl": "https://starcitizen.tools/Blade",
       "auec": 7796250,
       "loc": "Astro Armada",
-      "ratio": 28350
+      "ratio": 28350,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/33/images/d105b5a3e25255421411a8590df378dd9cd98a86.jpg",
+      "manufacturer": "Esperia Incorporation",
+      "size": "Small",
+      "scu": 0,
+      "description": "Vanduul light fighters, designated 'Blade', are often used as scouts and first wave assault crafts. Over the decades of conflict, they have been increasingly used to take out comm arrays and early…",
+      "padType": "S"
     },
     {
       "name": "Esperia Glaive",
@@ -1931,7 +2813,13 @@
       "wikiUrl": "https://starcitizen.tools/Glaive",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/96/images/0b86ce593d05d130f02bae97a3cfb7f7bec44fa6.jpg",
+      "manufacturer": "Esperia Incorporation",
+      "size": "Medium",
+      "scu": 0,
+      "description": "The Glaive is a symmetrical version of the Scythe. Generally flown by Vanduul with more combat experience, they are better armed and have two huge blades/wings as opposed to one on the standard…",
+      "padType": "S"
     },
     {
       "name": "Esperia Prowler",
@@ -1944,7 +2832,13 @@
       "wikiUrl": "https://starcitizen.tools/Prowler",
       "auec": 18711000,
       "loc": "Astro Armada",
-      "ratio": 42525
+      "ratio": 42525,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/149/images/79b909837906a80d10a0ac32a75cd6c9fc8a5631.jpg",
+      "manufacturer": "Esperia Incorporation",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Named after the UPE military designation, the Prowler is a modernized version of the infamous Tevarin armored personnel carrier. Esperia’s astroengineers were given unmitigated access to study…",
+      "padType": "S"
     },
     {
       "name": "Esperia Prowler Utility",
@@ -1957,7 +2851,13 @@
       "wikiUrl": "https://starcitizen.tools/Prowler_Utility",
       "auec": 16839000,
       "loc": "Astro Armada",
-      "ratio": 56130
+      "ratio": 56130,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/262/cover/233be67840bf83fefc8302174cac122030bdf11b.jpg",
+      "manufacturer": "Esperia Incorporation",
+      "size": "Medium",
+      "scu": 32,
+      "description": "The Prowler Utility: Like the original Prowler, the Utility embraces the alien design of the infamous Tevarin ship entrusted to Esperia decades ago. However, its 32-SCU cargo hold and integrated…",
+      "padType": "S"
     },
     {
       "name": "Esperia Stinger",
@@ -1970,7 +2870,13 @@
       "wikiUrl": "https://starcitizen.tools/Stinger",
       "auec": 8930250,
       "loc": "Teach's Levski",
-      "ratio": 28350
+      "ratio": 28350,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/265/24cc75cf2464b297c486b8215c88f1c58c51c8f9.jpg",
+      "manufacturer": "Esperia Incorporation",
+      "size": "Medium",
+      "scu": 0,
+      "description": "A closely replicated Vanduul ship, reworked for Human flight. As Esperia’s first Heavy Fighter, the Stinger prioritizes strong armor to sustain prolonged barrages while readying its attack.",
+      "padType": null
     },
     {
       "name": "Esperia Talon",
@@ -1983,7 +2889,13 @@
       "wikiUrl": "https://starcitizen.tools/Talon",
       "auec": 3260250,
       "loc": "Astro Armada",
-      "ratio": 28350
+      "ratio": 28350,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/189/images/6979951948af90ca14f00e351e4f61832af61dd2.jpg",
+      "manufacturer": "Esperia Incorporation",
+      "size": "Small",
+      "scu": 0,
+      "description": "This ship is a recreation of the Tevarin Talon by Esperia. The Talon is the Tevarin equivalent to the Aegis Gladius or Vanduul Blade; a single-seat combat ship. The Talon is the perfect example of…",
+      "padType": "XS"
     },
     {
       "name": "Esperia Talon Shrike",
@@ -1996,7 +2908,13 @@
       "wikiUrl": "https://starcitizen.tools/Talon_Shrike",
       "auec": 3260250,
       "loc": "Astro Armada",
-      "ratio": 28350
+      "ratio": 28350,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/190/images/436492ba0add7f2c8a7ebcb9f661f446ac5b0f91.jpg",
+      "manufacturer": "Esperia Incorporation",
+      "size": "Small",
+      "scu": 0,
+      "description": "This ship is a recreation of the Tevarin Talon by Esperia. The Talon is the Tevarin equivalent to the Aegis Gladius or Vanduul Blade; a single-seat combat ship. The Talon is the perfect example of…",
+      "padType": "XS"
     },
     {
       "name": "Gatac Railen",
@@ -2009,7 +2927,13 @@
       "wikiUrl": "https://starcitizen.tools/Railen",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/152/images/c96aa89491237296c4330c134909d6be71b83779.jpg",
+      "manufacturer": "Gatac Manufacture",
+      "size": "Large",
+      "scu": 640,
+      "description": "An elegant interspecies vessel perfect for any Human or Xi’an pilot looking for a safe, reliable solution for commercial-grade medium cargo hauling. Utilizing cutting-edge technology and time-tested…",
+      "padType": "S"
     },
     {
       "name": "Gatac Syulen",
@@ -2022,7 +2946,13 @@
       "wikiUrl": "https://starcitizen.tools/Syulen",
       "auec": 2082500,
       "loc": "Astro Armada",
-      "ratio": 32038.46
+      "ratio": 32038.46,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/188/images/e8678dd55949fd7f57e2f9140e3f20c1c19abfb1.jpg",
+      "manufacturer": "Gatac Manufacture",
+      "size": "Medium",
+      "scu": 6,
+      "description": "The Syulen cargo vessel has been artfully crafted by the renowned House Gatac to perfectly suit both Human and Xi’an pilots. With an agile frame, the Syulen lends itself to quickly ferrying important…",
+      "padType": "S"
     },
     {
       "name": "Gatac Tyilui",
@@ -2035,7 +2965,13 @@
       "wikiUrl": "https://starcitizen.tools/Tyilui",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/287/f67fa205de063c5bdef3263ad2e431f5ff24a1a2.jpg",
+      "manufacturer": "Gatac Manufacture",
+      "size": "Large",
+      "scu": 96,
+      "description": "Walk on walls and sail through the multi-directional zero-gravity hangar in Gatac’s first carrier craft. Missiles, pilot weapons, and turrets create a daunting deterrent for obstacles along the way…",
+      "padType": null
     },
     {
       "name": "Grey's Market Basher",
@@ -2048,7 +2984,13 @@
       "wikiUrl": "https://starcitizen.tools/Market_Basher",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Grey's Market",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "S"
     },
     {
       "name": "Grey's Market Shiv",
@@ -2061,7 +3003,13 @@
       "wikiUrl": "https://starcitizen.tools/Market_Shiv",
       "auec": 5556600,
       "loc": "Teach's Levski",
-      "ratio": 37044
+      "ratio": 37044,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/266/6130ea5d82cfbf71f6b15fd0607049ef0741409c.jpg",
+      "manufacturer": "Grey's Market",
+      "size": null,
+      "scu": 32,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Greycat MDC",
@@ -2074,7 +3022,13 @@
       "wikiUrl": "https://starcitizen.tools/MDC",
       "auec": 127575,
       "loc": "Buy and Fly Ruin Station",
-      "ratio": 2551.5
+      "ratio": 2551.5,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/270/3b7178db400277eed84d962a5fea474c08a246bc.jpg",
+      "manufacturer": "Greycat Industrial",
+      "size": "Vehicle",
+      "scu": 0,
+      "description": "The first ground vehicle in the 'verse to have a PDT, the MDC joins the Greycat family. Its automated turret operates with ease to take out encroaching airborne threats and provide covering fire for…",
+      "padType": null
     },
     {
       "name": "Greycat MTC",
@@ -2087,7 +3041,13 @@
       "wikiUrl": "https://starcitizen.tools/MTC",
       "auec": 75600,
       "loc": "New Deal Lorville",
-      "ratio": 1512
+      "ratio": 1512,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/256/cover/5532e4f20e378664ae46b00ea8b57b8493f17d91.jpg",
+      "manufacturer": "Greycat Industrial",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Drive into the fray with Greycat’s tough and reliable MTC - perfect for carrying weapons and armor to battlefields, bunkers, outposts, expedition sites, and more.",
+      "padType": null
     },
     {
       "name": "Greycat PTV",
@@ -2100,7 +3060,13 @@
       "wikiUrl": "https://starcitizen.tools/PTV",
       "auec": 28350,
       "loc": "Astro Armada",
-      "ratio": 1890
+      "ratio": 1890,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/150/images/3ac4be731f7dda6df52513a488c30ab8e69fc7ab.jpg",
+      "manufacturer": "Greycat Industrial",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Got a massive hangar? The Greycat PTV allows you to get from one end to the other without needing to stop for lunch on the way.",
+      "padType": "XS"
     },
     {
       "name": "Greycat ROC",
@@ -2113,7 +3079,13 @@
       "wikiUrl": "https://starcitizen.tools/ROC",
       "auec": 98753,
       "loc": "New Deal Lorville",
-      "ratio": 1795.51
+      "ratio": 1795.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/168/images/48f37b626bdc042f07868d048202108b5b729398.jpg",
+      "manufacturer": "Greycat Industrial",
+      "size": "Medium",
+      "scu": 0,
+      "description": "At Greycat, we understand that mining isn't a one-size-fits-all operation, so we designed the ROC to be as hard-working and versatile as the miners who use it. Small enough to access hard-to-reach…",
+      "padType": null
     },
     {
       "name": "Greycat ROC-DS",
@@ -2126,7 +3098,13 @@
       "wikiUrl": "https://starcitizen.tools/ROC-DS",
       "auec": 134663,
       "loc": "New Deal Lorville",
-      "ratio": 1795.51
+      "ratio": 1795.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/169/images/954300b4f6899902f9fd27a36d71c38765f37072.jpg",
+      "manufacturer": "Greycat Industrial",
+      "size": "Medium",
+      "scu": 0,
+      "description": "At Greycat, we understand that mining isn't a one-size-fits-all operation, so we designed the ROC-DS to be as hard-working and versatile as the miners who use it. With more than double the ore…",
+      "padType": null
     },
     {
       "name": "Greycat STV",
@@ -2139,7 +3117,13 @@
       "wikiUrl": "https://starcitizen.tools/STV",
       "auec": 75600,
       "loc": "Astro Armada",
-      "ratio": 1890
+      "ratio": 1890,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/187/images/9a4d8ad57a0f7c1d7664977b0b7000af437cec78.jpg",
+      "manufacturer": "Greycat Industrial",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Get ready to have some serious fun on the job with the STV from Greycat. This Sport Terrain Vehicle was built by pros for pros and features blazing speed and convenient built-in storage.",
+      "padType": "XS"
     },
     {
       "name": "Greycat UTV",
@@ -2152,7 +3136,13 @@
       "wikiUrl": "https://starcitizen.tools/UTV",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles//3347edfff23a7aa45e61ead1d74006c112352c18.jpg",
+      "manufacturer": "Greycat Industrial",
+      "size": "Medium",
+      "scu": 1,
+      "description": "All the reliability and resilience of Greycat in a compact two-seater. Embodying essential functionality, this no-nonsense rugged transporter gets you from A to B with 1 SCU of cargo and a weapons…",
+      "padType": null
     },
     {
       "name": "Kruger L-21 Wolf",
@@ -2165,7 +3155,13 @@
       "wikiUrl": "https://starcitizen.tools/L-21_Wolf",
       "auec": 2381400,
       "loc": "Astro Armada",
-      "ratio": 23814
+      "ratio": 23814,
+      "imageUrl": "https://cdn.uexcorp.space/uid6/resources/vehicles/264/a82c35d2909d16a8ff2689d2a3da6266099a742f.jpg",
+      "manufacturer": "Kruger Intergalactic",
+      "size": "Small",
+      "scu": 0,
+      "description": "A combat ship prioritizing quality and agility in a timeless design that encompasses Kruger Intergalactic’s core tenet - Perfection in Every Piece.",
+      "padType": null
     },
     {
       "name": "Kruger L-22 Alpha Wolf",
@@ -2178,7 +3174,13 @@
       "wikiUrl": "https://starcitizen.tools/L-22_Alpha_Wolf",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid972/resources/vehicles/267/29ceb504c7a2c993b2acdbf7a79d740a72c1f4c8.jpg",
+      "manufacturer": "Kruger Intergalactic",
+      "size": "Small",
+      "scu": 0,
+      "description": "This Light Fighter variant prioritizes quality and agility with retractable laser weapons and augmented missile capacity.",
+      "padType": null
     },
     {
       "name": "Kruger P-52 Merlin",
@@ -2191,7 +3193,13 @@
       "wikiUrl": "https://starcitizen.tools/P-52_Merlin",
       "auec": 283500,
       "loc": "Astro Armada",
-      "ratio": 11340
+      "ratio": 11340,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/142/images/fbbd301ab3808cce5fb91abfeb03d6872186b600.jpg",
+      "manufacturer": "Kruger Intergalactic",
+      "size": "Small",
+      "scu": 0,
+      "description": "Originally designed to pair with the RSI Constellation, the P-52 Merlin is now available to all pilots! A dedicated parasite fighter, the Merlin is designed to be transported from place to place…",
+      "padType": "XS"
     },
     {
       "name": "Kruger P-72 Archimedes",
@@ -2204,7 +3212,13 @@
       "wikiUrl": "https://starcitizen.tools/P-72_Archimedes",
       "auec": 449820,
       "loc": "Astro Armada",
-      "ratio": 12852
+      "ratio": 12852,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/143/images/88bf4c82bb3bc3ba5afa02a89a3151f58ab41bdf.jpg",
+      "manufacturer": "Kruger Intergalactic",
+      "size": "Small",
+      "scu": 0,
+      "description": "If you’re looking for something a little more agile, blaze among the stars with Kruger Intergalactic’s P-72 Archimedes. Whether for added security, exploring a system or simply the joy of flying, the…",
+      "padType": "XS"
     },
     {
       "name": "Kruger P-72 Archimedes Emerald",
@@ -2217,7 +3231,13 @@
       "wikiUrl": "https://starcitizen.tools/P-72_Archimedes_Emerald",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/144/images/777ce35b6fbd8f24d5b64afaff184f1c79ae60d4.jpg",
+      "manufacturer": "Kruger Intergalactic",
+      "size": "Small",
+      "scu": 0,
+      "description": "Built with exacting precision and styled with urban sophistication in mind, this compact snub isn’t just for show. Fast and responsive, it’s the ideal chaperone for larger ship or the perfect partner…",
+      "padType": "XS"
     },
     {
       "name": "Kruger Stingray",
@@ -2230,7 +3250,13 @@
       "wikiUrl": "https://starcitizen.tools/Stingray",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Kruger Intergalactic",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "Mirai Fury",
@@ -2243,7 +3269,13 @@
       "wikiUrl": "https://starcitizen.tools/Fury",
       "auec": 691268,
       "loc": "New Deal Lorville",
-      "ratio": 12568.51
+      "ratio": 12568.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/84/images/489c53204b9644ef81f8292c97a43e440771011a.jpg",
+      "manufacturer": "Mirai",
+      "size": "Snub",
+      "scu": 0,
+      "description": "Shatter the limits of performance with this next-generation snub fighter from Mirai featuring four halo-mounted size 2 laser repeaters, best-in-class maneuverability, and unprecedented integration of…",
+      "padType": "XS"
     },
     {
       "name": "Mirai Fury LX",
@@ -2256,7 +3288,13 @@
       "wikiUrl": "https://starcitizen.tools/Fury_LX",
       "auec": 824670,
       "loc": "Astro Armada",
-      "ratio": 14994
+      "ratio": 14994,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/85/images/b22d8aa60300b33d612bcc5193168e01ca5935e6.jpg",
+      "manufacturer": "Mirai",
+      "size": "Snub",
+      "scu": 0,
+      "description": "Featuring best-in-class maneuverability and fully integrated, cutting-edge Xi’an tech, the next-generation Fury LX racing ship from Mirai switches out the lithe ship’s offensive capabilities to make…",
+      "padType": "XS"
     },
     {
       "name": "Mirai Fury MX",
@@ -2269,7 +3307,13 @@
       "wikiUrl": "https://starcitizen.tools/Fury_MX",
       "auec": 691268,
       "loc": "New Deal Lorville",
-      "ratio": 12568.51
+      "ratio": 12568.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/86/images/425ff333a9dcc01eed473b9edc73aa3667c8e1c7.jpg",
+      "manufacturer": "Mirai",
+      "size": "Snub",
+      "scu": 0,
+      "description": "Shatter the limits of performance with this next-generation snub bomber from Mirai featuring twenty halo-mounted missiles, best-in-class maneuverability, and unprecedented integration of Xi’an tech…",
+      "padType": "XS"
     },
     {
       "name": "Mirai Guardian",
@@ -2282,7 +3326,13 @@
       "wikiUrl": "https://starcitizen.tools/Guardian",
       "auec": 6284250,
       "loc": "New Deal Lorville",
-      "ratio": 25137
+      "ratio": 25137,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/238/cover/9be991d8e6b69d6d42f338168a85862515e94384.jpg",
+      "manufacturer": "Mirai",
+      "size": "Small",
+      "scu": 0,
+      "description": "Single-operator, long-range heavy fighter with a focus on raw firepower and precision.",
+      "padType": "M"
     },
     {
       "name": "Mirai Guardian MX",
@@ -2295,7 +3345,13 @@
       "wikiUrl": "https://starcitizen.tools/Guardian_MX",
       "auec": 7038360,
       "loc": "New Deal Lorville",
-      "ratio": 24270.21
+      "ratio": 24270.21,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/257/cover/c59caa280022897c50322d2bae773889aaa06d37.jpg",
+      "manufacturer": "Mirai",
+      "size": "Small",
+      "scu": 0,
+      "description": "Mirai’s already deadly Guardian, tuned for uncompromised combat performance with harder-hitting weapons and heavier defense.",
+      "padType": "S"
     },
     {
       "name": "Mirai Guardian QI",
@@ -2308,7 +3364,13 @@
       "wikiUrl": "https://starcitizen.tools/Guardian_QI",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/239/cover/8eb5174a0755705da3cb66ea4b8fc83f2e7b0e44.jpg",
+      "manufacturer": "Mirai",
+      "size": "Small",
+      "scu": 0,
+      "description": "Single-operator fighter-interceptor with a focus on raw firepower and precision.",
+      "padType": "S"
     },
     {
       "name": "Mirai Pulse",
@@ -2321,7 +3383,13 @@
       "wikiUrl": "https://starcitizen.tools/Pulse",
       "auec": 175959,
       "loc": "New Deal Lorville",
-      "ratio": 5865.3
+      "ratio": 5865.3,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/225/cover/500847d035597a5990c89b5f5edb65df6eb512c4.jpg",
+      "manufacturer": "Mirai",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Mirai Pulse redefines the hoverbike experience with its fusion of sleek design, integrated weaponry, and advanced thrusters for unmatched maneuverability. It's the ultimate choice for those…",
+      "padType": "XS"
     },
     {
       "name": "Mirai Pulse LX",
@@ -2334,7 +3402,13 @@
       "wikiUrl": "https://starcitizen.tools/Pulse_LX",
       "auec": 201096,
       "loc": "New Deal Lorville",
-      "ratio": 8043.84
+      "ratio": 8043.84,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/226/cover/ec284da68e34f60c436169cf13a83c9bff9265be.jpg",
+      "manufacturer": "Mirai",
+      "size": "Small",
+      "scu": 0,
+      "description": "Take your racing experience to the next level with the Pulse LX, the leader of high-speed thrills. Engineered to dominate, the LX strips away weight and cuts drag, thrusting you to the forefront of…",
+      "padType": "XS"
     },
     {
       "name": "Mirai Razor",
@@ -2347,7 +3421,13 @@
       "wikiUrl": "https://starcitizen.tools/Razor",
       "auec": 1770360,
       "loc": "New Deal Lorville",
-      "ratio": 12209.38
+      "ratio": 12209.38,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/156/images/8bbbc6e2a50e5c839084b3a9b45b9fd120e1f0bd.jpg",
+      "manufacturer": "Mirai",
+      "size": "Small",
+      "scu": 0,
+      "description": "Mirai makes a bid for the next Murray Cup with the all-new Razor. This advanced racer features an advanced composite spaceframe that puts pure speed ahead of everything else... it's the ship for…",
+      "padType": "XS"
     },
     {
       "name": "Mirai Razor EX",
@@ -2360,7 +3440,13 @@
       "wikiUrl": "https://starcitizen.tools/Razor_EX",
       "auec": 1669820,
       "loc": "New Deal Lorville",
-      "ratio": 10773.03
+      "ratio": 10773.03,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/157/images/bd5ad79d6f9ac5e059816b1194e21ebdc0e89616.jpg",
+      "manufacturer": "Mirai",
+      "size": "Small",
+      "scu": 0,
+      "description": "Outfitted with signature-reducing materials, the RAZOR-EX was a specialty build for the UEE Advocacy for use in surveillance and extraction operations. Although the EX was ultimately rejected for…",
+      "padType": "XS"
     },
     {
       "name": "Mirai Razor LX",
@@ -2373,7 +3459,13 @@
       "wikiUrl": "https://starcitizen.tools/Razor_LX",
       "auec": 1831410,
       "loc": "New Deal Lorville",
-      "ratio": 12209.4
+      "ratio": 12209.4,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/158/images/29de56c16af8066000a94c68c7f824bf9af60953.jpg",
+      "manufacturer": "Mirai",
+      "size": "Small",
+      "scu": 0,
+      "description": "The Razor gets supercharged. The LX features an overclocked engine to unleash blazing top speeds perfect. This power comes at a cost with reduced maneuverability and armaments making it ideal for…",
+      "padType": "XS"
     },
     {
       "name": "MISC Endeavor",
@@ -2386,7 +3478,13 @@
       "wikiUrl": "https://starcitizen.tools/Endeavor",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/70/images/34de230150eb2f3fff52653b71cb70a05d583669.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Capital",
+      "scu": 500,
+      "description": "Musashi Industrial & Starflight Concern is proud to present the Endeavor-class research vessel, a fully modular space platform designed to be adapted for a variety of scientific and medical tasks…",
+      "padType": "XL"
     },
     {
       "name": "MISC Endeavor Fuel Bay Pod",
@@ -2399,7 +3497,13 @@
       "wikiUrl": "https://starcitizen.tools/Endeavor_Fuel_Bay_Pod",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "MISC Endeavor General Research Pod",
@@ -2412,7 +3516,13 @@
       "wikiUrl": "https://starcitizen.tools/Endeavor_General_Research_Pod",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "MISC Endeavor Landing Bay Pod",
@@ -2425,7 +3535,13 @@
       "wikiUrl": "https://starcitizen.tools/Endeavor_Landing_Bay_Pod",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "MISC Endeavor Medical Bay Pod",
@@ -2438,7 +3554,13 @@
       "wikiUrl": "https://starcitizen.tools/Endeavor_Medical_Bay_Pod",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "MISC Endeavor Telescope Array Bay Pod",
@@ -2451,7 +3573,13 @@
       "wikiUrl": "https://starcitizen.tools/Endeavor_Telescope_Array_Bay_Pod",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "MISC Expanse",
@@ -2464,7 +3592,13 @@
       "wikiUrl": "https://starcitizen.tools/Expanse",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/71/images/9a38cd50ab72d9af7dff9c963922cd40d1ed9f21.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Small",
+      "scu": 128,
+      "description": null,
+      "padType": "S"
     },
     {
       "name": "MISC Fortune",
@@ -2477,7 +3611,13 @@
       "wikiUrl": "https://starcitizen.tools/Fortune",
       "auec": 1795500,
       "loc": "New Deal Lorville",
-      "ratio": 10260
+      "ratio": 10260,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/234/cover/8cc62a203bd89e270c5d8c6c58ffdca17da6f56d.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Small",
+      "scu": 16,
+      "description": "Get the job done quickly with MISC’s most efficient salvager yet. It’s not a simple job, but the Fortune makes it easier.",
+      "padType": "S"
     },
     {
       "name": "MISC Freelancer",
@@ -2490,7 +3630,13 @@
       "wikiUrl": "https://starcitizen.tools/Freelancer",
       "auec": 2962580,
       "loc": "New Deal Lorville",
-      "ratio": 26932.55
+      "ratio": 26932.55,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/80/images/ae966d2607b5aba3f00c18fb9d654c7f4dfa51ab.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Medium",
+      "scu": 66,
+      "description": "Freelancers are used as long haul merchant ships by major corporations, but they are just as frequently repurposed as dedicated exploration vessels by independent captains who want to operate on the…",
+      "padType": "M"
     },
     {
       "name": "MISC Freelancer DUR",
@@ -2503,7 +3649,13 @@
       "wikiUrl": "https://starcitizen.tools/Freelancer_DUR",
       "auec": 3151100,
       "loc": "New Deal Lorville",
-      "ratio": 23341.48
+      "ratio": 23341.48,
+      "imageUrl": "https://media.robertsspaceindustries.com/d5tl8fqymjuf7/source.png",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Medium",
+      "scu": 36,
+      "description": "The Freelancer DUR variant specializes in exploration. Sacrificing some of the cargo capacity of the standard Freelancer for an enhanced jump drive, a more advanced scanner, and an expanded fuel tank…",
+      "padType": "M"
     },
     {
       "name": "MISC Freelancer MAX",
@@ -2516,7 +3668,13 @@
       "wikiUrl": "https://starcitizen.tools/Freelancer_MAX",
       "auec": 4039880,
       "loc": "New Deal Lorville",
-      "ratio": 26932.53
+      "ratio": 26932.53,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/82/images/feee325bffabd18945c5b9705839003837cc14cc.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Medium",
+      "scu": 120,
+      "description": "The Freelancer MAX variant is for those who prize increased cargo capacity over everything else. Combine that additional storage with MISC’s unrivaled dependability and reputation, and you can see…",
+      "padType": "M"
     },
     {
       "name": "MISC Freelancer MIS",
@@ -2529,7 +3687,13 @@
       "wikiUrl": "https://starcitizen.tools/Freelancer_MIS",
       "auec": 4713190,
       "loc": "New Deal Lorville",
-      "ratio": 26932.51
+      "ratio": 26932.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/83/images/dd4050ec5f419c8ee613f794ac37164f412c205e.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Medium",
+      "scu": 36,
+      "description": "The Freelancer MIS is a limited edition militarized variant of the classic mercantile ship developed by the UEE. These were produced in very small quantity due to some early payload incidents. This…",
+      "padType": "M"
     },
     {
       "name": "MISC Hull A",
@@ -2542,7 +3706,13 @@
       "wikiUrl": "https://starcitizen.tools/Hull_A",
       "auec": 1615950,
       "loc": "New Deal Lorville",
-      "ratio": 17955
+      "ratio": 17955,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/102/cover/b576923fe74bc29e8c264623845a350c04cd75bc.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Small",
+      "scu": 64,
+      "description": "The smallest, most affordable Hull. The Hull A is great for those just striking out in the galaxy on their own. The Hull A is most similar to the Aurora and Mustang, but lacks the ‘jack of all…",
+      "padType": "S"
     },
     {
       "name": "MISC Hull B",
@@ -2555,7 +3725,13 @@
       "wikiUrl": "https://starcitizen.tools/Hull_B",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/103/2a3d9a225e6117de6846c668b9375ce82d68a5d6.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Large",
+      "scu": 512,
+      "description": "The latest addition to MISC’s omnipresent Hull series, designed for haulers who value reliability and refinement in their growing cargo careers. The Hull B utilizes telescopic spindles exclusive to…",
+      "padType": null
     },
     {
       "name": "MISC Hull C",
@@ -2568,7 +3744,13 @@
       "wikiUrl": "https://starcitizen.tools/Hull_C",
       "auec": 15710600,
       "loc": "New Deal Lorville",
-      "ratio": 31421.2
+      "ratio": 31421.2,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/104/images/4460d06cad138d5ec27cc184731730a43e28955f.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Large",
+      "scu": 4608,
+      "description": "Often called the most common ship in the galaxy, the Hull C is the most-produced of the range and is considered by many to be the most versatile. Intended to hit the ‘sweet spot’ between the smaller…",
+      "padType": "L"
     },
     {
       "name": "MISC Hull D",
@@ -2581,7 +3763,13 @@
       "wikiUrl": "https://starcitizen.tools/Hull_D",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/105/images/92275f155a0663859d74444543f441b4cfc7fd07.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Capital",
+      "scu": 6912,
+      "description": "The Hull D kicks off the larger end of the spectrum with a massive ship built around a rugged frame. The Hull D is affordable enough to be operated by mid-sized organizations and companies. Hull D…",
+      "padType": null
     },
     {
       "name": "MISC Hull E",
@@ -2594,7 +3782,13 @@
       "wikiUrl": "https://starcitizen.tools/Hull_E",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/106/images/2a069f38c1607b63b9478aa4aa7010a42807ec40.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Capital",
+      "scu": 12000,
+      "description": "The largest specialized freighter available on the market today, the Hull E is generally owned by major corporations and operated with a high degree of planning. The lack of maneuverability inherent…",
+      "padType": null
     },
     {
       "name": "MISC Odyssey",
@@ -2607,7 +3801,13 @@
       "wikiUrl": "https://starcitizen.tools/Odyssey",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/140/images/e4913e0ff426f648653dfc93f0901765e5471640.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Large",
+      "scu": 252,
+      "description": "Survey distant frontiers and explore the furthest reaches of space with the MISC Odyssey, the most advanced and complete exploration ship available to civilians. Designed to be supremely…",
+      "padType": "XL"
     },
     {
       "name": "MISC Prospector",
@@ -2620,7 +3820,13 @@
       "wikiUrl": "https://starcitizen.tools/Prospector",
       "auec": 2783020,
       "loc": "New Deal Lorville",
-      "ratio": 17954.97
+      "ratio": 17954.97,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/148/images/f989f4f92913ca8f5350b3a5aa3a3ed53a8a1693.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Small",
+      "scu": 0,
+      "description": "For years, the Prospector has been the universe’s preferred mining vessel for solo operators. Featuring MISC’s sleek design sensibility and a bevy of upgraded high-tech mining tools, the 2947…",
+      "padType": "S"
     },
     {
       "name": "MISC Reliant Kore",
@@ -2633,7 +3839,13 @@
       "wikiUrl": "https://starcitizen.tools/Reliant_Kore",
       "auec": 1633900,
       "loc": "New Deal Lorville",
-      "ratio": 25136.92
+      "ratio": 25136.92,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/162/images/907e231fa4f2e14d3c49fe002afc3236c7146852.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Medium",
+      "scu": 6,
+      "description": "Small supply runs from a planet's surface to a nearby orbital station have become commonplace. With bigger ships focusing more on the long-haul, the Reliant's standard 'Kore' loadout gives it enough…",
+      "padType": "S"
     },
     {
       "name": "MISC Reliant Mako",
@@ -2646,7 +3858,13 @@
       "wikiUrl": "https://starcitizen.tools/Reliant_Mako",
       "auec": 2388020,
       "loc": "New Deal Lorville",
-      "ratio": 25137.05
+      "ratio": 25137.05,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/163/images/b91054080c3a6a3e73bde477b1ecb125b15edf3c.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Medium",
+      "scu": 0,
+      "description": "The Empire depends on up-to-the-second information, which is why reporters need to be able to go where the news is happening: wherever, whenever. Enter the Mako, all the flexibility and dependability…",
+      "padType": "S"
     },
     {
       "name": "MISC Reliant Sen",
@@ -2659,7 +3877,13 @@
       "wikiUrl": "https://starcitizen.tools/Reliant_Sen",
       "auec": 2136640,
       "loc": "New Deal Lorville",
-      "ratio": 25136.94
+      "ratio": 25136.94,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/164/images/1e85660ec2e43f8d9789328c6f52dd0528fef318.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Magellan, Pierce, Croshaw, names that echo through history thanks to their adventurous spirit, a curious nature and a reliable ship. The Reliant Sen is a versatile mobile science platform; outfitted…",
+      "padType": "S"
     },
     {
       "name": "MISC Reliant Tana",
@@ -2672,7 +3896,13 @@
       "wikiUrl": "https://starcitizen.tools/Reliant_Tana",
       "auec": 1885280,
       "loc": "New Deal Lorville",
-      "ratio": 25137.07
+      "ratio": 25137.07,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/165/images/31605e1c82f576b26a15d5b281823e8c6c9adf44.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Medium",
+      "scu": 1,
+      "description": "With Humanity ever-expanding through the universe, the need for a versatile lightweight fighter has expanded with it. Easy to maintain with a rugged construction, the Reliant Tana makes for an ideal…",
+      "padType": "S"
     },
     {
       "name": "MISC Starfarer",
@@ -2685,7 +3915,13 @@
       "wikiUrl": "https://starcitizen.tools/Starfarer",
       "auec": 12568500,
       "loc": "New Deal Lorville",
-      "ratio": 41895
+      "ratio": 41895,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/182/images/5b1e45b78cdec58e4cfc97eedfd39cadf568b6eb.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Large",
+      "scu": 291,
+      "description": "The Starfarer differs from traditional bulk freighters in one key way: it is a dedicated fuel platform. The Starfarer is designed not only to load, store and protect fuel stasis units, it is designed…",
+      "padType": null
     },
     {
       "name": "MISC Starfarer Gemini",
@@ -2698,7 +3934,13 @@
       "wikiUrl": "https://starcitizen.tools/Starfarer_Gemini",
       "auec": 14244300,
       "loc": "New Deal Lorville",
-      "ratio": 41895
+      "ratio": 41895,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/183/images/619c3c090924df82e750cc2b3c40adbdc74d897e.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Large",
+      "scu": 291,
+      "description": "The UEE military uses an adapted ‘rough and tumble’ Gemini variant of the Starfarer for their front-line operations, trading some cargo capacity and maneuverability for reinforced armor, increased…",
+      "padType": "L"
     },
     {
       "name": "MISC Starlancer BLD",
@@ -2711,7 +3953,13 @@
       "wikiUrl": "https://starcitizen.tools/Starlancer_BLD",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/243/cover/5f69a5a648347c85a81519e0d4f88f2d7d035d81.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "M"
     },
     {
       "name": "MISC Starlancer MAX",
@@ -2724,7 +3972,13 @@
       "wikiUrl": "https://starcitizen.tools/Starlancer_MAX",
       "auec": 8379000,
       "loc": "New Deal Lorville",
-      "ratio": 33516
+      "ratio": 33516,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/242/cover/c6c3c0aa2b1e98db507e9eb6dcb6564cfb0e43b3.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Medium",
+      "scu": 224,
+      "description": "Forge better, safer, and more prosperous worlds with the MISC Starlancer. Taking freelance operators and commercial enterprises deeper into the stars, the Starlancer ventures beyond the limits to…",
+      "padType": "M"
     },
     {
       "name": "MISC Starlancer TAC",
@@ -2737,7 +3991,13 @@
       "wikiUrl": "https://starcitizen.tools/Starlancer_TAC",
       "auec": 13381200,
       "loc": "New Deal Lorville",
-      "ratio": 35683.2
+      "ratio": 35683.2,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/241/cover/7bfa745e8992052666662f4a60fc67691b5c0601.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Large",
+      "scu": 96,
+      "description": "Built for deep-space patrol, the TAC takes the robust Starlancer chassis and outfits it for serious offense and defense. Heavy weaponry, a dedicated snub hangar, medbeds, and eight military-spec jump…",
+      "padType": "M"
     },
     {
       "name": "MISC Starlite",
@@ -2750,7 +4010,13 @@
       "wikiUrl": "https://starcitizen.tools/Starlite",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles//72f73ce8d915c4ef6636373980bbb8362c9c4aa4.jpg",
+      "manufacturer": "Musashi Industrial and Starflight Concern",
+      "size": "Small",
+      "scu": 0,
+      "description": "Built on MISC’s legacy of reliability and purpose-driven design, the Starlite offers a helping hand to all pilots who need to reach further, stay longer, and make the return trip home. Singlehandedly…",
+      "padType": "S"
     },
     {
       "name": "Origin 100i",
@@ -2763,7 +4029,13 @@
       "wikiUrl": "https://starcitizen.tools/100i",
       "auec": 1089270,
       "loc": "New Deal Lorville",
-      "ratio": 21785.4
+      "ratio": 21785.4,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/1/images/fc9508537140e21f7959e16f152c915cc8d32dc2.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 2,
+      "description": "Tour the universe with the perfect coupling of luxury and performance. The 100i features Origin Jumpworks' patented AIR fuel system, making it the most efficient and eco-friendly ship on the market…",
+      "padType": "XS"
     },
     {
       "name": "Origin 125a",
@@ -2776,7 +4048,13 @@
       "wikiUrl": "https://starcitizen.tools/125a",
       "auec": 1508220,
       "loc": "New Deal Lorville",
-      "ratio": 25137
+      "ratio": 25137,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/2/images/459167172ae1d427cfca9225dbfb9a7f142a919b.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 2,
+      "description": "Risks were meant to be taken, but why risk running out of fuel in the heat of battle? With the AIR fuel system, a souped-up weapons package, and all the luxury and refinement you've come to expect…",
+      "padType": "XS"
     },
     {
       "name": "Origin 135c",
@@ -2789,7 +4067,13 @@
       "wikiUrl": "https://starcitizen.tools/135c",
       "auec": 1490580,
       "loc": "Astro Armada",
-      "ratio": 22932
+      "ratio": 22932,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/3/images/1184e5f6ab338c92b0e930d0fe0fbe9eef8c6874.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 6,
+      "description": "With a deceptive amount of storage space in its sleek, stylish frame, and Origin's patented AIR fuel system, the 135c model is the obvious choice for musicians, couriers, and anyone trying to get the…",
+      "padType": "XS"
     },
     {
       "name": "Origin 300i",
@@ -2802,7 +4086,13 @@
       "wikiUrl": "https://starcitizen.tools/300i",
       "auec": 1375920,
       "loc": "Astro Armada",
-      "ratio": 22932
+      "ratio": 22932,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/4/images/03e7bc8663a010d060f0a98c6e43ccfda9fb62b2.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 8,
+      "description": "If you're going to travel the stars... why not do it in style? The 300i is Origin Jumpworks' premiere luxury spacecraft. It is a sleek, silver killer that sends as much of a message with its…",
+      "padType": "S"
     },
     {
       "name": "Origin 315p",
@@ -2815,7 +4105,13 @@
       "wikiUrl": "https://starcitizen.tools/315p",
       "auec": 1490580,
       "loc": "Astro Armada",
-      "ratio": 22932
+      "ratio": 22932,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/5/images/5a6f78da97d8130b75a7c48841d46366c61f8864.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 12,
+      "description": "Exploration is man's highest calling. Prepare to chart distant horizons with man's most sophisticated piece of technology, the ORIGIN 315p. Featuring a more robust power plant and a custom scanning…",
+      "padType": "S"
     },
     {
       "name": "Origin 325a",
@@ -2828,7 +4124,13 @@
       "wikiUrl": "https://starcitizen.tools/325a",
       "auec": 1852200,
       "loc": "Astro Armada",
-      "ratio": 26460
+      "ratio": 26460,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/6/images/b995c4b31c249d6d9f32a647555e5d1fe09b01d7.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 4,
+      "description": "Just because it's a rough galaxy doesn't mean you need to sacrifice your comfort: the 325a can come out on top in any dogfight. The 325a features an advanced weapon payload as well as a custom…",
+      "padType": "S"
     },
     {
       "name": "Origin 350r",
@@ -2841,7 +4143,13 @@
       "wikiUrl": "https://starcitizen.tools/350r",
       "auec": 3748500,
       "loc": "Astro Armada",
-      "ratio": 29988
+      "ratio": 29988,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/7/images/48c00dc38244ff5b1fdd4a30a7772c9c2e2b2e62.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 4,
+      "description": "Origin Jumpwork’s 300 Series is the ultimate fusion of elegance and power. Every component, every part is individually calibrated, so no matter which model and options you choose, your ship will stay…",
+      "padType": "S"
     },
     {
       "name": "Origin 400i",
@@ -2854,7 +4162,13 @@
       "wikiUrl": "https://starcitizen.tools/400i",
       "auec": 8398060,
       "loc": "New Deal Lorville",
-      "ratio": 33592.24
+      "ratio": 33592.24,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/8/images/7415e4cf6ed8b3f756cb78ea72af4e6718464c15.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Large",
+      "scu": 42,
+      "description": "To explore the stars is a most noble endeavor, and Origin Jumpworks has risen to the occasion in crafting the 400i, the ultimate high-performance pathfinder. Representing a harmonious concourse of…",
+      "padType": "M"
     },
     {
       "name": "Origin 600i Executive Edition",
@@ -2867,7 +4181,13 @@
       "wikiUrl": "https://starcitizen.tools/600i_Executive_Edition",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/10/images/963be95afdafcc9dc17d86d85b894e8d414ebf6e.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": null,
+      "scu": 40,
+      "description": null,
+      "padType": "L"
     },
     {
       "name": "Origin 600i Explorer",
@@ -2880,7 +4200,13 @@
       "wikiUrl": "https://starcitizen.tools/600i_Explorer",
       "auec": 27231800,
       "loc": "Astro Armada",
-      "ratio": 57330.11
+      "ratio": 57330.11,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/9/images/6e362a10f087569c62fd90284920a79019e20542.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Large",
+      "scu": 44,
+      "description": "This multi-role luxury vessel from Origin Jumpworks features an exquisitely detailed hull design that balances performance and versatility in a sleek and timeless form. The 600i is designed with a…",
+      "padType": "L"
     },
     {
       "name": "Origin 600i Touring",
@@ -2893,7 +4219,13 @@
       "wikiUrl": "https://starcitizen.tools/600i_Touring",
       "auec": 24938600,
       "loc": "Astro Armada",
-      "ratio": 57330.11
+      "ratio": 57330.11,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/11/images/da265731d9523b56d133c1cc894d2bfef417c342.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Large",
+      "scu": 20,
+      "description": "Let the voyage begin with the 2947 600i from Origin Jumpworks. This multi-role luxury vessel from Origin Jumpworks features an exquisitely detailed hull design that balances performance and…",
+      "padType": "L"
     },
     {
       "name": "Origin 85X",
@@ -2906,7 +4238,13 @@
       "wikiUrl": "https://starcitizen.tools/85X",
       "auec": 544635,
       "loc": "New Deal Lorville",
-      "ratio": 10892.7
+      "ratio": 10892.7,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/12/images/eeeced22049078daf278b81948b716e1c05a8736.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 0,
+      "description": "Elegantly styled and meticulously constructed, the 85X is a versatile and comprehensive away-vessel that features precision control in and out of atmosphere. Utilizing much of the same thruster…",
+      "padType": "XS"
     },
     {
       "name": "Origin 890 Jump",
@@ -2919,7 +4257,13 @@
       "wikiUrl": "https://starcitizen.tools/890_Jump",
       "auec": 62088400,
       "loc": "New Deal Lorville",
-      "ratio": 65356.21
+      "ratio": 65356.21,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/13/images/8306aa7d009142a95a3761bbc1e605495467372f.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Capital",
+      "scu": 388,
+      "description": "With an elegant, sleek exterior that belies its spacious interior, the 890 Jump is a true engineering marvel; crafted to impress from every angle by combining a unique, innovative design with the…",
+      "padType": "XL"
     },
     {
       "name": "Origin G12",
@@ -2932,7 +4276,13 @@
       "wikiUrl": "https://starcitizen.tools/G12",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/87/images/63698ba6491b122aecfb453d528d915bdb0d1fe8.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Vehicle",
+      "scu": 2,
+      "description": "Trek to the edge of the galaxy with confidence thanks to Origin’s trademark build quality and design. Built with the most extreme environments in mind, the G12 suits all types of planetary travel…",
+      "padType": "XS"
     },
     {
       "name": "Origin G12-A",
@@ -2945,7 +4295,13 @@
       "wikiUrl": "https://starcitizen.tools/G12-A",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/88/images/4ac9464c967f926d47a698d2ebd66de86e3cd59c.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "XS"
     },
     {
       "name": "Origin G12-R",
@@ -2958,7 +4314,13 @@
       "wikiUrl": "https://starcitizen.tools/G12-R",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/89/images/a32d32156cad8c97bb7ba7d235d9171860361d3e.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "XS"
     },
     {
       "name": "Origin M50",
@@ -2971,7 +4333,13 @@
       "wikiUrl": "https://starcitizen.tools/M50",
       "auec": 1424430,
       "loc": "New Deal Lorville",
-      "ratio": 14244.3
+      "ratio": 14244.3,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/118/images/3a3a2b3c276a446090196cbfe323f99dad82d31c.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 0,
+      "description": "If you want to get from point A to point B as quickly as possible and with as much style as possible then ORIGIN's M50 is for you. Featuring supercharged engines that counter a tiny weapons loadout…",
+      "padType": "XS"
     },
     {
       "name": "Origin M80",
@@ -2984,7 +4352,13 @@
       "wikiUrl": "https://starcitizen.tools/M80",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles//e5b1d2a027e7af2dd7ac57ab1a4341b6b75f0d45.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 2,
+      "description": "Origin’s first ever Heavy Fighter continues a legacy of beauty and elegance combined with high performance. Retractable weapons, missiles, and high durability furnish the M80 to dominate in sustained…",
+      "padType": "M"
     },
     {
       "name": "Origin X1",
@@ -2997,7 +4371,13 @@
       "wikiUrl": "https://starcitizen.tools/X1",
       "auec": 105840,
       "loc": "Astro Armada",
-      "ratio": 2352
+      "ratio": 2352,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/202/cover/c055b2f4a60b1d64f4766ebc232462d050b7351b.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 0,
+      "description": "Designed to further hone the cutting-edge of high-performance luxury vehicles, the X1 is class-defying transportation built for anyone who’s ever asked, “Can I go faster?”",
+      "padType": "XS"
     },
     {
       "name": "Origin X1 Force",
@@ -3010,7 +4390,13 @@
       "wikiUrl": "https://starcitizen.tools/X1_Force",
       "auec": 125685,
       "loc": "New Deal Lorville",
-      "ratio": 2285.18
+      "ratio": 2285.18,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/203/cover/ade5eecc92b6a887d4957fe5d03c2864dadbbe20.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 0,
+      "description": "Travel in confidence with the X1 Force. Featuring additional defensive capabilities, this open-canopy vehicle from Origin Jumpworks is equally suited to ground-based exploration, reconnaissance…",
+      "padType": "XS"
     },
     {
       "name": "Origin X1 Velocity",
@@ -3023,7 +4409,13 @@
       "wikiUrl": "https://starcitizen.tools/X1_Velocity",
       "auec": 113117,
       "loc": "New Deal Lorville",
-      "ratio": 2262.34
+      "ratio": 2262.34,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/204/cover/0c106570e02b5f3ddbd8f656c294ba3b3136cec2.jpg",
+      "manufacturer": "Origin Jumpworks",
+      "size": "Small",
+      "scu": 0,
+      "description": "Subtract weight, add speed. The X1 Velocity offers a lighter chassis to improve overall performance, making it a dangerous new addition to the open-canopy racer lineup.",
+      "padType": "XS"
     },
     {
       "name": "RSI Apollo Medivac",
@@ -3036,7 +4428,13 @@
       "wikiUrl": "https://starcitizen.tools/Apollo_Medivac",
       "auec": 8295210,
       "loc": "Teach's Levski",
-      "ratio": 28604.17
+      "ratio": 28604.17,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/15/images/d7f928aeee167ef5618b0ff75f22896daf964f7e.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 32,
+      "description": "A life-saving ship with enhanced armor and missile racks, capable of responding to calls in the heaviest combat. A product of RSI’s proven history in critical aid, the Medivac provides robust…",
+      "padType": null
     },
     {
       "name": "RSI Apollo Triage",
@@ -3049,7 +4447,13 @@
       "wikiUrl": "https://starcitizen.tools/Apollo_Triage",
       "auec": 7541100,
       "loc": "Teach's Levski",
-      "ratio": 29004.23
+      "ratio": 29004.23,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/16/images/c341ece5316a70edc9baa84df6b1603f64dd0484.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 32,
+      "description": "A life-saving ship for rapid response and emergency medical assistance. A product of RSI’s proven history in critical aid, the Triage delivers highly configurable, professional-level medical care…",
+      "padType": null
     },
     {
       "name": "RSI Arrastra",
@@ -3062,7 +4466,13 @@
       "wikiUrl": "https://starcitizen.tools/Arrastra",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/19/images/d58818f376f3a03468fe2d34f18dfeada5e6fd8c.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 576,
+      "description": "RSI is disrupting the industrial sector with an all-new approach to deep-space mining. Extract, refine, and haul huge volumes of ore in one powerhouse vessel – all with a maximum crew of five!",
+      "padType": "L"
     },
     {
       "name": "RSI Aurora Mk I CL",
@@ -3075,7 +4485,13 @@
       "wikiUrl": "https://starcitizen.tools/Aurora_Mk_I_CL",
       "auec": 969570,
       "loc": "New Deal Lorville",
-      "ratio": 21546
+      "ratio": 21546,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/21/images/cf12be45e94797a0878ad3691bd3723ac3c60482.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 6,
+      "description": "Customized for mercantile and trading excursions, the Aurora Clipper is the perfect vessel for aspiring entrepreneurs and seasoned traders alike. Thanks to its expanded cargo capacity, the Clipper…",
+      "padType": null
     },
     {
       "name": "RSI Aurora Mk I ES",
@@ -3088,7 +4504,13 @@
       "wikiUrl": "https://starcitizen.tools/Aurora_Mk_I_ES",
       "auec": 402192,
       "loc": "New Deal Lorville",
-      "ratio": 20109.6
+      "ratio": 20109.6,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/22/images/bbf5c29a0d3f6be5ab530a241151be85be6cc74e.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 3,
+      "description": "The Aurora is the modern-day descendant of the Roberts Space Industries X-7 spacecraft which tested the very first jump engines. Utilitarian to a T, the Aurora Essential is the perfect choice for new…",
+      "padType": null
     },
     {
       "name": "RSI Aurora Mk I LN",
@@ -3101,7 +4523,13 @@
       "wikiUrl": "https://starcitizen.tools/Aurora_Mk_I_LN",
       "auec": 861840,
       "loc": "New Deal Lorville",
-      "ratio": 21546
+      "ratio": 21546,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/23/images/58051483e5c9183f3b4a02a10a670313ad0b47d5.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 3,
+      "description": "With a more robust shield generator and a pair of additional weapon hard points, the Legionnaire is a dedicated combat fighter, built to handle any obstacle the universe can throw at you.",
+      "padType": null
     },
     {
       "name": "RSI Aurora Mk I LX",
@@ -3114,7 +4542,13 @@
       "wikiUrl": "https://starcitizen.tools/Aurora_Mk_I_LX",
       "auec": 653562,
       "loc": "New Deal Lorville",
-      "ratio": 18673.2
+      "ratio": 18673.2,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/24/images/aa1beb337dcb1944bb40209dace688711bd64a15.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 3,
+      "description": "Be proud of your roots with the brand-new Aurora Deluxe, built for the discerning pilot who never forgets where he or she came from. The LX features patent leather interior to guarantee comfort for…",
+      "padType": null
     },
     {
       "name": "RSI Aurora Mk I MR",
@@ -3127,7 +4561,13 @@
       "wikiUrl": "https://starcitizen.tools/Aurora_Mk_I_MR",
       "auec": 646380,
       "loc": "New Deal Lorville",
-      "ratio": 21546
+      "ratio": 21546,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/25/images/74508ed02baefa1f776a8f006b48652331196b5e.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 3,
+      "description": "Perhaps you're looking for something that offers carrying capacity but has combat capabilities too? The Aurora Marque comes with a pair of Behring-quality lasers and a high quality gun cooler system.",
+      "padType": null
     },
     {
       "name": "RSI Aurora Mk I SE",
@@ -3140,7 +4580,13 @@
       "wikiUrl": "https://starcitizen.tools/Aurora_Mk_I_SE",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/279/b4939a0775d12b7a76888dc0ef61a2e34c961133.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 6,
+      "description": "The culmination of the Aurora Mk I’s long legacy. With the versatility of the MR, the cargo capacity of the CL, the firepower of the LN, and the luxury of the LX, the Special Edition is the ultimate…",
+      "padType": "S"
     },
     {
       "name": "RSI Aurora Mk II",
@@ -3153,7 +4599,13 @@
       "wikiUrl": "https://starcitizen.tools/Aurora_Mk_II",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/278/ee4a6618343b4716f0423db57a18ed7cedb3bb9c.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 0,
+      "description": "The continuation of a legacy, the Aurora is reimagined for the future. A signature starter ship for those making their first voyage into the stars, the Aurora Mk II prioritizes versatility with…",
+      "padType": "XS"
     },
     {
       "name": "RSI Constellation Andromeda",
@@ -3166,7 +4618,13 @@
       "wikiUrl": "https://starcitizen.tools/Constellation_Andromeda",
       "auec": 9652610,
       "loc": "New Deal Lorville",
-      "ratio": 40219.21
+      "ratio": 40219.21,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/45/images/1a7621d2fe871c391177cda91e1dcc37e652ec01.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 96,
+      "description": "The Constellation Andromeda, a multi-person freighter, is the most popular ship in RSI's current production array. Constellations are beloved by smugglers and merchants alike because they are…",
+      "padType": "M"
     },
     {
       "name": "RSI Constellation Aquila",
@@ -3179,7 +4637,13 @@
       "wikiUrl": "https://starcitizen.tools/Constellation_Aquila",
       "auec": 11577400,
       "loc": "New Deal Lorville",
-      "ratio": 36753.65
+      "ratio": 36753.65,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/46/images/7ce480d210108c02b1fdf4545313c3b603e27598.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 96,
+      "description": "Explore any distant horizons! The Constellation Aquila features a redesigned cockpit for maximum visibility, advanced sensors and an onboard Ursa rover for planetary exploration. Let’s see what’s out…",
+      "padType": "M"
     },
     {
       "name": "RSI Constellation Phoenix",
@@ -3192,7 +4656,13 @@
       "wikiUrl": "https://starcitizen.tools/Constellation_Phoenix",
       "auec": 14076700,
       "loc": "New Deal Lorville",
-      "ratio": 40219.14
+      "ratio": 40219.14,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/47/images/1434e6d7e7d8856f65598e86641a0beed0a8d496.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 80,
+      "description": "A dedicated luxury spacecraft for the discerning star captain. The Constellation Phoenix can be operated as an organization command ship and features a luxurious redesigned interior. The Phoenix…",
+      "padType": "M"
     },
     {
       "name": "RSI Constellation Phoenix Emerald",
@@ -3205,7 +4675,13 @@
       "wikiUrl": "https://starcitizen.tools/Constellation_Phoenix_Emerald",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/48/images/6d388c04488cf00e2115fe1d12afca64645f031f.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 80,
+      "description": "Whether you are a discerning socialite or a freewheeling party animal, the Constellation Phoenix Emerald is your personal passport to entertainment. With a swank interior cabin designed specifically…",
+      "padType": "M"
     },
     {
       "name": "RSI Constellation Taurus",
@@ -3218,7 +4694,13 @@
       "wikiUrl": "https://starcitizen.tools/Constellation_Taurus",
       "auec": 7641650,
       "loc": "New Deal Lorville",
-      "ratio": 38208.25
+      "ratio": 38208.25,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/49/images/3d8f2325dad1901aada35cfb9b49c71d4248e7fa.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 174,
+      "description": "Enjoy the adventure of a multi-crew Constellation on a budget! The Constellation Taurus is a dedicated freighter. Fully configurable but without all the bells-and-whistles, the Taurus is a great way…",
+      "padType": "M"
     },
     {
       "name": "RSI Galaxy",
@@ -3231,7 +4713,13 @@
       "wikiUrl": "https://starcitizen.tools/Galaxy",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/90/images/d075014ab60f394376f6dd9cf84d56635b4dfd29.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 64,
+      "description": "Featuring a fully modular design and an onboard hangar capable of deploying small ships, the cutting-edge Galaxy has versatility built into its DNA with a highly configurable main deck that can be…",
+      "padType": "M"
     },
     {
       "name": "RSI Galaxy Cargo Module",
@@ -3244,7 +4732,13 @@
       "wikiUrl": "https://starcitizen.tools/Galaxy_Cargo_Module",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Roberts Space Industries",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "RSI Galaxy Medical Module",
@@ -3257,7 +4751,13 @@
       "wikiUrl": "https://starcitizen.tools/Galaxy_Medical_Module",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Roberts Space Industries",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "RSI Galaxy Refinery Module",
@@ -3270,7 +4770,13 @@
       "wikiUrl": "https://starcitizen.tools/Galaxy_Refinery_Module",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": null,
+      "manufacturer": "Roberts Space Industries",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": null
     },
     {
       "name": "RSI Hermes",
@@ -3283,7 +4789,13 @@
       "wikiUrl": "https://starcitizen.tools/Hermes",
       "auec": 7110180,
       "loc": "Teach's Levski",
-      "ratio": 32319
+      "ratio": 32319,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/275/2695cf85c68b634e9d419f79b81637e40b3856af.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 288,
+      "description": "A freighter designed for maximum payloads and minimal crew. With generous internal storage, solo flyability, and solid defensive measures, RSI delivers opportunity, possibility, and assurance.",
+      "padType": null
     },
     {
       "name": "RSI Lynx",
@@ -3296,7 +4808,13 @@
       "wikiUrl": "https://starcitizen.tools/Lynx",
       "auec": 129276,
       "loc": "New Deal Lorville",
-      "ratio": 2154.6
+      "ratio": 2154.6,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/116/images/1be75a17760fcfdf4a977797ef59459241a3a399.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": null,
+      "scu": 0,
+      "description": "Tour the wildest corners of the ‘verse in safety, comfort, and style in the Lynx Rover from RSI. It’s a jungle out there, but with the Lynx you’ll have the comforts of home anywhere you roam.",
+      "padType": "XS"
     },
     {
       "name": "RSI Mantis",
@@ -3309,7 +4827,13 @@
       "wikiUrl": "https://starcitizen.tools/Mantis",
       "auec": 3231900,
       "loc": "New Deal Lorville",
-      "ratio": 21546
+      "ratio": 21546,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/119/images/b237afa8844aec810bc8379f0e804e0cb4d00b49.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 0,
+      "description": "Stop ships dead in their tracks with RSI’s premier Quantum Enforcement ship. The Mantis features a tailor-made Quantum Enforcement Device from Wei-Tek, capable of ripping ships out of QT with its…",
+      "padType": "S"
     },
     {
       "name": "RSI Meteor",
@@ -3322,7 +4846,13 @@
       "wikiUrl": "https://starcitizen.tools/Meteor",
       "auec": 4309200,
       "loc": "New Deal Lorville",
-      "ratio": 16573.85
+      "ratio": 16573.85,
+      "imageUrl": "https://cdn.uexcorp.space/uid651/resources/vehicles/263/d51943d2a45ed6b78e92062a248d11ebdeb43bc6.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 0,
+      "description": "A medium fighter from famed shipbuilder RSI providing a devastating mix of speed and firepower wrapped in the aggressive styling the brand is known for.",
+      "padType": "S"
     },
     {
       "name": "RSI Orion",
@@ -3335,7 +4865,13 @@
       "wikiUrl": "https://starcitizen.tools/Orion",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/141/images/c48dd8589bd12939d672459b69fe81d32677d6a8.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Capital",
+      "scu": 384,
+      "description": "Roberts Space Industries’ goal has always been to make the stars available to individual Citizens. Now, with the RSI Orion mining platform, RSI is letting individuals take over a process formerly…",
+      "padType": "XL"
     },
     {
       "name": "RSI Perseus",
@@ -3348,7 +4884,13 @@
       "wikiUrl": "https://starcitizen.tools/Perseus",
       "auec": 39690000,
       "loc": "Astro Armada",
-      "ratio": 49612.5
+      "ratio": 49612.5,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/145/images/7f70c18569c95ead2845048ca3c08167873c41b8.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Large",
+      "scu": 96,
+      "description": "When RSI set out to make the definitive modern solution for civilian and paramilitary operations, it looked to its historic Perseus gunship. Capable of destroying sub-capital goliaths and…",
+      "padType": "L"
     },
     {
       "name": "RSI Polaris",
@@ -3361,7 +4903,13 @@
       "wikiUrl": "https://starcitizen.tools/Polaris",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/147/cover/a5e4172b5078b4a0c79bad8ba2791a295a880506.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Capital",
+      "scu": 576,
+      "description": "Nimble corvette-class capital ship packing a powerful punch with a full armament of turrets and torpedoes, small craft hangar, and habitation for a crew of 12.",
+      "padType": "XL"
     },
     {
       "name": "RSI Salvation",
@@ -3374,7 +4922,13 @@
       "wikiUrl": "https://starcitizen.tools/Salvation",
       "auec": 1185030,
       "loc": "Teach's Levski",
-      "ratio": 19750.5
+      "ratio": 19750.5,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/271/640861e9fc48d99c42bb096117170559efec18a5.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 6,
+      "description": "A beginner-friendly ship that brings a career in salvaging within everyone’s grasp. With a compact design and easy-to-use functionality, RSI’s newest offering upholds its legacy of hope for the…",
+      "padType": null
     },
     {
       "name": "RSI Scorpius",
@@ -3387,7 +4941,13 @@
       "wikiUrl": "https://starcitizen.tools/Scorpius",
       "auec": 5171040,
       "loc": "New Deal Lorville",
-      "ratio": 21546
+      "ratio": 21546,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/174/images/197ab82b4c79e09dd3b19a4358eca9905b71151c.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 0,
+      "description": "From RSI’s expert Research and Development teams in Killian and the same engineers that brought you some of the galaxy’s most vaunted war machines comes the next evolution in heavy combat…",
+      "padType": "S"
     },
     {
       "name": "RSI Scorpius Antares",
@@ -3400,7 +4960,13 @@
       "wikiUrl": "https://starcitizen.tools/Scorpius_Antares",
       "auec": 4955580,
       "loc": "New Deal Lorville",
-      "ratio": 21546
+      "ratio": 21546,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/175/images/33c8cbccf7dcaa14d9fbeac289efea84fae119d8.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Small",
+      "scu": 0,
+      "description": "From RSI’s expert Research and Development teams in Killian and the same engineers that brought you some of the galaxy’s most vaunted war machines comes the next evolution in heavy combat…",
+      "padType": "S"
     },
     {
       "name": "RSI Ursa",
@@ -3413,7 +4979,13 @@
       "wikiUrl": "https://starcitizen.tools/Ursa",
       "auec": 107730,
       "loc": "New Deal Lorville",
-      "ratio": 2154.6
+      "ratio": 2154.6,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/192/images/719397fed5610e96b8807b43be8d4e78c0c3498c.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": null,
+      "scu": 0,
+      "description": "Built by RSI specifically for the planetside explorer, the Ursa Rover offers civilians military-grade all-terrain capabilities and stands as the rugged standard in ground-based scouting, mapping and…",
+      "padType": "XS"
     },
     {
       "name": "RSI Ursa Fortuna",
@@ -3426,7 +4998,13 @@
       "wikiUrl": "https://starcitizen.tools/Ursa_Fortuna",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/193/images/4712d6453891f8f10954cfc9d34afba6de75005a.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": null,
+      "scu": 0,
+      "description": "Fortune favors the bold. The most trusted name in all-terrain exploration embodies the essence of good fortune and success with this commemorative limited-edition Ursa Rover.",
+      "padType": "XS"
     },
     {
       "name": "RSI Ursa Medivac",
@@ -3439,7 +5017,13 @@
       "wikiUrl": "https://starcitizen.tools/Ursa_Medivac",
       "auec": 118503,
       "loc": "New Deal Lorville",
-      "ratio": 2154.6
+      "ratio": 2154.6,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/229/cover/6d24af2fc82c79eeeb696e7ae30f573f64a9fd07.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": null,
+      "scu": 0,
+      "description": "A frontline medical support vehicle built to endure the harshest environments - a beacon of hope bringing you back into action with its state-of-the-art Tier 3 medical bed. An indispensable asset for…",
+      "padType": null
     },
     {
       "name": "RSI Zeus Mk II CL",
@@ -3452,7 +5036,13 @@
       "wikiUrl": "https://starcitizen.tools/Zeus_Mk_II_CL",
       "auec": 6463800,
       "loc": "New Deal Lorville",
-      "ratio": 36936
+      "ratio": 36936,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/207/images/4529096b3aaeec38d1905981633e52cfc2d49413.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Medium",
+      "scu": 128,
+      "description": "Ready to ferry a whole new generation of travelers across the universe, the Zeus Mk II pays homage to the classic ship that launched Humanity to the stars in 2140. With a focus on commerce, the Zeus…",
+      "padType": "M"
     },
     {
       "name": "RSI Zeus Mk II ES",
@@ -3465,7 +5055,13 @@
       "wikiUrl": "https://starcitizen.tools/Zeus_Mk_II_ES",
       "auec": 4201470,
       "loc": "New Deal Lorville",
-      "ratio": 24008.4
+      "ratio": 24008.4,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/205/images/c66c31e12750c40e6e7e8702fcc9c5e6ab50d2ae.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Medium",
+      "scu": 32,
+      "description": "Ready to ferry a whole new generation of travelers across the universe, the Zeus Mk II pays homage to the classic ship that launched Humanity to the stars in 2140. With a focus on exploration, the…",
+      "padType": "M"
     },
     {
       "name": "RSI Zeus Mk II MR",
@@ -3478,7 +5074,13 @@
       "wikiUrl": "https://starcitizen.tools/Zeus_Mk_II_MR",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/206/images/60b8aeca09b8f4b601ab092decc30c297add2ee4.jpg",
+      "manufacturer": "Roberts Space Industries",
+      "size": "Medium",
+      "scu": 16,
+      "description": "Ready to ferry a whole new generation of travelers across the universe, the Zeus Mk II pays homage to the classic ship that launched Humanity to the stars in 2140. With a focus on security, the Zeus…",
+      "padType": "M"
     },
     {
       "name": "Tumbril Cyclone",
@@ -3491,7 +5093,13 @@
       "wikiUrl": "https://starcitizen.tools/Cyclone",
       "auec": 98753,
       "loc": "New Deal Lorville",
-      "ratio": 1795.51
+      "ratio": 1795.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/60/images/b47e648be320f1ff377affeeffdd7eefd55f1432.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": "Medium",
+      "scu": 1,
+      "description": "With a potent combination of speed, maneuverability, and rugged durability, the Cyclone is a perfect choice for local deliveries and transport between planetside homesteads and outposts.",
+      "padType": "XS"
     },
     {
       "name": "Tumbril Cyclone AA",
@@ -3504,7 +5112,13 @@
       "wikiUrl": "https://starcitizen.tools/Cyclone_AA",
       "auec": 143640,
       "loc": "New Deal Lorville",
-      "ratio": 1795.5
+      "ratio": 1795.5,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/61/images/6ba241bbce1731970dc6e5fa4e032a234b37b423.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": "Medium",
+      "scu": 0,
+      "description": "A battlefield equalizer, the Cyclone AA comes equipped with a surface-to-air missile and countermeasure package to provide cover for ground troops against airborne targets.",
+      "padType": "XS"
     },
     {
       "name": "Tumbril Cyclone MT",
@@ -3517,7 +5131,13 @@
       "wikiUrl": "https://starcitizen.tools/Cyclone_MT",
       "auec": 134663,
       "loc": "New Deal Lorville",
-      "ratio": 1795.51
+      "ratio": 1795.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/62/images/a0340611c04f8171cbc24703b30782f160f2fe25.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": "Medium",
+      "scu": 0,
+      "description": null,
+      "padType": "XS"
     },
     {
       "name": "Tumbril Cyclone RC",
@@ -3530,7 +5150,13 @@
       "wikiUrl": "https://starcitizen.tools/Cyclone_RC",
       "auec": 116708,
       "loc": "New Deal Lorville",
-      "ratio": 1795.51
+      "ratio": 1795.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/63/images/844242e6ff375ed2b4651b5f469cb6c83c036e5a.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": "Medium",
+      "scu": 0,
+      "description": "For those who like to push the limits of speed, the Cyclone RC features a modified intake system to allow for controlled bursts of speed as well as tools to customize handling.",
+      "padType": "XS"
     },
     {
       "name": "Tumbril Cyclone RN",
@@ -3543,7 +5169,13 @@
       "wikiUrl": "https://starcitizen.tools/Cyclone_RN",
       "auec": 116708,
       "loc": "New Deal Lorville",
-      "ratio": 1795.51
+      "ratio": 1795.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/64/images/b0266b24694ad4c179244eec4ed82b1975d0fc0b.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Stay mobile and aware with the Cyclone RN. This light reconnaissance vehicle is the perfect solution for scouting runs, providing fast and detailed scans of terrain as well as beacon placement.",
+      "padType": "XS"
     },
     {
       "name": "Tumbril Cyclone TR",
@@ -3556,7 +5188,13 @@
       "wikiUrl": "https://starcitizen.tools/Cyclone_TR",
       "auec": 116708,
       "loc": "New Deal Lorville",
-      "ratio": 1795.51
+      "ratio": 1795.51,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/65/images/376b4f4e0194bd75c8386cf3781cc71f0f5256b3.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Designed for militia and security use, the Cyclone TR module features upgraded armor and a single Human-operated turret capable of mounting a Size 1 weapon and a responsive 360° field of fire.",
+      "padType": "XS"
     },
     {
       "name": "Tumbril Nova Tank",
@@ -3569,7 +5207,13 @@
       "wikiUrl": "https://starcitizen.tools/Nova_Tank",
       "auec": 861840,
       "loc": "New Deal Lorville",
-      "ratio": 7182
+      "ratio": 7182,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/137/images/8882877ae6036a0c6289df7d7744374a6e8f597b.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": null,
+      "scu": 0,
+      "description": null,
+      "padType": "S"
     },
     {
       "name": "Tumbril Ranger CV",
@@ -3582,7 +5226,13 @@
       "wikiUrl": "https://starcitizen.tools/Ranger_CV",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/153/images/4cf26aca15947bee8573d6b9b06c6ee854a1e3c6.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": "Vehicle",
+      "scu": 0,
+      "description": "With a powerful frame, proprietary X-TEC adaptive tread tires, and Reactive Response precision steering and braking, the Tumbril Ranger lets you embrace the renegade spirit of the open road while…",
+      "padType": "XS"
     },
     {
       "name": "Tumbril Ranger RC",
@@ -3595,7 +5245,13 @@
       "wikiUrl": "https://starcitizen.tools/Ranger_RC",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/154/images/f4f4c4a5550aa676a875cfa5291b9a27eabfe8cd.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": "Vehicle",
+      "scu": 0,
+      "description": "With a streamlined frame, proprietary X-TEC adaptive tread tires, and Reactive Response precision steering and braking, the Tumbril Ranger lets you embrace the renegade spirit of the open road while…",
+      "padType": "XS"
     },
     {
       "name": "Tumbril Ranger TR",
@@ -3608,7 +5264,13 @@
       "wikiUrl": "https://starcitizen.tools/Ranger_TR",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/155/images/da54ba47eb30a3e5acc982b1caa67c4b7f15e0d7.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": "Vehicle",
+      "scu": 0,
+      "description": "With a powerful frame, proprietary X-TEC adaptive tread tires, and Reactive Response precision steering and braking, the Tumbril Ranger lets you embrace the renegade spirit of the open road while…",
+      "padType": "XS"
     },
     {
       "name": "Tumbril Storm",
@@ -3621,7 +5283,13 @@
       "wikiUrl": "https://starcitizen.tools/Storm",
       "auec": 430920,
       "loc": "New Deal Lorville",
-      "ratio": 4788
+      "ratio": 4788,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/184/images/a2945794584d336d87efa5259bcc08e7ee4c075d.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": null,
+      "scu": 0,
+      "description": "Precision-engineered for unparalleled efficiency, the Tumbril Storm's advanced armament ensures swift target acquisition and devastating firepower. Its unmatched speed outclasses traditional tanks…",
+      "padType": "S"
     },
     {
       "name": "Tumbril Storm AA",
@@ -3634,7 +5302,13 @@
       "wikiUrl": "https://starcitizen.tools/Storm_AA",
       "auec": 452466,
       "loc": "New Deal Lorville",
-      "ratio": 4524.66
+      "ratio": 4524.66,
+      "imageUrl": "https://cdn.uexcorp.space/vehicles/186/cover/b3359b61914636485388a38c6c50bacf414f1bf5.jpg",
+      "manufacturer": "Tumbril Land Systems",
+      "size": null,
+      "scu": 0,
+      "description": "Blitz overcrowded battlefields, take out threats from the air, and turn the tide of any conflict.",
+      "padType": "S"
     },
     {
       "name": "Vanduul Scythe",
@@ -3647,7 +5321,13 @@
       "wikiUrl": "https://starcitizen.tools/Scythe",
       "auec": null,
       "loc": null,
-      "ratio": null
+      "ratio": null,
+      "imageUrl": "https://assets.uexcorp.space/img/vehicles/176/images/85377306ecdcb3a3db7b471c31dff4cf53f2d98a.jpg",
+      "manufacturer": "Vanduul Clans",
+      "size": "Medium",
+      "scu": 0,
+      "description": "Fast becoming the symbol of the Vanduul Race, the Scythe is the foot soldier in every raid and the target of every human fighter pilot. Featuring a hefty weapons payload, the Scythe's real asset is…",
+      "padType": "S"
     }
   ]
 }

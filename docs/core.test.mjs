@@ -20,6 +20,11 @@ import {
   formatFreshness,
   formatShortDate,
   versionLine,
+  fmtScu,
+  shipSize,
+  shipSpecs,
+  shipThumb,
+  shipDetails,
   packTag,
   isHiddenConcierge,
   statusRank,
@@ -167,6 +172,114 @@ test("versionLine échappe les valeurs injectées", () => {
   assert.doesNotMatch(out, /<script>/);
   assert.doesNotMatch(out, /<img>/);
   assert.match(out, /&quot;|&lt;/);
+});
+
+// ---------------------------------------------------------------------------
+// Fiche vaisseau
+// ---------------------------------------------------------------------------
+
+test("fmtScu écrit « aucune soute » plutôt que « 0 SCU »", () => {
+  // 141 vaisseaux sur 280 sont dans ce cas : c'est une information, pas un
+  // trou dans les données.
+  assert.equal(fmtScu(0), "aucune soute");
+});
+
+test("fmtScu formate une capacité connue", () => {
+  assert.equal(fmtScu(456), "456 SCU");
+  // Le séparateur de milliers français est une espace insécable étroite :
+  // même convention que le test de fmtN.
+  assert.equal(fmtScu(4608).replace(/\s/g, " "), "4 608 SCU");
+});
+
+test("fmtScu renvoie null quand l'information est absente", () => {
+  assert.equal(fmtScu(null), null);
+  assert.equal(fmtScu(undefined), null);
+  assert.equal(fmtScu("456"), null);
+  assert.equal(fmtScu(NaN), null);
+});
+
+test("shipSize préfère la taille du Ship Matrix", () => {
+  assert.equal(shipSize({ size: "Large", padType: "M" }), "Large");
+});
+
+test("shipSize retombe sur le type de plateforme, libellé comme tel", () => {
+  assert.equal(shipSize({ size: null, padType: "L" }), "plateforme L");
+});
+
+test("shipSize renvoie null sans taille ni plateforme", () => {
+  assert.equal(shipSize({ size: null, padType: null }), null);
+  assert.equal(shipSize({}), null);
+});
+
+test("shipSpecs assemble constructeur, taille et soute", () => {
+  const out = shipSpecs({ manufacturer: "Anvil Aerospace", size: "Large", scu: 456 });
+  assert.equal(out, "Anvil Aerospace · Large · 456 SCU");
+});
+
+test("shipSpecs omet les segments manquants sans tiret orphelin", () => {
+  assert.equal(shipSpecs({ manufacturer: "Drake Interplanetary" }), "Drake Interplanetary");
+  assert.equal(shipSpecs({ size: "Small", scu: 0 }), "Small · aucune soute");
+  assert.equal(shipSpecs({}), "");
+});
+
+test("shipSpecs échappe le constructeur (donnée externe)", () => {
+  const out = shipSpecs({ manufacturer: "<img src=x onerror=alert(1)>" });
+  assert.doesNotMatch(out, /<img/);
+  assert.match(out, /&lt;img/);
+});
+
+test("shipThumb rend une image paresseuse, à ratio fixe et avec alt", () => {
+  const html = shipThumb({ name: "Anvil Carrack", imageUrl: "https://exemple.test/c.jpg" });
+  assert.match(html, /loading="lazy"/);
+  // Sans no-referrer, les deux hôtes UEX renvoient 403 (anti-hotlink) : c'est
+  // ce qui rend les 256 photos qu'ils servent réellement affichables.
+  assert.match(html, /referrerpolicy="no-referrer"/);
+  assert.match(html, /alt="Anvil Carrack"/);
+  assert.match(html, /width="640"/);
+  assert.match(html, /height="360"/);
+  assert.match(html, /src="https:\/\/exemple\.test\/c\.jpg"/);
+});
+
+test("shipThumb rend un placeholder quand la photo manque", () => {
+  // Jamais de cadre vide ni d'icône d'image cassée pour les 18 vaisseaux sans
+  // photo.
+  const html = shipThumb({ name: "Anvil Carrack", imageUrl: null });
+  assert.doesNotMatch(html, /<img/);
+  assert.match(html, /thumb--empty/);
+  assert.match(html, /aria-label="Aucune photo de Anvil Carrack"/);
+});
+
+test("shipThumb échappe le nom et l'URL", () => {
+  const html = shipThumb({ name: '"><script>', imageUrl: '"><script>' });
+  assert.doesNotMatch(html, /<script>/);
+});
+
+test("shipDetails assemble vignette, caractéristiques et description", () => {
+  const html = shipDetails({
+    name: "Anvil Carrack",
+    imageUrl: "https://exemple.test/c.jpg",
+    manufacturer: "Anvil Aerospace",
+    size: "Large",
+    scu: 456,
+    description: "Un vaisseau d'exploration.",
+  });
+  assert.match(html, /<img/);
+  assert.match(html, /Anvil Aerospace · Large · 456 SCU/);
+  // L'apostrophe est échappée par esc(), comme tout texte externe.
+  assert.match(html, /Un vaisseau d&#39;exploration\./);
+});
+
+test("shipDetails : un vaisseau sans rien garde le placeholder, sans bloc vide", () => {
+  const html = shipDetails({ name: "Inconnu" });
+  assert.match(html, /thumb--empty/);
+  assert.doesNotMatch(html, /class="specs/);
+  assert.doesNotMatch(html, /shipDesc/);
+});
+
+test("shipDetails échappe la description (texte libre du Ship Matrix)", () => {
+  const html = shipDetails({ name: "X", description: "<script>alert(1)</script>" });
+  assert.doesNotMatch(html, /<script>/);
+  assert.match(html, /&lt;script&gt;/);
 });
 
 // ---------------------------------------------------------------------------
