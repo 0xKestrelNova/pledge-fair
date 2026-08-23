@@ -29,6 +29,7 @@ import {
   fmtN,
   fmtUsd,
   formatFreshness,
+  versionLine,
   packTag,
   statusRank,
   tagsOf,
@@ -67,6 +68,43 @@ function setStatus(state, html) {
 }
 
 /* ---------------------------------------------------------------------------
+ * Pied de page : version du site + patch SC couvert par les données
+ * ------------------------------------------------------------------------- */
+
+/** Le changelog vit à la racine du dépôt, hors du site publié (/docs). */
+const CHANGELOG_URL = "https://github.com/0xKestrelNova/pledge-fair/blob/main/CHANGELOG.md";
+
+/**
+ * La version du site est lue dans ./version.json, régénéré depuis package.json
+ * par `npm run sync-version`. Fichier séparé de data.json à dessein : data.json
+ * est réécrit chaque jour par l'Action de données, alors qu'un bump de version
+ * arrive avec une PR de code — le site afficherait une version périmée jusqu'au
+ * prochain run.
+ *
+ * Un échec est silencieux : le pied de page perd son numéro de version, sans
+ * erreur en console, et le reste s'affiche normalement.
+ */
+async function loadSiteVersion() {
+  try {
+    const res = await fetch("./version.json", { cache: "no-store" });
+    if (!res.ok) return null;
+    const { version } = await res.json();
+    return typeof version === "string" && version.trim() ? version.trim() : null;
+  } catch {
+    return null;
+  }
+}
+
+async function renderVersionLine() {
+  $("versionLine").innerHTML = versionLine({
+    siteVersion: await loadSiteVersion(),
+    gameVersion: META.gameVersion,
+    generatedAt: META.generatedAt,
+    changelogUrl: CHANGELOG_URL,
+  });
+}
+
+/* ---------------------------------------------------------------------------
  * Chargement des données
  * ------------------------------------------------------------------------- */
 
@@ -99,11 +137,15 @@ async function loadData() {
 
     renderList("");
     renderTables();
+    renderVersionLine();
   } catch (err) {
     setStatus(
       "error",
       `Impossible de charger les données à jour (${esc(err.message)}). Réessaie de recharger la page dans quelques instants.`,
     );
+    // La version du site et le lien changelog ne dépendent pas de data.json :
+    // le pied de page reste utile même quand les données manquent.
+    renderVersionLine();
   }
 }
 

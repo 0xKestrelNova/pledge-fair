@@ -51,7 +51,7 @@ jobs:
         run: |
           node -e '
             const { meta } = require("./docs/data.json");
-            const flags = ["storefrontOk", "rsiOk", "shipMatrixOk", "conciergeWikiOk"];
+            const flags = ["storefrontOk", "rsiOk", "shipMatrixOk", "conciergeWikiOk", "gameVersionOk"];
             const down = flags.filter((f) => meta[f] === false);
             if (down.length) {
               console.error("::warning::Sources en repli au dernier rafraîchissement : " + down.join(", "));

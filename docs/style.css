@@ -498,6 +498,24 @@ footer {
   letter-spacing: 0.06em;
   line-height: 1.6;
 }
+/* Ligne de version : discrète, monospace pour aligner les numéros. */
+.versionLine {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--edge);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.versionLine a {
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--amber);
+}
+.versionLine a:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
 .tblwrap {
   overflow-x: auto;
 }

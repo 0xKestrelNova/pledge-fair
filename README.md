@@ -13,15 +13,19 @@ docs/                          Le site publié (GitHub Pages)
 ├── app.js                     Front-end : lecture de l'UI et rendu du DOM (module ES)
 ├── core.js                    Logique pure du front-end (calculs, formatage, échappement)
 ├── core.test.mjs              Tests (node --test) de core.js, sans navigateur
-└── data.json                  Données générées — ne pas éditer à la main
+├── data.json                  Données générées — ne pas éditer à la main
+└── version.json               Version du site, générée — ne pas éditer à la main
 scripts/
 ├── update-data.mjs            Génère docs/data.json (tourne dans la GitHub Action)
 ├── update-data.test.mjs       Tests (node --test) des fonctions pures du script
+├── sync-version.mjs           Recopie la version de package.json dans docs/version.json
+├── sync-version.test.mjs      Tests (node --test) des fonctions pures du script
 ├── packages.txt.example       Gabarit commenté des corrections manuelles
 └── packages.txt               (optionnel, à créer) corrections manuelles de classification
 .github/workflows/
-├── ci.yml                     Lint + tests à chaque push / pull request
+├── ci.yml                     Lint + tests + cohérence de version à chaque push / PR
 └── update-data.yml            Action planifiée : régénère et commite data.json
+CHANGELOG.md                   Historique des versions, lié depuis le pied de page
 ```
 
 ## Le site (`docs/`)
@@ -75,6 +79,10 @@ Script Node.js (aucune dépendance Python) qui récupère et fusionne :
 5. Le [wiki communautaire](https://starcitizen.tools) — packs réservés aux
    membres "Concierge" (invisibles dans le catalogue public, même sans
    compte).
+6. UEX `/game_versions` — le patch Star Citizen LIVE couvert par les données,
+   écrit dans `meta.gameVersion` et affiché dans le pied de page du site.
+   Contrairement aux autres points d'entrée UEX, celui-ci renvoie un objet et
+   non un tableau, d'où le paramètre `shape` de `fetchUexJson()`.
 
 Ces sources ne supportent pas toutes les requêtes cross-origin (CORS) depuis
 un navigateur : c'est pourquoi la récupération se fait côté serveur (dans la
@@ -144,9 +152,9 @@ vaisseau ne réclame — c'est le signal qu'un alias est à ajouter ou à corrig
 
 ### Filet de sécurité sur le roster
 
-Les quatre drapeaux `meta` de `data.json` (`storefrontOk`, `rsiOk`,
-`shipMatrixOk`, `conciergeWikiOk`) ne surveillent que les sources
-_auxiliaires_ ; l'Action les signale (run en échec) dès que l'une est en
+Les cinq drapeaux `meta` de `data.json` (`storefrontOk`, `rsiOk`,
+`shipMatrixOk`, `conciergeWikiOk`, `gameVersionOk`) ne surveillent que les
+sources _auxiliaires_ ; l'Action les signale (run en échec) dès que l'une est en
 repli. La source _principale_, UEX, n'a pas de drapeau : une réponse UEX vidée
 ou tronquée passerait donc inaperçue. Le script refuse par sécurité de réécrire
 `data.json` quand le roster tombe sous un plancher absolu (50 vaisseaux) ou
@@ -159,10 +167,46 @@ légitime, relancer avec `--force` :
 node scripts/update-data.mjs --force
 ```
 
+## Version du site et changelog
+
+Le pied de page affiche la version du site, le patch Star Citizen couvert par
+les données, la date de dernière mise à jour et un lien vers le changelog :
+
+```
+Pledge Fair v1.1.0 · données SC 4.9 · màj 23/08/2026 · changelog
+```
+
+`package.json` est la source de vérité pour la version du site. Le site étant
+purement statique et servi tel quel par GitHub Pages, il n'y a pas d'étape de
+build où injecter la valeur : un petit `docs/version.json`, lu au chargement,
+est le mécanisme le plus simple qui reste en même origine — donc compatible avec
+la Content-Security-Policy stricte.
+
+`docs/data.json` ne conviendrait pas comme véhicule : il est régénéré chaque
+jour par l'Action de données, alors qu'un bump de version arrive avec une PR de
+code. Le site afficherait une version périmée jusqu'au prochain run.
+
+**Dans une PR qui change le comportement du site**, trois gestes :
+
+```bash
+npm version minor --no-git-tag-version   # ou major / patch, selon la portée
+npm run sync-version                     # régénère docs/version.json
+# puis ajouter l'entrée correspondante dans CHANGELOG.md
+```
+
+La CI rejoue `npm run sync-version:check` et échoue si `docs/version.json` a
+divergé de `package.json`, exactement comme `format:check` garde le formatage.
+Sans ce garde-fou, le fichier dériverait en silence.
+
+Le patch SC, lui, ne se bumpe pas à la main : il vient de l'API UEX à chaque
+régénération des données. Si `/game_versions` est injoignable, la génération
+réussit quand même, `meta.gameVersionOk` passe à `false` et la mention
+« données SC … » disparaît simplement du pied de page.
+
 ## Tests
 
 `npm test` lance toute la suite avec le lanceur intégré de Node
-(`node --test`, aucune dépendance de test). Les trois fichiers sont découverts
+(`node --test`, aucune dépendance de test). Les fichiers sont découverts
 automatiquement et ne font **aucun appel réseau réel** :
 
 - [`scripts/update-data.test.mjs`](scripts/update-data.test.mjs) — logique du
@@ -176,6 +220,10 @@ automatiquement et ne font **aucun appel réseau réel** :
   storefront, enchaînement des variantes RSI, validation de l'enveloppe UEX,
   et repli sur `null` quand une source est injoignable. `globalThis.fetch` est
   remplacé par un bouchon le temps du test — aucun trafic réel.
+- [`scripts/sync-version.test.mjs`](scripts/sync-version.test.mjs) — fonctions
+  pures de la synchronisation de version. Comme `update-data.mjs`, le script
+  n'exécute son pipeline que lancé directement : l'importer ne touche pas au
+  disque.
 - [`docs/core.test.mjs`](docs/core.test.mjs) — logique pure du front-end
   ([`docs/core.js`](docs/core.js)) : calcul des upgrades candidats (règle CCU,
   répartition en groupes, ratios, tri/filtre), mode catalogue et échappement
@@ -183,7 +231,8 @@ automatiquement et ne font **aucun appel réseau réel** :
   ne touche jamais au DOM, d'où des tests sans jsdom ni navigateur.
 
 La CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) rejoue
-`npm run lint` puis `npm test` à chaque push et pull request. Elle est
+`npm run lint`, `npm run format:check`, `npm run sync-version:check` puis
+`npm test` à chaque push et pull request. Elle est
 distincte de `update-data.yml`, qui ne fait que régénérer `data.json` :
 la CI valide le code, sans toucher aux données.
 

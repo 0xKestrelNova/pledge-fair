@@ -18,6 +18,8 @@ import {
   fmtN,
   fmtUsd,
   formatFreshness,
+  formatShortDate,
+  versionLine,
   packTag,
   isHiddenConcierge,
   statusRank,
@@ -81,6 +83,89 @@ test("formatFreshness formate une date ISO valide", () => {
   assert.notEqual(out, "date inconnue");
   assert.match(out, /2026/);
   assert.match(out, / à /); // « <date> à <heure> »
+});
+
+// ---------------------------------------------------------------------------
+// formatShortDate
+// ---------------------------------------------------------------------------
+
+test("formatShortDate renvoie null sur une date invalide", () => {
+  assert.equal(formatShortDate("pas-une-date"), null);
+  assert.equal(formatShortDate(""), null);
+  assert.equal(formatShortDate(undefined), null);
+});
+
+test("formatShortDate formate en jj/mm/aaaa", () => {
+  assert.match(formatShortDate("2026-08-23T09:13:53.452Z"), /^\d{2}\/\d{2}\/2026$/);
+});
+
+// ---------------------------------------------------------------------------
+// versionLine — pied de page
+// ---------------------------------------------------------------------------
+
+const CHANGELOG = "https://example.test/CHANGELOG.md";
+
+test("versionLine assemble les quatre segments", () => {
+  const out = versionLine({
+    siteVersion: "1.1.0",
+    gameVersion: "4.9",
+    generatedAt: "2026-08-23T09:13:53.452Z",
+    changelogUrl: CHANGELOG,
+  });
+  assert.match(out, /Pledge Fair v1\.1\.0/);
+  assert.match(out, /données SC 4\.9/);
+  assert.match(out, /màj \d{2}\/\d{2}\/2026/);
+  assert.match(out, /<a href="https:\/\/example\.test\/CHANGELOG\.md"[^>]*>changelog<\/a>/);
+  assert.equal(out.split(" · ").length, 4);
+});
+
+test("versionLine masque la mention SC quand la version du jeu est inconnue", () => {
+  // Jamais de « données SC undefined » : le segment disparaît.
+  const out = versionLine({
+    siteVersion: "1.1.0",
+    gameVersion: null,
+    generatedAt: "2026-08-23T09:13:53.452Z",
+    changelogUrl: CHANGELOG,
+  });
+  assert.doesNotMatch(out, /SC/);
+  assert.match(out, /Pledge Fair v1\.1\.0/);
+  assert.equal(out.split(" · ").length, 3);
+});
+
+test("versionLine tient debout sans version de site", () => {
+  // docs/version.json illisible : le reste du pied de page s'affiche quand même.
+  const out = versionLine({
+    gameVersion: "4.9",
+    generatedAt: "2026-08-23T09:13:53.452Z",
+    changelogUrl: CHANGELOG,
+  });
+  assert.doesNotMatch(out, /Pledge Fair v/);
+  assert.match(out, /données SC 4\.9/);
+  assert.match(out, /changelog/);
+});
+
+test("versionLine omet une date illisible plutôt que de l'afficher", () => {
+  const out = versionLine({ siteVersion: "1.1.0", generatedAt: "n'importe quoi" });
+  assert.doesNotMatch(out, /màj/);
+  assert.equal(out, "Pledge Fair v1.1.0");
+});
+
+test("versionLine sans aucune donnée renvoie une chaîne vide", () => {
+  assert.equal(versionLine(), "");
+  assert.equal(versionLine({}), "");
+});
+
+test("versionLine échappe les valeurs injectées", () => {
+  // Les versions viennent de fichiers JSON, mais l'échappement est la règle du
+  // projet pour tout ce qui finit dans le DOM.
+  const out = versionLine({
+    siteVersion: '1.0"><script>',
+    gameVersion: "<img>",
+    changelogUrl: '"><script>',
+  });
+  assert.doesNotMatch(out, /<script>/);
+  assert.doesNotMatch(out, /<img>/);
+  assert.match(out, /&quot;|&lt;/);
 });
 
 // ---------------------------------------------------------------------------

@@ -202,14 +202,29 @@ export function storefrontAliases(name) {
 
 const URL_UEX_API = "https://api.uexcorp.uk/2.0";
 
-export async function fetchUexJson(path) {
+// Valide l'enveloppe commune des réponses UEX ({ status, data, ... }) et
+// renvoie sa charge utile. La plupart des points d'entrée renvoient un
+// tableau, mais pas tous : /game_versions renvoie un objet
+// ({"live":"4.9","ptu":"4.10.0"}), qu'une validation `Array.isArray` seule
+// rejetterait. D'où le paramètre `shape`, qui garde le contrôle du champ
+// `status` dans les deux cas. Pur, donc testable sans réseau.
+export function uexPayload(data, path, shape = "array") {
+  const payload = data && data.data;
+  const shapeOk =
+    shape === "array"
+      ? Array.isArray(payload)
+      : Boolean(payload) && typeof payload === "object" && !Array.isArray(payload);
+  if (!data || data.status !== "ok" || !shapeOk) {
+    throw new Error(`Réponse UEX API inattendue pour ${path}`);
+  }
+  return payload;
+}
+
+export async function fetchUexJson(path, shape = "array") {
   const data = await fetchJson(`${URL_UEX_API}/${path}`, {
     headers: { Accept: "application/json" },
   });
-  if (!data || data.status !== "ok" || !Array.isArray(data.data)) {
-    throw new Error(`Réponse UEX API inattendue pour ${path}`);
-  }
-  return data.data;
+  return uexPayload(data, path, shape);
 }
 
 // UEX conserve un historique de prix par vaisseau ET par devise/région
@@ -276,6 +291,30 @@ export function buildUexRoster(vehicles, prices, purchases) {
   }
 
   return { pledge, inGame };
+}
+
+// Extrait la version LIVE de la réponse /game_versions
+// ({"live":"4.9","ptu":"4.10.0"}). On retient `live` : c'est le patch que
+// jouent les joueurs, donc celui auquel correspondent les prix en jeu. Une
+// valeur absente ou vide renvoie null plutôt qu'une chaîne bancale — le pied
+// de page masque alors la mention plutôt que d'afficher « SC undefined ».
+// Pur, donc testable.
+export function parseGameVersion(payload) {
+  const live = payload && payload.live;
+  return typeof live === "string" && live.trim() ? live.trim() : null;
+}
+
+// Source auxiliaire : son indisponibilité ne doit pas faire échouer la
+// génération, au même titre que le Ship Matrix ou le wiki. On renvoie null et
+// le drapeau meta.gameVersionOk le signale.
+export async function fetchGameVersion() {
+  log(`Vérification version du jeu (${URL_UEX_API}/game_versions) ...`);
+  try {
+    return parseGameVersion(await fetchUexJson("game_versions", "object"));
+  } catch (exc) {
+    log(`Avertissement: version du jeu indisponible (${exc}). La mention SC sera masquée.`);
+    return null;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -942,21 +981,36 @@ export function parseArgs(argv) {
   return args;
 }
 
-const META_FLAGS = ["storefrontOk", "rsiOk", "shipMatrixOk", "conciergeWikiOk"];
+// Comparaison d'objets insensible à l'ordre des cles : `meta` est reconstruit
+// a chaque run, `prev` relu d'un fichier ecrit par une version anterieure du
+// script — leurs cles peuvent ne pas se presenter dans le meme ordre.
+const stableJson = (o) =>
+  JSON.stringify(
+    Object.keys(o)
+      .sort()
+      .map((k) => [k, o[k]]),
+  );
 
 // L'Action tourne chaque jour, mais les données ne changent pas tous les
 // jours. Pour ne pas polluer l'historique git d'un commit quotidien inutile
 // (le gros data.json réécrit pour un simple horodatage), on réutilise
-// l'horodatage précédent quand ni les vaisseaux ni l'état des sources n'ont
-// bougé : le fichier reste alors identique octet pour octet et `git` ne voit
-// rien à committer. `generatedAt` reflète donc la dernière *évolution* des
-// données, pas la dernière exécution. Exporté pour être testé.
-export function resolveGeneratedAt(previous, ships, flags, now) {
+// l'horodatage précédent quand ni les vaisseaux ni le reste des métadonnées
+// n'ont bougé : le fichier reste alors identique octet pour octet et `git` ne
+// voit rien à committer. `generatedAt` reflète donc la dernière *évolution*
+// des données, pas la dernière exécution.
+//
+// La comparaison porte sur tout `meta` (hors `generatedAt`) et non sur une
+// liste de drapeaux figée : un champ ajouté plus tard — `gameVersion`, par
+// exemple — entre ainsi dans le calcul sans qu'on ait à penser à l'inscrire
+// quelque part. Exporté pour être testé.
+export function resolveGeneratedAt(previous, ships, meta, now) {
   const prev = previous && previous.meta;
   if (!prev || !prev.generatedAt) return now;
-  const sameFlags = META_FLAGS.every((f) => prev[f] === flags[f]);
+  const prevRest = { ...prev };
+  delete prevRest.generatedAt;
+  const sameMeta = stableJson(prevRest) === stableJson(meta);
   const sameShips = JSON.stringify(previous.ships) === JSON.stringify(ships);
-  return sameFlags && sameShips ? prev.generatedAt : now;
+  return sameMeta && sameShips ? prev.generatedAt : now;
 }
 
 // Les quatre drapeaux meta ne surveillent que les sources *auxiliaires*
@@ -989,15 +1043,23 @@ export function rosterHealth(ships, previous, { minShips = 50, dropRatio = 0.5 }
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
-  const [storefrontStandalone, storefrontPacks, wikiConciergePacks, rsi, shipMatrix, uex] =
-    await Promise.all([
-      fetchStorefrontStandaloneShips(),
-      fetchStorefrontPacks(),
-      fetchWikiConciergePacks(),
-      fetchRsiStandalone(),
-      fetchShipMatrix(),
-      fetchUexRoster(),
-    ]);
+  const [
+    storefrontStandalone,
+    storefrontPacks,
+    wikiConciergePacks,
+    rsi,
+    shipMatrix,
+    uex,
+    gameVersion,
+  ] = await Promise.all([
+    fetchStorefrontStandaloneShips(),
+    fetchStorefrontPacks(),
+    fetchWikiConciergePacks(),
+    fetchRsiStandalone(),
+    fetchShipMatrix(),
+    fetchUexRoster(),
+    fetchGameVersion(),
+  ]);
   const { inGame, pledge } = uex;
 
   const manualPackages = await loadPackagesFile(args.packages);
@@ -1031,6 +1093,7 @@ async function main() {
     rsiOk: rsi !== null,
     shipMatrixOk: shipMatrix !== null,
     conciergeWikiOk: wikiConciergePacks !== null,
+    gameVersionOk: gameVersion !== null,
   };
 
   let previous = null;
@@ -1057,8 +1120,9 @@ async function main() {
     return;
   }
 
-  const generatedAt = resolveGeneratedAt(previous, ships, flags, new Date().toISOString());
-  const meta = { generatedAt, ...flags };
+  const metaRest = { ...flags, gameVersion };
+  const generatedAt = resolveGeneratedAt(previous, ships, metaRest, new Date().toISOString());
+  const meta = { generatedAt, ...metaRest };
 
   await writeFile(args.out, JSON.stringify({ meta, ships }, null, 2), "utf-8");
 
@@ -1070,7 +1134,8 @@ async function main() {
   log(
     `${args.out} généré : ${ships.length} vaisseaux — ${nAv} achetables standalone, ` +
       `${nPk} en pack uniquement (dont ${nPkConcierge} Concierge), ` +
-      `${nRatio} avec ratio calculable, ${nConcept} en concept.`,
+      `${nRatio} avec ratio calculable, ${nConcept} en concept` +
+      `${gameVersion ? `, patch SC ${gameVersion}` : ", patch SC inconnu"}.`,
   );
 }
 

@@ -1,10 +1,12 @@
 {
   "meta": {
-    "generatedAt": "2026-08-23T09:13:53.452Z",
+    "generatedAt": "2026-08-23T11:28:32.591Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
-    "conciergeWikiOk": true
+    "conciergeWikiOk": true,
+    "gameVersionOk": true,
+    "gameVersion": "4.9"
   },
   "ships": [
     {

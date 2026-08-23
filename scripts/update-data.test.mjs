@@ -28,6 +28,8 @@ import {
   buildDataset,
   storefrontListingFromEnvelope,
   resolveGeneratedAt,
+  parseGameVersion,
+  uexPayload,
   buildUexRoster,
   parseShipMatrix,
   parseWikiConciergePacks,
@@ -367,7 +369,14 @@ test("matchByBareName reste cohérent avec bareNameKey", () => {
 // resolveGeneratedAt
 // ---------------------------------------------------------------------------
 
-const FLAGS = { storefrontOk: true, rsiOk: true, shipMatrixOk: true, conciergeWikiOk: true };
+const FLAGS = {
+  storefrontOk: true,
+  rsiOk: true,
+  shipMatrixOk: true,
+  conciergeWikiOk: true,
+  gameVersionOk: true,
+  gameVersion: "4.9",
+};
 const SHIPS = [{ name: "Carrack", pledge: 600 }];
 
 test("resolveGeneratedAt : pas de fichier précédent → nouvel horodatage", () => {
@@ -389,6 +398,90 @@ test("resolveGeneratedAt : une source qui tombe → nouvel horodatage", () => {
   const prev = { meta: { generatedAt: "OLD", ...FLAGS }, ships: SHIPS };
   const degraded = { ...FLAGS, storefrontOk: false };
   assert.equal(resolveGeneratedAt(prev, SHIPS, degraded, "NOW"), "NOW");
+});
+
+test("resolveGeneratedAt : un nouveau patch SC → nouvel horodatage", () => {
+  // La comparaison porte sur tout meta, pas sur une liste de drapeaux figée :
+  // un champ non booléen comme gameVersion doit compter lui aussi.
+  const prev = { meta: { generatedAt: "OLD", ...FLAGS }, ships: SHIPS };
+  assert.equal(resolveGeneratedAt(prev, SHIPS, { ...FLAGS, gameVersion: "4.10" }, "NOW"), "NOW");
+});
+
+test("resolveGeneratedAt : un champ meta apparu depuis → nouvel horodatage", () => {
+  // Fichier écrit avant l'ajout de gameVersion : il faut le régénérer.
+  const legacy = { ...FLAGS };
+  delete legacy.gameVersion;
+  delete legacy.gameVersionOk;
+  const prev = { meta: { generatedAt: "OLD", ...legacy }, ships: SHIPS };
+  assert.equal(resolveGeneratedAt(prev, SHIPS, FLAGS, "NOW"), "NOW");
+});
+
+test("resolveGeneratedAt : ordre des clés meta indifférent", () => {
+  const prev = { meta: { ...FLAGS, generatedAt: "OLD" }, ships: SHIPS };
+  const reordered = Object.fromEntries(Object.entries(FLAGS).reverse());
+  assert.equal(resolveGeneratedAt(prev, SHIPS, reordered, "NOW"), "OLD");
+});
+
+// ---------------------------------------------------------------------------
+// uexPayload — enveloppe des réponses UEX
+// ---------------------------------------------------------------------------
+
+test("uexPayload accepte une charge utile tableau", () => {
+  assert.deepEqual(uexPayload({ status: "ok", data: [1, 2] }, "vehicles"), [1, 2]);
+});
+
+test("uexPayload accepte une charge utile objet quand on l'attend", () => {
+  const payload = { live: "4.9", ptu: "4.10.0" };
+  assert.deepEqual(uexPayload({ status: "ok", data: payload }, "game_versions", "object"), payload);
+});
+
+test("uexPayload garde le contrôle du champ status quelle que soit la forme", () => {
+  assert.throws(() => uexPayload({ status: "error", data: [] }, "vehicles"), /inattendue/);
+  assert.throws(
+    () => uexPayload({ status: "error", data: { live: "4.9" } }, "game_versions", "object"),
+    /inattendue/,
+  );
+});
+
+test("uexPayload refuse une forme de charge utile non conforme", () => {
+  // Un objet là où un tableau est attendu (et réciproquement) : c'est
+  // exactement ce qui rejetait /game_versions avant le paramètre `shape`.
+  assert.throws(
+    () => uexPayload({ status: "ok", data: { live: "4.9" } }, "vehicles"),
+    /inattendue/,
+  );
+  assert.throws(
+    () => uexPayload({ status: "ok", data: [] }, "game_versions", "object"),
+    /inattendue/,
+  );
+  assert.throws(() => uexPayload(null, "vehicles"), /inattendue/);
+  assert.throws(
+    () => uexPayload({ status: "ok", data: null }, "game_versions", "object"),
+    /inattendue/,
+  );
+});
+
+// ---------------------------------------------------------------------------
+// parseGameVersion — patch SC courant
+// ---------------------------------------------------------------------------
+
+test("parseGameVersion retient la version LIVE, pas la PTU", () => {
+  assert.equal(parseGameVersion({ live: "4.9", ptu: "4.10.0" }), "4.9");
+});
+
+test("parseGameVersion nettoie les espaces autour de la valeur", () => {
+  assert.equal(parseGameVersion({ live: "  4.9 " }), "4.9");
+});
+
+test("parseGameVersion renvoie null sur une réponse inexploitable", () => {
+  // Jamais de chaîne bancale : le pied de page masque la mention plutôt que
+  // d'afficher « données SC undefined ».
+  assert.equal(parseGameVersion({ ptu: "4.10.0" }), null);
+  assert.equal(parseGameVersion({ live: "" }), null);
+  assert.equal(parseGameVersion({ live: "   " }), null);
+  assert.equal(parseGameVersion({ live: 4.9 }), null);
+  assert.equal(parseGameVersion(null), null);
+  assert.equal(parseGameVersion(undefined), null);
 });
 
 // ---------------------------------------------------------------------------
