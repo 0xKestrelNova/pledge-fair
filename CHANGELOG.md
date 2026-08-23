@@ -8,6 +8,32 @@ La version affichée dans le pied de page du site vient de `package.json`, via
 `docs/version.json` (voir `npm run sync-version`). La version SC affichée à côté
 est celle du patch LIVE couvert par les données, pas celle du site.
 
+## [1.3.0] — 2026-08-23
+
+### Ajouté
+
+- Fiche vaisseau : photo, constructeur, taille, capacité de soute et courte
+  description. Visible sur la carte du vaisseau sélectionné, et dans une ligne
+  dépliable sous n'importe quelle ligne de tableau.
+- `docs/data.json` porte les champs `imageUrl`, `manufacturer`, `size`, `scu`,
+  `description` et `padType`, extraits des réponses UEX et Ship Matrix déjà
+  téléchargées.
+- `safeImageUrl()` valide les URLs de photos côté générateur (schéma `https:`
+  et hôte d'une liste blanche, en comparaison exacte) avant de les écrire dans
+  `data.json`.
+
+### Modifié
+
+- La directive `img-src` de la CSP autorise les quatre hôtes qui servent
+  réellement les photos : `assets.uexcorp.space`, `cdn.uexcorp.space`,
+  `media.robertsspaceindustries.com` et `robertsspaceindustries.com`.
+- `parseShipMatrix()` retient désormais `{ concept, size, description,
+manufacturer }` au lieu du seul booléen de statut. La clé reste le nom
+  normalisé, l'appariement existant est inchangé.
+- Les vignettes portent `referrerpolicy="no-referrer"` : les deux hôtes UEX
+  protègent leurs images contre le hotlink et renvoient 403 dès qu'un `Referer`
+  tiers accompagne la requête.
+
 ## [1.2.0] — 2026-08-23
 
 ### Ajouté
@@ -74,6 +100,7 @@ Première version publiée sur GitHub Pages.
 - Suite de tests `node --test` sans réseau ni navigateur, rejouée en CI avec
   ESLint et Prettier.
 
+[1.3.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.3.0
 [1.2.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.2.0
 [1.1.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.1.0
 [1.0.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.0.0
