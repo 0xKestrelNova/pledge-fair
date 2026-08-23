@@ -70,8 +70,15 @@
           </label>
         </div>
 
-        <section class="section panel">
-          <h2>2. Achetables maintenant <span class="n" id="cAvail"></span></h2>
+        <!-- Sections repliables : en mode catalogue les quatre tableaux
+             totalisent ~280 lignes. Seule « Achetables maintenant » est
+             ouverte par défaut ; le titre et le compteur restent lisibles en
+             état replié, pour savoir ce qu'on n'ouvre pas. <details>/<summary>
+             est nativement au clavier et annoncé par les lecteurs d'écran. -->
+        <details class="section panel" open>
+          <summary>
+            <h2>2. Achetables maintenant <span class="n" id="cAvail"></span></h2>
+          </summary>
           <div class="desc" id="descAvail">
             Vaisseaux que tu peux acheter dès aujourd'hui, seuls, sur le site officiel. Clique un
             en-tête de colonne pour trier.
@@ -84,10 +91,12 @@
             autocomplete="off"
           />
           <div class="tblwrap" id="tblAvail"></div>
-        </section>
+        </details>
 
-        <section class="section panel">
-          <h2>3. Vendus en pack uniquement <span class="n" id="cPack"></span></h2>
+        <details class="section panel">
+          <summary>
+            <h2>3. Vendus en pack uniquement <span class="n" id="cPack"></span></h2>
+          </summary>
           <div class="desc">
             Ces vaisseaux existent mais ne se vendent plus seuls pour l'instant — seulement à
             l'intérieur d'un pack (un lot avec d'autres vaisseaux ou objets). Le nom du pack est
@@ -103,10 +112,12 @@
             autocomplete="off"
           />
           <div class="tblwrap" id="tblPack"></div>
-        </section>
+        </details>
 
-        <section class="section panel">
-          <h2>4. Pas en vente actuellement <span class="n" id="cUnavail"></span></h2>
+        <details class="section panel">
+          <summary>
+            <h2>4. Pas en vente actuellement <span class="n" id="cUnavail"></span></h2>
+          </summary>
           <div class="desc">
             On connaît leur prix, mais ils ne sont en vente nulle part pour le moment (ni seuls, ni
             en pack visible). Ils reviennent parfois lors d'événements spéciaux. Inclut aussi les
@@ -120,10 +131,12 @@
             autocomplete="off"
           />
           <div class="tblwrap" id="tblUnavail"></div>
-        </section>
+        </details>
 
-        <section class="section panel">
-          <h2>5. Prix en jeu inconnu <span class="n" id="cNoInGame"></span></h2>
+        <details class="section panel">
+          <summary>
+            <h2>5. Prix en jeu inconnu <span class="n" id="cNoInGame"></span></h2>
+          </summary>
           <div class="desc" id="descNoInGame">
             Vaisseaux plus chers que le tien, mais dont on ne connaît pas encore le prix en aUEC
             dans le jeu — souvent parce qu'ils n'existent pas encore en jeu (statut "Concept") ou
@@ -137,7 +150,7 @@
             autocomplete="off"
           />
           <div class="tblwrap" id="tblNoInGame"></div>
-        </section>
+        </details>
       </main>
     </div>
 

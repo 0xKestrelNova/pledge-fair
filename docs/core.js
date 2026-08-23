@@ -206,15 +206,36 @@ export function computeCatalog(ships, opts = {}) {
 }
 
 /* ---------------------------------------------------------------------------
- * Tri et filtre par tableau
+ * Tri, filtre et troncature par tableau
  * ------------------------------------------------------------------------- */
 
 /**
- * Applique filtre puis tri d'un état de tableau `st` ({ sort, dir, filter })
- * aux lignes `rows`. Les valeurs absentes (null/undefined) sont toujours
- * classées en bas, quel que soit le sens du tri.
+ * Nombre de lignes affichées par défaut dans chaque tableau. Au-delà, le reste
+ * est replié derrière un bouton : en mode catalogue les quatre tableaux
+ * totalisent ~280 lignes, toutes déployées, ce qui rendait la dernière section
+ * inatteignable sans un long scroll.
  */
-export function applyTableState(st, rows, filterFields) {
+export const ROW_LIMIT = 25;
+
+/**
+ * Applique filtre, tri puis troncature d'un état de tableau `st`
+ * ({ sort, dir, filter }) aux lignes `rows`. Les valeurs absentes
+ * (null/undefined) sont toujours classées en bas, quel que soit le sens du tri.
+ *
+ * La troncature vient volontairement en dernier, après le tri et le filtre :
+ * les lignes visibles sont donc toujours les `limit` premières de l'ordre
+ * courant, et changer de tri ou saisir un filtre recalcule la coupe.
+ *
+ * @param {Object}      st           { sort, dir, filter }
+ * @param {Array}       rows         lignes du groupe
+ * @param {Array}       filterFields champs sur lesquels le filtre texte porte
+ * @param {?number}     limit        lignes visibles max, ou null pour tout afficher
+ * @returns {{rows: Array, hidden: number, all: Array}}
+ *   `rows` les lignes à afficher, `hidden` le nombre de lignes coupées,
+ *   `all` toutes les lignes retenues (filtre + tri) avant troncature — utile
+ *   pour ce qui doit rester stable au déploiement, comme l'échelle des barres.
+ */
+export function applyTableState(st, rows, filterFields, limit = null) {
   let out = rows;
   if (st.filter) {
     out = out.filter((r) =>
@@ -242,7 +263,32 @@ export function applyTableState(st, rows, filterFields) {
       return (va - vb) * dir;
     });
   }
-  return out;
+  if (limit == null || out.length <= limit) return { rows: out, hidden: 0, all: out };
+  return { rows: out.slice(0, limit), hidden: out.length - limit, all: out };
+}
+
+/**
+ * Bouton de déploiement / repli d'un tableau tronqué. Renvoie une chaîne vide
+ * quand il n'y a rien à déployer (tableau plus court que la limite, ou
+ * troncature désactivée) : pas de bouton inerte dans la page.
+ *
+ * `total` est le nombre de lignes retenues par le filtre, `limit` la
+ * troncature du tableau — toujours la même valeur, qu'il soit déployé ou non.
+ * Le compte de lignes masquées se déduit des deux plutôt que d'être passé à
+ * part : une fois le tableau déployé, applyTableState() ne masque plus rien et
+ * un `hidden` transmis vaudrait 0, ce qui escamoterait le bouton « Réduire ».
+ *
+ * Le libellé annonce le nombre exact de lignes concernées — « Voir plus » seul
+ * ne dirait pas ce qu'on rate. Le clic est géré par délégation dans app.js
+ * (data-expand), comme les en-têtes de tri : aucun JS inline, donc compatible
+ * avec la Content-Security-Policy stricte de index.html.
+ */
+export function expandButton({ total, limit, expanded }) {
+  if (limit == null || total <= limit) return "";
+  const label = expanded
+    ? `Réduire à ${limit} lignes`
+    : `Afficher les ${total - limit} lignes restantes`;
+  return `<button type="button" class="moreRows" data-expand aria-expanded="${expanded}">${label}</button>`;
 }
 
 /**

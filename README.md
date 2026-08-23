@@ -49,6 +49,12 @@ La page a deux modes, selon qu'un vaisseau de départ est sélectionné ou non :
 On revient au catalogue avec le bouton « Voir tout le catalogue », ou en
 re-cliquant le vaisseau sélectionné.
 
+Les quatre sections de résultats sont repliables (`<details>`) : seule
+« Achetables maintenant » est ouverte au chargement. Chaque tableau n'affiche
+que ses 25 premières lignes — après tri et filtre —, le reste étant derrière un
+bouton « Afficher les N lignes restantes ». Sans ça, le mode catalogue empilait
+ses ~280 lignes d'un bloc et la dernière section demandait un long scroll.
+
 Le JavaScript est scindé en deux modules ES, chargés via
 `<script type="module">` (même origine, compatible avec la CSP stricte) :
 `core.js` regroupe la logique pure (calcul des upgrades candidats, tri/filtre,

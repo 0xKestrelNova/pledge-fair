@@ -27,6 +27,7 @@ import {
   computeCandidates,
   computeCatalog,
   applyTableState,
+  expandButton,
   thSort,
 } from "./core.js";
 
@@ -555,19 +556,22 @@ test("computeCatalog ne mute pas les vaisseaux d'entrée", () => {
 });
 
 // ---------------------------------------------------------------------------
-// applyTableState — filtre puis tri
+// applyTableState — filtre, tri, puis troncature
 // ---------------------------------------------------------------------------
 
 const NO_STATE = { sort: null, dir: 1, filter: "" };
 
+/** Raccourci de lecture : la plupart des tests ne regardent que les lignes visibles. */
+const visible = (...args) => applyTableState(...args).rows;
+
 test("applyTableState sans tri ni filtre renvoie les lignes inchangées", () => {
   const rows = [{ name: "b" }, { name: "a" }];
-  assert.deepEqual(applyTableState(NO_STATE, rows, ["name"]), rows);
+  assert.deepEqual(visible(NO_STATE, rows, ["name"]), rows);
 });
 
 test("applyTableState filtre par sous-chaîne sur les champs demandés", () => {
   const rows = [{ name: "Anvil Carrack" }, { name: "Drake Cutlass" }];
-  const out = applyTableState({ sort: null, dir: 1, filter: "carr" }, rows, ["name"]);
+  const out = visible({ sort: null, dir: 1, filter: "carr" }, rows, ["name"]);
   assert.deepEqual(
     out.map((r) => r.name),
     ["Anvil Carrack"],
@@ -579,7 +583,7 @@ test("applyTableState filtre sur plusieurs champs (name + packName)", () => {
     { name: "Carrack", packName: null },
     { name: "Cutlass", packName: "Best In Show" },
   ];
-  const out = applyTableState({ sort: null, dir: 1, filter: "show" }, rows, ["name", "packName"]);
+  const out = visible({ sort: null, dir: 1, filter: "show" }, rows, ["name", "packName"]);
   assert.deepEqual(
     out.map((r) => r.name),
     ["Cutlass"],
@@ -589,11 +593,11 @@ test("applyTableState filtre sur plusieurs champs (name + packName)", () => {
 test("applyTableState trie les nombres selon le sens", () => {
   const rows = [{ v: 3 }, { v: 1 }, { v: 2 }];
   assert.deepEqual(
-    applyTableState({ sort: "v", dir: 1, filter: "" }, rows, []).map((r) => r.v),
+    visible({ sort: "v", dir: 1, filter: "" }, rows, []).map((r) => r.v),
     [1, 2, 3],
   );
   assert.deepEqual(
-    applyTableState({ sort: "v", dir: -1, filter: "" }, rows, []).map((r) => r.v),
+    visible({ sort: "v", dir: -1, filter: "" }, rows, []).map((r) => r.v),
     [3, 2, 1],
   );
 });
@@ -601,12 +605,12 @@ test("applyTableState trie les nombres selon le sens", () => {
 test("applyTableState place toujours les valeurs absentes en bas", () => {
   const rows = [{ v: 2 }, { v: null }, { v: 1 }];
   assert.deepEqual(
-    applyTableState({ sort: "v", dir: 1, filter: "" }, rows, []).map((r) => r.v),
+    visible({ sort: "v", dir: 1, filter: "" }, rows, []).map((r) => r.v),
     [1, 2, null],
   );
   // Même en tri descendant, le null reste en bas (pas remonté).
   assert.deepEqual(
-    applyTableState({ sort: "v", dir: -1, filter: "" }, rows, []).map((r) => r.v),
+    visible({ sort: "v", dir: -1, filter: "" }, rows, []).map((r) => r.v),
     [2, 1, null],
   );
 });
@@ -614,7 +618,7 @@ test("applyTableState place toujours les valeurs absentes en bas", () => {
 test("applyTableState trie les chaînes par localeCompare", () => {
   const rows = [{ name: "banane" }, { name: "abricot" }, { name: "cerise" }];
   assert.deepEqual(
-    applyTableState({ sort: "name", dir: 1, filter: "" }, rows, []).map((r) => r.name),
+    visible({ sort: "name", dir: 1, filter: "" }, rows, []).map((r) => r.name),
     ["abricot", "banane", "cerise"],
   );
 });
@@ -622,18 +626,110 @@ test("applyTableState trie les chaînes par localeCompare", () => {
 test("applyTableState trie les booléens (false avant true en ascendant)", () => {
   const rows = [{ b: true }, { b: false }, { b: true }];
   assert.deepEqual(
-    applyTableState({ sort: "b", dir: 1, filter: "" }, rows, []).map((r) => r.b),
+    visible({ sort: "b", dir: 1, filter: "" }, rows, []).map((r) => r.b),
     [false, true, true],
   );
 });
 
 test("applyTableState ne mute pas le tableau d'entrée", () => {
   const rows = [{ v: 2 }, { v: 1 }];
-  applyTableState({ sort: "v", dir: 1, filter: "" }, rows, []);
+  applyTableState({ sort: "v", dir: 1, filter: "" }, rows, [], 1);
   assert.deepEqual(
     rows.map((r) => r.v),
     [2, 1],
   ); // ordre d'origine préservé
+});
+
+// --- troncature ------------------------------------------------------------
+
+/** n lignes numérotées 1..n, dans l'ordre. */
+const numbered = (n) => Array.from({ length: n }, (_, i) => ({ v: i + 1, name: `s${i + 1}` }));
+
+test("applyTableState sans limite ne tronque pas", () => {
+  const out = applyTableState(NO_STATE, numbered(40), ["name"], null);
+  assert.equal(out.rows.length, 40);
+  assert.equal(out.hidden, 0);
+  assert.equal(out.all.length, 40);
+});
+
+test("applyTableState tronque au-delà de la limite et compte les lignes masquées", () => {
+  const out = applyTableState(NO_STATE, numbered(30), ["name"], 25);
+  assert.equal(out.rows.length, 25);
+  assert.equal(out.hidden, 5);
+  assert.equal(out.all.length, 30); // le total reste accessible (échelle des barres)
+});
+
+test("applyTableState à la limite exacte ne masque rien", () => {
+  const out = applyTableState(NO_STATE, numbered(25), ["name"], 25);
+  assert.equal(out.rows.length, 25);
+  assert.equal(out.hidden, 0); // 25 lignes pile : aucun bouton à afficher
+});
+
+test("applyTableState en dessous de la limite ne masque rien", () => {
+  const out = applyTableState(NO_STATE, numbered(10), ["name"], 25);
+  assert.equal(out.rows.length, 10);
+  assert.equal(out.hidden, 0);
+});
+
+test("applyTableState tronque APRÈS le tri : les N premières du nouvel ordre", () => {
+  const out = applyTableState({ sort: "v", dir: -1, filter: "" }, numbered(30), ["name"], 3);
+  assert.deepEqual(
+    out.rows.map((r) => r.v),
+    [30, 29, 28], // pas [1, 2, 3] : le tri s'applique avant la coupe
+  );
+  assert.equal(out.hidden, 27);
+});
+
+test("applyTableState tronque APRÈS le filtre : le compte masqué suit le filtre", () => {
+  // "s1", "s10".."s19" et "s21".."s29" contiennent un « 1 » ou un « 2 »…
+  const out = applyTableState({ sort: "v", dir: 1, filter: "s1" }, numbered(30), ["name"], 5);
+  assert.deepEqual(
+    out.rows.map((r) => r.name),
+    ["s1", "s10", "s11", "s12", "s13"],
+  );
+  // 11 lignes correspondent au filtre (s1, s10..s19), 5 visibles → 6 masquées.
+  assert.equal(out.all.length, 11);
+  assert.equal(out.hidden, 6);
+});
+
+test("applyTableState : tri + filtre + troncature se combinent", () => {
+  const out = applyTableState({ sort: "v", dir: -1, filter: "s1" }, numbered(30), ["name"], 3);
+  assert.deepEqual(
+    out.rows.map((r) => r.name),
+    ["s19", "s18", "s17"],
+  );
+  assert.equal(out.hidden, 8);
+});
+
+// ---------------------------------------------------------------------------
+// expandButton — bouton « Afficher les N lignes restantes »
+// ---------------------------------------------------------------------------
+
+test("expandButton propose de déployer quand des lignes sont masquées", () => {
+  const html = expandButton({ total: 84, limit: 25, expanded: false });
+  assert.match(html, /<button type="button"/);
+  assert.match(html, /aria-expanded="false"/);
+  assert.match(html, /Afficher les 59 lignes restantes/);
+});
+
+test("expandButton propose de replier une fois déployé", () => {
+  // Déployé, applyTableState() ne masque plus rien : le bouton ne peut donc
+  // pas dépendre d'un `hidden`, sinon « Réduire » disparaîtrait.
+  const html = expandButton({ total: 84, limit: 25, expanded: true });
+  assert.match(html, /aria-expanded="true"/);
+  assert.match(html, /Réduire à 25 lignes/);
+});
+
+test("expandButton ne rend rien quand le tableau tient dans la limite", () => {
+  assert.equal(expandButton({ total: 10, limit: 25, expanded: false }), "");
+  // Déployé mais rien à replier : le bouton n'a pas lieu d'être non plus.
+  assert.equal(expandButton({ total: 10, limit: 25, expanded: true }), "");
+  // Pile à la limite : aucune ligne masquée, donc aucun bouton.
+  assert.equal(expandButton({ total: 25, limit: 25, expanded: false }), "");
+});
+
+test("expandButton ne rend rien sans limite active", () => {
+  assert.equal(expandButton({ total: 84, limit: null, expanded: false }), "");
 });
 
 // ---------------------------------------------------------------------------

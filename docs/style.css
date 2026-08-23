@@ -425,6 +425,12 @@ th {
   padding: 6px 8px;
   border-bottom: 1px solid var(--edge);
   white-space: nowrap;
+  /* Reste visible pendant le défilement de .tblscroll. Fond opaque
+     obligatoire : les lignes passeraient sinon en transparence dessous. */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--panel);
 }
 th.sortable {
   cursor: pointer;
@@ -441,7 +447,8 @@ td:first-child {
   text-align: left;
 }
 td {
-  padding: 7px 8px;
+  padding: 4px 8px;
+  line-height: 1.25;
   border-bottom: 1px solid #14202b;
   text-align: right;
   white-space: nowrap;
@@ -491,6 +498,45 @@ td.ship {
   font-size: 14px;
   padding: 10px 2px;
 }
+
+/* ------- sections repliables (<details>/<summary>) ------- */
+/* Repliée, une section n'affiche que son titre et son compteur : on sait ce
+   qu'on n'ouvre pas. Le marqueur natif est remplacé par un chevron maison
+   pour rester dans le thème, sans perdre le clavier ni l'annonce lecteur
+   d'écran, tous deux fournis par <details>. */
+.section > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.section > summary::-webkit-details-marker {
+  display: none;
+}
+.section > summary::before {
+  content: "▸";
+  color: var(--amber);
+  font-size: 12px;
+  line-height: 1;
+}
+.section[open] > summary::before {
+  content: "▾";
+}
+.section > summary h2 {
+  margin-bottom: 0;
+}
+.section > summary:hover h2 {
+  color: var(--ink);
+}
+.section > summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+/* Le contenu déplié respire un peu sous le titre. */
+.section[open] > summary {
+  margin-bottom: 8px;
+}
 footer {
   margin-top: 30px;
   color: var(--dim);
@@ -516,8 +562,41 @@ footer {
   color: var(--ink);
   border-color: var(--ink);
 }
+
+/* Le défilement (horizontal sur écran étroit, vertical sur tableau long) est
+   porté par .tblscroll, à l'intérieur de .tblwrap : le bouton « Afficher les N
+   lignes restantes » reste ainsi hors du scrollport, sous le tableau, au lieu
+   d'être enfoui à son extrémité. La hauteur bornée est aussi ce qui donne aux
+   <th> collants un contexte de défilement. */
 .tblwrap {
-  overflow-x: auto;
+  overflow: visible;
+}
+.tblscroll {
+  max-height: 70vh;
+  overflow: auto;
+}
+.moreRows {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 7px 8px;
+  background: var(--panel2);
+  border: 1px solid var(--edge);
+  color: var(--dim);
+  font:
+    600 12px "Rajdhani",
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.moreRows:hover {
+  color: var(--amber);
+  border-color: var(--amber);
+}
+.moreRows:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
 }
 .warn {
   color: var(--red);
