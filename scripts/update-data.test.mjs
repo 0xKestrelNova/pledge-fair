@@ -18,6 +18,7 @@ import {
   matchByBareName,
   storefrontAliases,
   buildStorefrontIndex,
+  bareNameKey,
   unmatchedStorefrontNames,
   usdPriceEntry,
   bareNameCandidates,
@@ -277,6 +278,83 @@ test("storefrontListingFromEnvelope signale une structure inattendue", () => {
   );
   assert.throws(() => storefrontListingFromEnvelope([], "Op", 1), /tableau attendu/);
   assert.throws(() => storefrontListingFromEnvelope(null, "Op", 1), /tableau attendu/);
+});
+
+// ---------------------------------------------------------------------------
+// storefrontAliases — suffixe d'assurance
+// ---------------------------------------------------------------------------
+//
+// Non-régression : le Carrack s'affichait « Pack : Legatus 2953 (Concierge) »,
+// donc masqué par défaut, alors qu'il était bien vendu seul. Le store le publie
+// sous « Carrack - 2 Year » — la durée d'assurance des SKU de vente
+// anniversaire. Même mécanique que le suffixe d'édition du cas Polaris, mais
+// une famille de suffixes distincte, que la règle « edition » ne couvrait pas.
+
+test("storefrontAliases indexe aussi le nom sans durée d'assurance", () => {
+  assert.deepEqual([...storefrontAliases("Carrack - 2 Year")].sort(), ["carrack", "carrack 2 year"]);
+});
+
+test("storefrontAliases couvre les autres durées d'assurance", () => {
+  const bare = (n) => [...storefrontAliases(n)].filter((a) => a !== normName(n));
+  assert.deepEqual(bare("Perseus - 10 Year"), ["perseus"]);
+  assert.deepEqual(bare("Hermes - 6 Month"), ["hermes"]);
+  assert.deepEqual(bare("Idris-K - Lifetime Insurance"), ["idris k"]);
+  assert.deepEqual(bare("Javelin - LTI"), ["javelin"]);
+});
+
+test("storefrontAliases cumule les deux familles de suffixes", () => {
+  // Un SKU peut porter édition ET assurance : le nom nu doit rester atteignable.
+  assert.equal(storefrontAliases("Polaris - Showdown Edition - 2 Year").has("polaris"), true);
+});
+
+test("storefrontAliases laisse intact un nom sans suffixe", () => {
+  assert.deepEqual([...storefrontAliases("Cutlass Black")], ["cutlass black"]);
+  assert.deepEqual([...storefrontAliases("Aurora Mk I ES")], ["aurora mk i es"]);
+});
+
+test("le retrait d'assurance ne déborde pas sur un nom qui finit par un mot proche", () => {
+  // « Aurora Mk I LN » ne doit pas perdre son suffixe : LN n'est pas LTI, et
+  // aucun nombre ne précède. Un retrait trop gourmand fusionnerait des variantes.
+  assert.deepEqual([...storefrontAliases("Aurora Mk I LN")], ["aurora mk i ln"]);
+});
+
+test("buildStorefrontIndex rend le Carrack atteignable depuis le nom UEX", () => {
+  const index = buildStorefrontIndex([
+    { name: "Carrack - 2 Year", stock: { available: true }, nativePrice: { amount: 60000 } },
+  ]);
+  const hit = matchByBareName("Anvil Carrack", index);
+  assert.equal(hit.available, true);
+  assert.equal(hit.price, 600);
+  // L'Expedition est un autre vaisseau : elle ne doit pas hériter du SKU.
+  assert.equal(matchByBareName("Anvil Carrack Expedition", index), null);
+});
+
+test("buildStorefrontIndex fusionne le SKU standard et sa variante anniversaire", () => {
+  // Le store publie parfois « Mole » ET « Mole - 2 Year ». Les deux retombent
+  // sur la clé « mole » : une entrée indisponible ne doit pas effacer l'autre.
+  const index = buildStorefrontIndex([
+    { name: "Mole", stock: { available: false }, nativePrice: { amount: 31500 } },
+    { name: "Mole - 2 Year", stock: { available: true }, nativePrice: { amount: 34500 } },
+  ]);
+  assert.equal(index.mole.available, true);
+  assert.equal(index.mole.price, 315);
+});
+
+// ---------------------------------------------------------------------------
+// bareNameKey
+// ---------------------------------------------------------------------------
+
+test("bareNameKey renvoie la clé qui a servi à l'appariement", () => {
+  const values = { carrack: 1, "anvil hornet": 2 };
+  assert.equal(bareNameKey("Anvil Carrack", values), "carrack");
+  assert.equal(bareNameKey("Anvil Hornet", values), "anvil hornet");
+  assert.equal(bareNameKey("Drake Cutlass", values), null);
+});
+
+test("matchByBareName reste cohérent avec bareNameKey", () => {
+  const values = { carrack: { available: true } };
+  assert.equal(matchByBareName("Anvil Carrack", values), values[bareNameKey("Anvil Carrack", values)]);
+  assert.equal(matchByBareName("Drake Cutlass", values), null);
 });
 
 // ---------------------------------------------------------------------------

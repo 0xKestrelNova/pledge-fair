@@ -112,17 +112,26 @@ export function wikiShipUrl(name) {
   return `${URL_WIKI_BASE}/${encodeURIComponent(bare).replace(/%20/g, "_")}`;
 }
 
-export function matchByBareName(uexName, values) {
+// Renvoie la clé de `values` qui correspond à `uexName` (nom complet
+// normalisé, puis sans son constructeur), ou null. Séparé de matchByBareName
+// pour que l'appelant puisse savoir *quelle* entrée a servi — ce dont
+// unmatchedStorefrontNames a besoin pour repérer celles qui n'ont servi à rien.
+export function bareNameKey(uexName, values) {
   const n = normName(uexName);
-  if (Object.prototype.hasOwnProperty.call(values, n)) return values[n];
+  if (Object.prototype.hasOwnProperty.call(values, n)) return n;
   const words = n.split(" ");
   for (const skip of [1, 2]) {
     if (words.length > skip) {
       const cand = words.slice(skip).join(" ");
-      if (Object.prototype.hasOwnProperty.call(values, cand)) return values[cand];
+      if (Object.prototype.hasOwnProperty.call(values, cand)) return cand;
     }
   }
   return null;
+}
+
+export function matchByBareName(uexName, values) {
+  const key = bareNameKey(uexName, values);
+  return key === null ? null : values[key];
 }
 
 // Qualificatifs d'édition que le pledge store accole au nom d'un vaisseau
@@ -138,6 +147,15 @@ const EDITION_QUALIFIERS = [
   "limited",
 ];
 const EDITION_SUFFIX = new RegExp(`\\s+(?:${EDITION_QUALIFIERS.join("|")})?\\s*edition$`);
+
+// Durée d'assurance que le store accole à ses SKU de vente anniversaire
+// (« Carrack - 2 Year », « Perseus - 10 Year », « Javelin - LTI »). Même nature
+// que le suffixe d'édition : ne fait pas partie du nom du vaisseau, n'existe ni
+// chez UEX ni sur le wiki. Sans retrait, ces SKU n'étaient jamais appariés et le
+// vaisseau retombait en « vendu en pack », Concierge donc masqué par défaut —
+// le cas du Carrack. Le motif s'applique au nom déjà normalisé (donc sans
+// tiret) : « Carrack - 2 Year » y est devenu « carrack 2 year ».
+const INSURANCE_SUFFIX = /\s+(?:\d+\s+(?:year|month)s?|lti|lifetime insurance)$/;
 
 /**
  * Clés sous lesquelles indexer une entrée du catalogue storefront.
@@ -161,8 +179,13 @@ const EDITION_SUFFIX = new RegExp(`\\s+(?:${EDITION_QUALIFIERS.join("|")})?\\s*e
 export function storefrontAliases(name) {
   const n = normName(name);
   const aliases = new Set([n]);
-  const bare = n.replace(EDITION_SUFFIX, "").trim();
-  if (bare.length >= 3) aliases.add(bare);
+  // Les deux suffixes sont indépendants et peuvent se cumuler : on indexe le
+  // nom privé de chacun, puis privé des deux, pour qu'un « Polaris - Showdown
+  // Edition - 2 Year » reste apparié.
+  for (const stripped of [n.replace(EDITION_SUFFIX, ""), n.replace(INSURANCE_SUFFIX, "")]) {
+    const bare = stripped.replace(EDITION_SUFFIX, "").replace(INSURANCE_SUFFIX, "").trim();
+    if (bare.length >= 3) aliases.add(bare);
+  }
   return aliases;
 }
 
@@ -451,8 +474,18 @@ export function unmatchedStorefrontNames(storefrontIndex, pledge, manualPackages
       matchByBareName(p.name, storefrontIndex);
     if (hit) claimed.add(hit.name);
   }
+  // Un SKU est réclamé dès qu'une de ses clés d'indexation l'est, pas seulement
+  // sous son nom exact : « Mole » et « Mole - 2 Year » partagent la clé « mole »
+  // et désignent le même vaisseau, donc un seul appariement suffit à couvrir les
+  // deux. Sans ça, la variante anniversaire remontait à chaque run comme un
+  // écart de nommage à déclarer — un faux positif qui apprend à ignorer l'alerte,
+  // exactement ce que ce filet cherche à éviter.
+  const claimedKeys = new Set();
+  for (const name of claimed) for (const key of storefrontAliases(name)) claimedKeys.add(key);
   const all = new Set(Object.values(storefrontIndex).map((e) => e.name));
-  return [...all].filter((n) => !claimed.has(n)).sort();
+  return [...all]
+    .filter((n) => ![...storefrontAliases(n)].some((key) => claimedKeys.has(key)))
+    .sort();
 }
 
 async function fetchStorefrontPacks() {
