@@ -36,7 +36,9 @@ import {
   computeCandidates,
   computeCatalog,
   applyTableState,
+  expandButton,
   thSort,
+  ROW_LIMIT,
 } from "./core.js";
 
 /* ---------------------------------------------------------------------------
@@ -239,13 +241,20 @@ const TABLE_IDS = {
   noInGame: "tblNoInGame",
 };
 
-/** État de tri (colonne + sens) et de filtre texte, indépendant par tableau. */
+/**
+ * État de tri (colonne + sens), de filtre texte et de déploiement, indépendant
+ * par tableau. `expanded` : false = tronqué aux ROW_LIMIT premières lignes.
+ */
 const tableState = {
-  avail: { sort: null, dir: 1, filter: "" },
-  pack: { sort: null, dir: 1, filter: "" },
-  unavail: { sort: null, dir: 1, filter: "" },
-  noInGame: { sort: "status", dir: 1, filter: "" }, // groupe par défaut : En vente, Pack, Pas en vente
+  avail: { sort: null, dir: 1, filter: "", expanded: false },
+  pack: { sort: null, dir: 1, filter: "", expanded: false },
+  unavail: { sort: null, dir: 1, filter: "", expanded: false },
+  // groupe par défaut : En vente, Pack, Pas en vente
+  noInGame: { sort: "status", dir: 1, filter: "", expanded: false },
 };
+
+/** Troncature à appliquer au rendu : levée tant que le tableau est déployé. */
+const limitFor = (st) => (st.expanded ? null : ROW_LIMIT);
 
 function sortTable(key, col) {
   const st = tableState[key];
@@ -263,6 +272,21 @@ function setFilter(key, value) {
   renderTables();
 }
 
+/**
+ * Clé du tableau dont le bouton « Afficher les N lignes restantes » doit
+ * reprendre le focus après rendu. Le tableau est régénéré par innerHTML, donc
+ * le bouton cliqué n'existe plus : sans ça, le focus retomberait sur <body> et
+ * la navigation au clavier repartirait du haut de la page.
+ */
+let focusExpanded = null;
+
+function toggleExpand(key) {
+  const st = tableState[key];
+  st.expanded = !st.expanded;
+  focusExpanded = key;
+  renderTables();
+}
+
 /* ---------------------------------------------------------------------------
  * Rendu des tableaux
  * ------------------------------------------------------------------------- */
@@ -276,10 +300,18 @@ function setFilter(key, value) {
 function ratioTable(key, rows, opts = {}) {
   const st = tableState[key];
   const upgrade = !opts.catalog;
-  rows = applyTableState(st, rows, opts.showPack ? ["name", "packName"] : ["name"]);
-  if (!rows.length) return '<div class="none">Aucun vaisseau ne remplit les critères.</div>';
-  const maxRatio = Math.max(...rows.map((r) => r.ratio));
-  const tr = rows
+  const res = applyTableState(
+    st,
+    rows,
+    opts.showPack ? ["name", "packName"] : ["name"],
+    limitFor(st),
+  );
+  if (!res.all.length) return '<div class="none">Aucun vaisseau ne remplit les critères.</div>';
+  // L'échelle des barres se cale sur toutes les lignes retenues, pas seulement
+  // les visibles : déployer le tableau ne redimensionne donc pas les barres
+  // déjà affichées.
+  const maxRatio = Math.max(...res.all.map((r) => r.ratio));
+  const tr = res.rows
     .map(
       (r) => `
     <tr>
@@ -299,7 +331,7 @@ function ratioTable(key, rows, opts = {}) {
     </tr>`,
     )
     .join("");
-  return `<table>
+  return `<div class="tblscroll"><table>
     <thead><tr>
       ${thSort(st, "name", "Vaisseau")}${thSort(st, "concept", "Concept")}
       ${opts.showPack ? thSort(st, "packName", "Statut pledge store") : ""}
@@ -317,7 +349,11 @@ function ratioTable(key, rows, opts = {}) {
             )
           : ""
       }
-    </tr></thead><tbody>${tr}</tbody></table>`;
+    </tr></thead><tbody>${tr}</tbody></table></div>${expandButton({
+      total: res.all.length,
+      limit: ROW_LIMIT,
+      expanded: st.expanded,
+    })}`;
 }
 
 /** Tableau des candidats sans prix en jeu connu (groupe noInGame). */
@@ -326,9 +362,9 @@ function noInGameTable(key, rows, opts = {}) {
   const upgrade = !opts.catalog;
   const conciergeMode = $("conciergeMode").checked;
   rows = rows.map((r) => ({ ...r, status: statusRank(r, conciergeMode) }));
-  rows = applyTableState(st, rows, ["name"]);
-  if (!rows.length) return '<div class="none">Aucun vaisseau ne remplit les critères.</div>';
-  const tr = rows
+  const res = applyTableState(st, rows, ["name"], limitFor(st));
+  if (!res.all.length) return '<div class="none">Aucun vaisseau ne remplit les critères.</div>';
+  const tr = res.rows
     .map(
       (r) => `
     <tr>
@@ -340,11 +376,15 @@ function noInGameTable(key, rows, opts = {}) {
     </tr>`,
     )
     .join("");
-  return `<table>
+  return `<div class="tblscroll"><table>
     <thead><tr>
       ${thSort(st, "name", "Vaisseau")}${thSort(st, "concept", "Concept")}${thSort(st, "status", "Statut pledge store")}
       ${thSort(st, "pledge", "Pledge")}${upgrade ? thSort(st, "cost", "Coût upgrade") : ""}
-    </tr></thead><tbody>${tr}</tbody></table>`;
+    </tr></thead><tbody>${tr}</tbody></table></div>${expandButton({
+      total: res.all.length,
+      limit: ROW_LIMIT,
+      expanded: st.expanded,
+    })}`;
 }
 
 /**
@@ -389,6 +429,13 @@ function renderTables() {
   for (const bar of document.querySelectorAll(".gainbar[data-w]")) {
     bar.style.width = bar.dataset.w + "px";
   }
+  if (focusExpanded) {
+    const btn = $(TABLE_IDS[focusExpanded]).querySelector("button[data-expand]");
+    if (btn) btn.focus();
+    focusExpanded = null;
+  }
+  // Les compteurs de section restent le total du groupe (avant filtre et
+  // troncature) : c'est ce qu'on veut savoir d'une section repliée.
   $("cAvail").textContent = "· " + c.avail.length;
   $("cPack").textContent = "· " + c.pack.length;
   $("cUnavail").textContent = "· " + c.unavail.length;
@@ -448,7 +495,11 @@ function init() {
   for (const [key, id] of Object.entries(TABLE_IDS)) {
     $(id).addEventListener("click", (e) => {
       const th = e.target.closest("th.sortable");
-      if (th) sortTable(key, th.dataset.col);
+      if (th) {
+        sortTable(key, th.dataset.col);
+        return;
+      }
+      if (e.target.closest("button[data-expand]")) toggleExpand(key);
     });
   }
 
