@@ -291,7 +291,10 @@ test("storefrontListingFromEnvelope signale une structure inattendue", () => {
 // une famille de suffixes distincte, que la règle « edition » ne couvrait pas.
 
 test("storefrontAliases indexe aussi le nom sans durée d'assurance", () => {
-  assert.deepEqual([...storefrontAliases("Carrack - 2 Year")].sort(), ["carrack", "carrack 2 year"]);
+  assert.deepEqual([...storefrontAliases("Carrack - 2 Year")].sort(), [
+    "carrack",
+    "carrack 2 year",
+  ]);
 });
 
 test("storefrontAliases couvre les autres durées d'assurance", () => {
@@ -353,7 +356,10 @@ test("bareNameKey renvoie la clé qui a servi à l'appariement", () => {
 
 test("matchByBareName reste cohérent avec bareNameKey", () => {
   const values = { carrack: { available: true } };
-  assert.equal(matchByBareName("Anvil Carrack", values), values[bareNameKey("Anvil Carrack", values)]);
+  assert.equal(
+    matchByBareName("Anvil Carrack", values),
+    values[bareNameKey("Anvil Carrack", values)],
+  );
   assert.equal(matchByBareName("Drake Cutlass", values), null);
 });
 
