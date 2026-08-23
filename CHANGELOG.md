@@ -8,6 +8,18 @@ La version affichée dans le pied de page du site vient de `package.json`, via
 `docs/version.json` (voir `npm run sync-version`). La version SC affichée à côté
 est celle du patch LIVE couvert par les données, pas celle du site.
 
+## [1.3.2] — 2026-08-23
+
+### Corrigé
+
+- `npm run format:check` échouait sur 15 fichiers sur tout poste Windows
+  configuré en `core.autocrlf=true` (le réglage par défaut de Git for Windows),
+  qui réécrit les fichiers en CRLF au checkout alors que Prettier est réglé sur
+  `endOfLine: "lf"`. `npm run format` n'y changeait rien, Git reconvertissant au
+  checkout suivant. Un `.gitattributes` (`* text=auto eol=lf`) force désormais
+  LF dans l'arbre de travail, quelle que soit la configuration Git locale.
+  Aucun contenu n'a changé : tout le dépôt était déjà stocké en LF.
+
 ## [1.3.1] — 2026-08-23
 
 ### Corrigé
@@ -111,6 +123,7 @@ Première version publiée sur GitHub Pages.
 - Suite de tests `node --test` sans réseau ni navigateur, rejouée en CI avec
   ESLint et Prettier.
 
+[1.3.2]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.3.2
 [1.3.1]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.3.1
 [1.3.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.3.0
 [1.2.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.2.0
