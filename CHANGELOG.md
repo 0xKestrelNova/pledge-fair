@@ -8,6 +8,17 @@ La version affichée dans le pied de page du site vient de `package.json`, via
 `docs/version.json` (voir `npm run sync-version`). La version SC affichée à côté
 est celle du patch LIVE couvert par les données, pas celle du site.
 
+## [1.3.1] — 2026-08-23
+
+### Corrigé
+
+- `npm run sync-version:check` échouait sur tout poste Windows configuré en
+  `core.autocrlf=true` (le réglage par défaut de Git for Windows) : le fichier
+  est réécrit en CRLF au checkout alors que le script écrit en LF, et la
+  comparaison octet à octet y voyait une divergence. La faute était invisible
+  en CI, qui tourne sous Linux. La comparaison normalise désormais les fins de
+  ligne ; l'indentation et la version restent vérifiées.
+
 ## [1.3.0] — 2026-08-23
 
 ### Ajouté
@@ -100,6 +111,7 @@ Première version publiée sur GitHub Pages.
 - Suite de tests `node --test` sans réseau ni navigateur, rejouée en CI avec
   ESLint et Prettier.
 
+[1.3.1]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.3.1
 [1.3.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.3.0
 [1.2.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.2.0
 [1.1.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.1.0

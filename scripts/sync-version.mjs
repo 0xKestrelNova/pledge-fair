@@ -34,6 +34,28 @@ export function versionFileContents(version) {
   return JSON.stringify({ version }, null, 2) + "\n";
 }
 
+/**
+ * Le fichier lu correspond-il au contenu attendu ?
+ *
+ * La comparaison normalise les fins de ligne. Sur un poste Windows configuré
+ * en `core.autocrlf=true` — le réglage par défaut de Git for Windows — le
+ * fichier est réécrit en CRLF au checkout alors que ce script écrit en LF. Une
+ * comparaison octet à octet déclarerait donc une divergence à chaque fois, sur
+ * un fichier pourtant correct, et « npm run sync-version » n'y changerait rien
+ * puisque Git reconvertirait aussitôt.
+ *
+ * La question posée ici est « ce fichier déclare-t-il la bonne version, dans
+ * la bonne forme ? ». Les fins de ligne relèvent de Prettier, pas de ce
+ * contrôle. L'indentation et le reste de la mise en forme, eux, restent
+ * vérifiés.
+ *
+ * Pur, donc testable.
+ */
+export function matchesExpected(actual, expected) {
+  if (typeof actual !== "string") return false;
+  return actual.split("\r\n").join("\n") === expected;
+}
+
 export function parseArgs(argv) {
   return { check: argv.includes("--check") };
 }
@@ -55,7 +77,7 @@ async function main() {
     } catch {
       /* fichier absent : traité comme une divergence ci-dessous */
     }
-    if (actual === expected) {
+    if (matchesExpected(actual, expected)) {
       console.log(`${OUT} est à jour (v${version}).`);
       return;
     }
