@@ -1,0 +1,34 @@
+# Fins de ligne.
+#
+# Tout le dépôt est stocké en LF — c'est déjà le cas de chaque fichier suivi.
+# Ce qui manquait, c'est de le dire à Git : sans ce fichier, un poste Windows
+# configuré en `core.autocrlf=true` (le réglage par défaut de Git for Windows)
+# réécrit les fichiers en CRLF au checkout. Les fichiers restent corrects côté
+# dépôt, mais les outils qui lisent l'arbre de travail, eux, s'en étranglent :
+#
+#   - `npm run format:check` échouait sur 15 fichiers, Prettier étant réglé sur
+#     `endOfLine: "lf"` — et `npm run format` n'y changeait rien, Git
+#     reconvertissant au checkout suivant ;
+#   - `npm run sync-version:check` a eu la même faute, corrigée depuis dans le
+#     script lui-même (il compare à fins de ligne normalisées).
+#
+# Aucun de ces symptômes n'était visible en CI, qui tourne sous Linux.
+#
+# `eol=lf` force donc LF **aussi dans l'arbre de travail**, quelle que soit la
+# configuration Git locale. Les éditeurs modernes s'en accommodent sans rien
+# avoir à régler.
+* text=auto eol=lf
+
+# Binaires : ni conversion de fins de ligne, ni diff textuel. Aucun de ces
+# types n'est présent aujourd'hui — les photos de vaisseaux sont servies
+# depuis leurs hôtes d'origine, pas commitées — mais la règle évite qu'un ajout
+# ultérieur soit corrompu en silence par la normalisation ci-dessus.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary

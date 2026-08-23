@@ -297,6 +297,20 @@ La CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) rejoue
 distincte de `update-data.yml`, qui ne fait que régénérer `data.json` :
 la CI valide le code, sans toucher aux données.
 
+### Fins de ligne
+
+Le dépôt est stocké en LF, et [`.gitattributes`](.gitattributes) force LF
+**aussi dans l'arbre de travail** (`* text=auto eol=lf`), quelle que soit la
+configuration Git locale.
+
+Ce n'est pas de la coquetterie : sans cette règle, un poste Windows en
+`core.autocrlf=true` — le réglage par défaut de Git for Windows — réécrit les
+fichiers en CRLF au checkout, et `npm run format:check` échoue alors sur une
+quinzaine de fichiers pourtant corrects, Prettier étant réglé sur
+`endOfLine: "lf"`. Relancer `npm run format` n'y change rien : Git reconvertit
+au checkout suivant. La CI tournant sous Linux, elle ne voit jamais le
+problème — d'où l'intérêt de le régler côté dépôt.
+
 ## Prévisualiser le site en local
 
 Le site est purement statique : n'importe quel serveur de fichiers suffit.
