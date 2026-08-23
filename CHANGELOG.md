@@ -8,6 +8,25 @@ La version affichée dans le pied de page du site vient de `package.json`, via
 `docs/version.json` (voir `npm run sync-version`). La version SC affichée à côté
 est celle du patch LIVE couvert par les données, pas celle du site.
 
+## [1.2.0] — 2026-08-23
+
+### Ajouté
+
+- Les quatre sections de résultats sont repliables (`<details>/<summary>`).
+  Seule « Achetables maintenant » est ouverte au chargement ; titre et compteur
+  restent lisibles une fois repliés.
+- Chaque tableau n'affiche que ses 25 premières lignes, suivies d'un bouton
+  « Afficher les N lignes restantes ». La troncature s'applique après le tri et
+  le filtre, donc changer l'un ou l'autre la recalcule.
+- En-têtes de colonnes collants pendant le défilement d'un tableau long.
+
+### Modifié
+
+- `applyTableState()` prend une limite et renvoie `{ rows, hidden, all }` au
+  lieu d'un tableau : les lignes visibles, le nombre de lignes coupées, et
+  l'ensemble filtré+trié avant troncature.
+- Lignes de tableau plus denses (`padding` et interlignage des `<td>` réduits).
+
 ## [1.1.0] — 2026-08-23
 
 ### Ajouté
@@ -55,5 +74,6 @@ Première version publiée sur GitHub Pages.
 - Suite de tests `node --test` sans réseau ni navigateur, rejouée en CI avec
   ESLint et Prettier.
 
+[1.2.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.2.0
 [1.1.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.1.0
 [1.0.0]: https://github.com/0xKestrelNova/pledge-fair/releases/tag/v1.0.0
