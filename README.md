@@ -101,6 +101,25 @@ Nom du vaisseau | Nom du pack | concierge
 
 Le 2ᵉ et 3ᵉ champ sont optionnels.
 
+### Appariement des noms du catalogue RSI
+
+Le pledge store nomme ses SKU autrement qu'UEX, et un SKU non apparié n'échoue
+pas : le vaisseau est simplement affiché « pas en vente » à tort. Deux
+mécanismes traitent ces écarts dans `scripts/update-data.mjs` :
+
+- **Suffixe d'assurance** — les SKU de vente anniversaire portent leur durée
+  d'assurance dans le nom (`Carrack - 2 Year`, `Perseus - 10 Year`, `… - LTI`).
+  `stripInsuranceSuffix()` la retire avant normalisation.
+- **Alias explicites** — quelques noms diffèrent trop pour qu'une règle
+  générique les rapproche sans risque (`Ursa Rover` → `RSI Ursa`,
+  `PTV Buggy` → `Greycat PTV`…). Ils sont listés dans
+  `STOREFRONT_NAME_ALIASES`. Retirer aussi des mots de _queue_ n'est pas une
+  option : « Anvil Carrack Expedition » correspondrait au SKU « Carrack » et
+  serait marqué en vente à tort.
+
+En fin de run, `unmatchedStorefrontNames()` journalise les SKU qu'aucun
+vaisseau ne réclame — c'est le signal qu'un alias est à ajouter ou à corriger.
+
 ### Filet de sécurité sur le roster
 
 Les quatre drapeaux `meta` de `data.json` (`storefrontOk`, `rsiOk`,

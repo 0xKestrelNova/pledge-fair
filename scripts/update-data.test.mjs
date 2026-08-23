@@ -16,6 +16,8 @@ import {
   normName,
   wikiShipUrl,
   matchByBareName,
+  bareNameKey,
+  unmatchedStorefrontNames,
   usdPriceEntry,
   bareNameCandidates,
   matchShipsToPacks,
@@ -23,6 +25,7 @@ import {
   parseArgs,
   buildDataset,
   storefrontListingFromEnvelope,
+  buildStorefrontStandaloneTable,
   resolveGeneratedAt,
   buildUexRoster,
   parseShipMatrix,
@@ -185,6 +188,128 @@ test("storefrontListingFromEnvelope signale une structure inattendue", () => {
   );
   assert.throws(() => storefrontListingFromEnvelope([], "Op", 1), /tableau attendu/);
   assert.throws(() => storefrontListingFromEnvelope(null, "Op", 1), /tableau attendu/);
+});
+
+// ---------------------------------------------------------------------------
+// buildStorefrontStandaloneTable
+// ---------------------------------------------------------------------------
+//
+// Non-régression : le Carrack était affiché « Pack : Legatus 2953 (Concierge) »
+// alors qu'il était bien en vente seul. Le storefront le publie sous le nom
+// « Carrack - 2 Year » (durée d'assurance des SKU de vente anniversaire), que
+// matchByBareName — qui ne retire que des mots de *tête* — ne pouvait jamais
+// rapprocher de « Anvil Carrack ».
+
+test("buildStorefrontStandaloneTable retire le suffixe d'assurance du nom de SKU", () => {
+  const table = buildStorefrontStandaloneTable([
+    { name: "Carrack - 2 Year", stock: { available: true }, nativePrice: { amount: 60000 } },
+  ]);
+  assert.deepEqual(Object.keys(table), ["carrack"]);
+  assert.equal(table.carrack.available, true);
+  assert.equal(table.carrack.price, 600);
+  assert.equal(matchByBareName("Anvil Carrack", table).available, true);
+});
+
+test("buildStorefrontStandaloneTable couvre les autres durées d'assurance", () => {
+  const table = buildStorefrontStandaloneTable([
+    { name: "Perseus - 10 Year", stock: { available: true } },
+    { name: "Hermes - 6 Month", stock: { available: true } },
+    { name: "Idris-K - Lifetime Insurance", stock: { available: true } },
+    { name: "Javelin - LTI", stock: { available: true } },
+  ]);
+  assert.deepEqual(Object.keys(table).sort(), ["hermes", "idris k", "javelin", "perseus"]);
+});
+
+test("buildStorefrontStandaloneTable ne touche pas aux noms sans suffixe", () => {
+  const table = buildStorefrontStandaloneTable([
+    { name: "Cutlass Black", stock: { available: true }, nativePrice: { amount: 11000 } },
+    { name: "Aurora Mk I ES", stock: { available: false } },
+  ]);
+  assert.equal(table["cutlass black"].price, 110);
+  assert.equal(table["aurora mk i es"].available, false);
+});
+
+test("buildStorefrontStandaloneTable fusionne les doublons en gardant le prix le plus bas", () => {
+  // Le storefront publie parfois le SKU standard ET sa variante anniversaire
+  // (« Mole » + « Mole - 2 Year »). Les deux se normalisent en « mole » : on
+  // garde le vaisseau disponible et son prix de base, pas celui de la variante.
+  const table = buildStorefrontStandaloneTable([
+    { name: "Mole", stock: { available: false }, nativePrice: { amount: 31500 } },
+    { name: "Mole - 2 Year", stock: { available: true }, nativePrice: { amount: 34500 } },
+  ]);
+  assert.deepEqual(Object.keys(table), ["mole"]);
+  assert.equal(table.mole.available, true);
+  assert.equal(table.mole.price, 315);
+});
+
+test("buildStorefrontStandaloneTable ignore les entrées sans nom et renvoie null si vide", () => {
+  assert.equal(buildStorefrontStandaloneTable([{ stock: { available: true } }]), null);
+  assert.equal(buildStorefrontStandaloneTable([]), null);
+});
+
+// ---------------------------------------------------------------------------
+// Alias de noms storefront
+// ---------------------------------------------------------------------------
+//
+// Quatre SKU portent un nom de forme trop différente de celui d'UEX pour
+// qu'aucune règle générique ne les rapproche sans risque : retirer aussi des
+// mots de *queue* ferait par exemple correspondre « Anvil Carrack Expedition »
+// au SKU « Carrack », donc marquerait l'Expedition en vente à tort. D'où une
+// table d'alias explicite, vérifiée un par un (nom, prix et description du SKU).
+
+test("buildStorefrontStandaloneTable applique les alias de nom du storefront", () => {
+  const table = buildStorefrontStandaloneTable([
+    { name: "C8R Pisces", stock: { available: true }, nativePrice: { amount: 6500 } },
+    { name: "PTV Buggy", stock: { available: true }, nativePrice: { amount: 1500 } },
+    { name: "Shiv - 2 Year", stock: { available: true }, nativePrice: { amount: 15000 } },
+    { name: "Ursa Rover", stock: { available: true }, nativePrice: { amount: 5000 } },
+  ]);
+  assert.equal(matchByBareName("Anvil C8R Pisces Rescue", table).price, 65);
+  assert.equal(matchByBareName("Greycat PTV", table).price, 15);
+  assert.equal(matchByBareName("Grey's Market Shiv", table).price, 150);
+  assert.equal(matchByBareName("RSI Ursa", table).price, 50);
+});
+
+test("un alias ne déborde pas sur les variantes du même vaisseau", () => {
+  // « Ursa Rover » vise la seule RSI Ursa : ni la Fortuna ni la Medivac, qui
+  // sont des vaisseaux distincts avec leurs propres prix.
+  const table = buildStorefrontStandaloneTable([
+    { name: "Ursa Rover", stock: { available: true }, nativePrice: { amount: 5000 } },
+  ]);
+  assert.equal(matchByBareName("RSI Ursa Fortuna", table), null);
+  assert.equal(matchByBareName("RSI Ursa Medivac", table), null);
+});
+
+// ---------------------------------------------------------------------------
+// bareNameKey / unmatchedStorefrontNames
+// ---------------------------------------------------------------------------
+//
+// Le mode d'échec d'origine était silencieux : un SKU que rien ne rapproche
+// d'un vaisseau ne produit aucune erreur, juste un « pas en vente » faux.
+// unmatchedStorefrontNames le rend visible dans le journal de l'Action.
+
+test("bareNameKey renvoie la clé qui a servi à l'appariement", () => {
+  const values = { carrack: 1, "anvil hornet": 2 };
+  assert.equal(bareNameKey("Anvil Carrack", values), "carrack");
+  assert.equal(bareNameKey("Anvil Hornet", values), "anvil hornet");
+  assert.equal(bareNameKey("Drake Cutlass", values), null);
+});
+
+test("unmatchedStorefrontNames liste les SKU que rien ne rapproche d'un vaisseau", () => {
+  const table = { carrack: {}, "vaisseau fantome": {} };
+  const pledge = [{ name: "Anvil Carrack" }, { name: "Drake Cutlass Black" }];
+  assert.deepEqual(unmatchedStorefrontNames(table, pledge), ["vaisseau fantome"]);
+});
+
+test("unmatchedStorefrontNames ne signale rien quand un alias a fait le travail", () => {
+  const table = buildStorefrontStandaloneTable([
+    { name: "Ursa Rover", stock: { available: true } },
+  ]);
+  assert.deepEqual(unmatchedStorefrontNames(table, [{ name: "RSI Ursa" }]), []);
+});
+
+test("unmatchedStorefrontNames tolère un storefront indisponible", () => {
+  assert.deepEqual(unmatchedStorefrontNames(null, [{ name: "Anvil Carrack" }]), []);
 });
 
 // ---------------------------------------------------------------------------

@@ -109,17 +109,26 @@ export function wikiShipUrl(name) {
   return `${URL_WIKI_BASE}/${bare.replace(/ /g, "_")}`;
 }
 
-export function matchByBareName(uexName, values) {
+// Renvoie la clé de `values` qui correspond à `uexName` (nom complet
+// normalisé, puis sans son constructeur), ou null. Séparé de matchByBareName
+// pour que l'appelant puisse savoir *quelle* entrée a servi — ce dont
+// unmatchedStorefrontNames a besoin pour repérer celles qui n'ont servi à rien.
+export function bareNameKey(uexName, values) {
   const n = normName(uexName);
-  if (Object.prototype.hasOwnProperty.call(values, n)) return values[n];
+  if (Object.prototype.hasOwnProperty.call(values, n)) return n;
   const words = n.split(" ");
   for (const skip of [1, 2]) {
     if (words.length > skip) {
       const cand = words.slice(skip).join(" ");
-      if (Object.prototype.hasOwnProperty.call(values, cand)) return values[cand];
+      if (Object.prototype.hasOwnProperty.call(values, cand)) return cand;
     }
   }
   return null;
+}
+
+export function matchByBareName(uexName, values) {
+  const key = bareNameKey(uexName, values);
+  return key === null ? null : values[key];
 }
 
 // ---------------------------------------------------------------------------
@@ -328,6 +337,79 @@ export async function fetchStorefrontListing(
   return resources;
 }
 
+// Le storefront suffixe le nom de ses SKU par la durée d'assurance quand elle
+// sort du standard : « Carrack - 2 Year », « Perseus - 10 Year », « ... - LTI ».
+// Ce suffixe ne fait pas partie du nom du vaisseau et n'existe nulle part
+// ailleurs (UEX, Ship Matrix, wiki). Comme matchByBareName ne retire que des
+// mots de *tête*, le laisser rendait ces SKU inappariables : le vaisseau était
+// alors marqué « pas en vente », puis souvent rétrogradé en « Pack Concierge »
+// par le repli sur le wiki — le cas du Carrack, bien vendu seul.
+const RE_INSURANCE_SUFFIX = /\s*-\s*(?:\d+\s*(?:year|month)s?|lti|lifetime insurance)\s*$/i;
+
+export function stripInsuranceSuffix(name) {
+  return String(name).replace(RE_INSURANCE_SUFFIX, "");
+}
+
+// Quelques SKU portent un nom de forme trop éloignée de celle d'UEX pour
+// qu'une règle générique les rapproche sans risque : retirer aussi des mots de
+// *queue* rapprocherait « Anvil Carrack Expedition » du SKU « Carrack » et
+// marquerait l'Expedition en vente à tort. On préfère donc une table explicite,
+// chaque entrée ayant été vérifiée sur le nom, le prix et la description du SKU.
+// Clé : nom du SKU normalisé (suffixe d'assurance déjà retiré).
+// Valeur : nom du vaisseau tel qu'UEX le publie.
+// Quand un SKU cesse d'être apparié, unmatchedStorefrontNames le signale dans
+// le journal de l'Action — c'est le moment d'ajouter ou de corriger une ligne.
+const STOREFRONT_NAME_ALIASES = {
+  "c8r pisces": "Anvil C8R Pisces Rescue",
+  "ptv buggy": "Greycat PTV",
+  shiv: "Grey's Market Shiv",
+  "ursa rover": "RSI Ursa",
+};
+
+// Liste les clés du catalogue Standalone Ships qu'aucun vaisseau du roster ne
+// réclame. Sans ce garde-fou, un SKU non apparié ne produit aucune erreur :
+// le vaisseau est juste affiché « pas en vente » à tort, en silence — le bug
+// du Carrack. Pur, donc testable.
+export function unmatchedStorefrontNames(storefrontStandalone, pledge) {
+  if (!storefrontStandalone) return [];
+  const matched = new Set();
+  for (const p of pledge) {
+    const key = bareNameKey(p.name, storefrontStandalone);
+    if (key !== null) matched.add(key);
+  }
+  return Object.keys(storefrontStandalone)
+    .filter((k) => !matched.has(k))
+    .sort();
+}
+
+// Construit la table { nom normalisé -> { available, price } } à partir des
+// SKU bruts du catalogue Standalone Ships. Deux SKU peuvent se normaliser vers
+// la même clé (« Mole » et « Mole - 2 Year ») : on considère alors le vaisseau
+// disponible si l'un des deux l'est, et on retient le prix le plus bas, la
+// variante longue assurance étant toujours la plus chère. Pur (aucun réseau),
+// donc testable.
+export function buildStorefrontStandaloneTable(resources) {
+  const result = {};
+  for (const r of resources) {
+    if (!r.name) continue;
+    const native = r.nativePrice && r.nativePrice.amount;
+    const price = typeof native === "number" ? native / 100 : null;
+    const available = Boolean(r.stock && r.stock.available);
+    const bare = normName(stripInsuranceSuffix(r.name));
+    const alias = STOREFRONT_NAME_ALIASES[bare];
+    const key = alias ? normName(alias) : bare;
+    const prev = result[key];
+    result[key] = prev
+      ? {
+          available: prev.available || available,
+          price:
+            prev.price == null ? price : price == null ? prev.price : Math.min(prev.price, price),
+        }
+      : { available, price };
+  }
+  return Object.keys(result).length ? result : null;
+}
+
 export async function fetchStorefrontStandaloneShips() {
   log(`Vérification du catalogue Standalone Ships (${URL_STOREFRONT_GRAPHQL}) ...`);
   let resources;
@@ -345,16 +427,7 @@ export async function fetchStorefrontStandaloneShips() {
     );
     return null;
   }
-  const result = {};
-  for (const r of resources) {
-    if (!r.name) continue;
-    const native = r.nativePrice && r.nativePrice.amount;
-    result[normName(String(r.name))] = {
-      available: Boolean(r.stock && r.stock.available),
-      price: typeof native === "number" ? native / 100 : null,
-    };
-  }
-  return Object.keys(result).length ? result : null;
+  return buildStorefrontStandaloneTable(resources);
 }
 
 async function fetchStorefrontPacks() {
@@ -807,6 +880,15 @@ async function main() {
       fetchUexRoster(),
     ]);
   const { inGame, pledge } = uex;
+
+  const orphanSkus = unmatchedStorefrontNames(storefrontStandalone, pledge);
+  if (orphanSkus.length) {
+    log(
+      `Avertissement: ${orphanSkus.length} SKU du catalogue Standalone Ships ne correspondent ` +
+        `à aucun vaisseau du roster, donc affichés « pas en vente » à tort : ` +
+        `${orphanSkus.join(", ")}. Ajouter l'alias correspondant dans STOREFRONT_NAME_ALIASES.`,
+    );
+  }
 
   const manualPackages = await loadPackagesFile(args.packages);
 
