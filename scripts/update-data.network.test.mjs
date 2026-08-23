@@ -205,8 +205,8 @@ test("fetchShipMatrix mappe le statut Concept", async () => {
     async () => resp(body),
     async () => {
       const r = await fetchShipMatrix();
-      assert.equal(r.carrack, false);
-      assert.equal(r.zeus, true);
+      assert.equal(r.carrack.concept, false);
+      assert.equal(r.zeus.concept, true);
     },
   );
 });

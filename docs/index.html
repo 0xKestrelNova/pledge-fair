@@ -9,10 +9,18 @@
      tout script inline ou externe si un échappement venait à être oublié.
      Aucun 'unsafe-inline' : plus aucun attribut style="" n'est généré dans le
      HTML (la largeur des barres de ratio est posée via l'API DOM dans app.js,
-     le reste passe par des classes CSS). -->
+     le reste passe par des classes CSS).
+
+     img-src liste les quatre hôtes qui servent réellement les photos de
+     vaisseaux du roster UEX — mesuré sur les 280 véhicules :
+     assets.uexcorp.space (197), cdn.uexcorp.space (59),
+     media.robertsspaceindustries.com (5), robertsspaceindustries.com (1).
+     Cette liste est le miroir exact de IMAGE_HOSTS dans update-data.mjs, qui
+     valide les URLs côté serveur avant de les écrire dans data.json : la CSP
+     est le second filet, pas le premier. -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'"
+      content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; img-src 'self' data: https://assets.uexcorp.space https://cdn.uexcorp.space https://media.robertsspaceindustries.com https://robertsspaceindustries.com; object-src 'none'; base-uri 'self'; form-action 'none'"
     />
     <title>Pledge Fair — quel vaisseau upgrader ?</title>
     <meta

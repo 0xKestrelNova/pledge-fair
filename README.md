@@ -67,6 +67,60 @@ planifiée (`.github/workflows/update-data.yml`, une fois par jour, ou à la
 demande via le bouton "Run workflow" dans l'onglet Actions du repo). Un
 bandeau en haut de la page affiche la date de la dernière mise à jour.
 
+## Fiche vaisseau
+
+Chaque vaisseau porte, en plus de ses prix et de son ratio, de quoi savoir de
+quel vaisseau on parle : une photo, un constructeur, une taille, une capacité de
+soute et une courte description. Ces informations apparaissent à deux endroits —
+sur la carte du vaisseau sélectionné, et dans une ligne dépliable sous n'importe
+quelle ligne de tableau (clic sur la ligne, ou <kbd>Entrée</kbd> sur le chevron).
+
+Les champs correspondants de `docs/data.json` :
+
+| Champ          | Source                                        | Couverture (23/08/2026) |
+| -------------- | --------------------------------------------- | ----------------------- |
+| `imageUrl`     | UEX `/vehicles` → `url_photo`, validée        | 262 / 280               |
+| `manufacturer` | UEX `company_name`, repli Ship Matrix         | 280 / 280               |
+| `size`         | Ship Matrix → `size`, casse normalisée        | 227 / 280               |
+| `scu`          | UEX `/vehicles` → `scu`                       | 280 (dont 141 à `0`)    |
+| `description`  | Ship Matrix, tronquée à 200 caractères        | 231 / 280               |
+| `padType`      | UEX `pad_type` (XS/S/M/L/XL), repli de `size` | 223 / 280               |
+
+Trois détails qui ne se devinent pas :
+
+- **`scu: 0` n'est pas une donnée manquante.** 141 vaisseaux n'ont tout
+  simplement pas de soute ; la page écrit « aucune soute », pas « 0 SCU ».
+- **La casse de `size` est incohérente côté Ship Matrix** (`Large` et `large`,
+  `Capital` et `capital`, plus `snub` et `vehicle`). `normalizeShipSize()` la
+  ramène au vocabulaire canonique de RSI ; une valeur hors vocabulaire donne
+  `null`, et la ligne disparaît de la fiche plutôt que de s'afficher avec un
+  tiret orphelin.
+- **La description est tronquée côté générateur**, pas côté navigateur : sans
+  ça, `data.json` embarquerait ~26 ko de texte que la page n'affiche jamais.
+
+### Photos : d'où elles viennent, et pourquoi la CSP les autorise
+
+Les photos ne sont pas copiées dans le dépôt : `data.json` pointe vers les URLs
+d'origine. Quatre hôtes les servent réellement, mesuré sur les 280 véhicules du
+roster — `assets.uexcorp.space` (197), `cdn.uexcorp.space` (59),
+`media.robertsspaceindustries.com` (5), `robertsspaceindustries.com` (1).
+
+Deux garde-fous, dans cet ordre :
+
+1. `safeImageUrl()` **valide chaque URL côté serveur** avant de l'écrire dans
+   `data.json` : schéma `https:` obligatoire et hôte de la liste blanche, en
+   comparaison exacte. `esc()` protège l'insertion HTML, mais ne dit rien de ce
+   que pointe un `src`.
+2. La directive `img-src` de la CSP (`docs/index.html`) reprend exactement la
+   même liste. C'est le second filet, pas le premier : les deux listes doivent
+   rester synchronisées.
+
+Enfin, les vignettes portent `referrerpolicy="no-referrer"`. Ce n'est pas un
+détail de confidentialité : les deux hôtes UEX, qui servent 256 des 262 photos,
+protègent leurs images contre le hotlink et renvoient **403 dès qu'un `Referer`
+tiers accompagne la requête**. Sans cet attribut, la quasi-totalité des photos
+seraient cassées une fois le site publié.
+
 ## Mise à jour des données (`scripts/update-data.mjs`)
 
 Script Node.js (aucune dépendance Python) qui récupère et fusionne :
@@ -81,7 +135,8 @@ Script Node.js (aucune dépendance Python) qui récupère et fusionne :
    _vraiment_ en vente.
 3. L'outil d'upgrade RSI — repli si 2. est indisponible.
 4. Le [Ship Matrix](https://robertsspaceindustries.com/ship-matrix/index)
-   officiel — statut Concept / Flight Ready.
+   officiel — statut Concept / Flight Ready, plus la taille, la description et
+   le constructeur de chaque vaisseau (voir « Fiche vaisseau »).
 5. Le [wiki communautaire](https://starcitizen.tools) — packs réservés aux
    membres "Concierge" (invisibles dans le catalogue public, même sans
    compte).
@@ -260,10 +315,15 @@ Les données affichées proviennent de sources externes — notamment le wiki
 communautaire, publiquement éditable. Deux garde-fous côté front :
 
 - tout texte issu de `data.json` (noms de vaisseaux, de packs, de terminaux,
-  URLs) est échappé par `esc()` (dans `core.js`, appelé par `app.js`) avant
-  insertion dans le DOM — le comportement de `esc()` est couvert par les tests ;
+  URLs, descriptions) est échappé par `esc()` (dans `core.js`, appelé par
+  `app.js`) avant insertion dans le DOM — le comportement de `esc()` est couvert
+  par les tests ;
+- les URLs d'image sont en plus validées côté serveur par `safeImageUrl()`
+  avant d'entrer dans `data.json` (voir « Photos » plus haut) : `esc()` rend
+  l'insertion HTML sûre, il ne dit rien de la destination d'un `src` ;
 - une Content-Security-Policy stricte dans `index.html` bloque tout script
-  inline ou tiers en défense en profondeur.
+  inline ou tiers en défense en profondeur, et n'autorise les images que depuis
+  les quatre hôtes connus.
 
 ## Mettre en ligne sur GitHub Pages
 

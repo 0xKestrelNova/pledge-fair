@@ -322,6 +322,69 @@ td.ship a:hover {
   margin-top: 12px;
 }
 
+/* ------- fiche vaisseau (carte de gauche et ligne dépliée) ------- */
+/* La vignette occupe une boîte de rapport fixe : la place est réservée avant
+   le chargement de l'image, donc aucun saut de mise en page. object-fit gère
+   les photos qui n'ont pas ce rapport-là. */
+.thumb {
+  display: block;
+  width: 100%;
+  /* `height: auto` est indispensable : l'attribut height="360" de l'<img>
+     compte comme une déclaration de style et écraserait sinon aspect-ratio,
+     donnant une vignette étirée. Les deux attributs restent utiles — ils
+     fixent le rapport intrinsèque avant le chargement. */
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--edge);
+  background: var(--panel2);
+}
+/* 18 vaisseaux sur 280 n'ont pas de photo : placeholder sobre, jamais une
+   icône d'image cassée. */
+.thumb--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dim);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 7px,
+    #14202b 7px,
+    #14202b 8px
+  );
+}
+.shipCard {
+  margin: 10px 0 12px;
+}
+.specs {
+  margin-top: 8px;
+  color: var(--amber);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.shipDesc {
+  margin-top: 6px;
+  color: var(--dim);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* Libellé réservé aux lecteurs d'écran (en-tête de la colonne de dépliage). */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .controls {
   display: flex;
   gap: 18px;
@@ -490,6 +553,77 @@ td.ship {
   margin-left: 6px;
   max-width: 90px;
 }
+/* ------- ligne dépliable des tableaux ------- */
+th.det,
+td.det {
+  width: 26px;
+  padding-right: 0;
+  text-align: center;
+}
+.shipRow {
+  cursor: pointer;
+}
+.rowToggle {
+  background: none;
+  border: 0;
+  color: var(--dim);
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 4px;
+  cursor: pointer;
+}
+.shipRow:hover .rowToggle,
+.shipRow.open .rowToggle {
+  color: var(--amber);
+}
+.rowToggle:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+.shipRow.open > td {
+  background: #16222e;
+  border-bottom-color: transparent;
+}
+.detailRow > td {
+  padding: 0;
+  background: var(--panel2);
+  border-bottom: 1px solid var(--edge);
+  text-align: left;
+  white-space: normal;
+}
+.detailRow:hover > td {
+  background: var(--panel2); /* neutralise le survol de ligne */
+}
+/* Vignette à gauche, texte à droite. `min-width: 0` sur la colonne de texte
+   pour qu'une longue description ne pousse pas la ligne au-delà du tableau. */
+.detailInner {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 12px 14px 14px 34px;
+}
+.detailInner > .thumb {
+  flex: 0 0 220px;
+  width: 220px;
+}
+.detailInner > .shipText {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.detailInner .specs {
+  margin-top: 0;
+}
+@media (max-width: 720px) {
+  .detailInner {
+    flex-direction: column;
+    padding-left: 14px;
+  }
+  .detailInner > .thumb {
+    flex: none;
+    width: 100%;
+  }
+}
+
 .section {
   margin-bottom: 26px;
 }

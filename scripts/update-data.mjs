@@ -103,6 +103,113 @@ export function normName(name) {
     .trim();
 }
 
+// Les réponses JSON de RSI et d'UEX contiennent des entités HTML déjà
+// encodées ("Grey&apos;s Market", "Musashi &amp; Co"). Les écrire telles
+// quelles dans data.json les ferait ré-échapper par esc() côté front, et le
+// visiteur lirait littéralement « Grey&apos;s Market ». On les décode donc à
+// la source, une fois, et esc() se charge ensuite de l'échappement réel.
+// Seules les entités effectivement rencontrées sont nommées ; le reste passe
+// par la forme numérique. Pur, donc testable.
+const NAMED_ENTITIES = {
+  amp: "&",
+  apos: "'",
+  quot: '"',
+  lt: "<",
+  gt: ">",
+  nbsp: " ",
+};
+
+export function decodeEntities(text) {
+  if (typeof text !== "string") return null;
+  return text
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(parseInt(code, 16)))
+    .replace(/&([a-z]+);/gi, (whole, name) => {
+      const c = NAMED_ENTITIES[name.toLowerCase()];
+      return c === undefined ? whole : c;
+    });
+}
+
+// Tronque sur une frontière de mot, sans couper au milieu d'un mot ni laisser
+// de ponctuation orpheline. La troncature a lieu ici plutôt que dans le
+// navigateur pour ne pas embarquer dans data.json ~26 ko de texte que la page
+// n'affichera jamais. Pur, donc testable.
+export function truncateText(text, max = 200) {
+  if (typeof text !== "string") return null;
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (!clean) return null;
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  const head = (lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(
+    /[\s,;:.!?—-]+$/,
+    "",
+  );
+  return head + "…";
+}
+
+// La casse de `size` est incohérente côté Ship Matrix : on y trouve `Large` et
+// `large`, `Capital` et `capital`, plus les valeurs `snub` et `vehicle`. On
+// ramène le tout au vocabulaire canonique de RSI. Une valeur inconnue renvoie
+// null plutôt qu'une chaîne bancale : la ligne disparaît de la fiche.
+const SHIP_SIZES = {
+  small: "Small",
+  medium: "Medium",
+  large: "Large",
+  capital: "Capital",
+  snub: "Snub",
+  vehicle: "Vehicle",
+};
+
+export function normalizeShipSize(raw) {
+  if (typeof raw !== "string") return null;
+  return SHIP_SIZES[raw.trim().toLowerCase()] || null;
+}
+
+// Type de plateforme d'atterrissage UEX, repli quand `size` manque.
+const PAD_TYPES = ["XS", "S", "M", "L", "XL"];
+
+export function normalizePadType(raw) {
+  if (typeof raw !== "string") return null;
+  const v = raw.trim().toUpperCase();
+  return PAD_TYPES.includes(v) ? v : null;
+}
+
+// Hôtes autorisés pour les photos de vaisseaux. Mesuré sur les 280 véhicules
+// du roster UEX : assets.uexcorp.space (197), cdn.uexcorp.space (59),
+// media.robertsspaceindustries.com (5), robertsspaceindustries.com (1).
+// N'autoriser que cdn.uexcorp.space, comme on pourrait le croire au vu d'un
+// échantillon, casserait 203 images sur 262.
+export const IMAGE_HOSTS = [
+  "assets.uexcorp.space",
+  "cdn.uexcorp.space",
+  "media.robertsspaceindustries.com",
+  "robertsspaceindustries.com",
+];
+
+/**
+ * Valide une URL d'image avant de l'écrire dans data.json : schéma `https:`
+ * obligatoire et hôte dans la liste blanche, en comparaison exacte (un
+ * `assets.uexcorp.space.evil.tld` ou un `evil-uexcorp.space` ne passe pas).
+ *
+ * `esc()` protège l'insertion HTML côté front, mais ne dit rien de ce que
+ * pointe un `src` : sans ce contrôle, une source amont compromise pourrait
+ * faire charger une image arbitraire — et la même liste sert de base à la
+ * directive `img-src` de la CSP. Pur, donc testable.
+ */
+export function safeImageUrl(raw, hosts = IMAGE_HOSTS) {
+  if (typeof raw !== "string" || !raw.trim()) return null;
+  let url;
+  try {
+    url = new URL(raw.trim());
+  } catch {
+    return null;
+  }
+  if (url.protocol !== "https:") return null;
+  if (!hosts.includes(url.hostname.toLowerCase())) return null;
+  return url.toString();
+}
+
 export function wikiShipUrl(name) {
   const words = name.split(/\s+/);
   const bare = words.length > 1 ? words.slice(1).join(" ") : name;
@@ -277,6 +384,12 @@ export function buildUexRoster(vehicles, prices, purchases) {
       pledge: pledgePrice,
       available,
       concept: v.is_concept === 1,
+      // Champs de fiche : déjà présents dans la réponse /vehicles, jusqu'ici
+      // simplement jetés.
+      imageUrl: safeImageUrl(v.url_photo),
+      scu: typeof v.scu === "number" ? v.scu : null,
+      manufacturer: decodeEntities(v.company_name) || null,
+      padType: normalizePadType(v.pad_type),
     };
   });
 
@@ -340,16 +453,34 @@ export async function fetchShipMatrix() {
   return parseShipMatrix(ships);
 }
 
-// Construit la table { nom normalisé -> estConcept } depuis la liste de
-// vaisseaux du Ship Matrix. Un vaisseau est « concept » quand son
-// production_status vaut "in-concept". Les entrées sans nom ou sans statut
-// sont ignorées. Renvoie null si rien d'exploitable. Pur, donc testable.
+// Construit la table { nom normalisé -> { concept, size, description,
+// manufacturer } } depuis la liste de vaisseaux du Ship Matrix.
+//
+// Elle ne retenait que `production_status` ; on garde maintenant aussi de quoi
+// remplir une fiche vaisseau. La clé reste le nom normalisé, donc
+// matchByBareName() et l'appariement existant sont inchangés — c'est la
+// *valeur* qui passe d'un booléen à un objet, d'où le `.concept` côté
+// consommateur.
+//
+// `concept` vaut null quand production_status manque : l'appelant retombe
+// alors sur ce que dit UEX, exactement comme avant, au lieu de conclure « pas
+// concept ». Une entrée sans nom, ou sans aucun champ exploitable, est
+// ignorée. Renvoie null si rien d'exploitable. Pur, donc testable.
 export function parseShipMatrix(ships) {
   const result = {};
   for (const s of ships) {
-    if (!s.name || !s.production_status) continue;
-    result[normName(String(s.name))] =
-      String(s.production_status).trim().toLowerCase() === "in-concept";
+    if (!s.name) continue;
+    const status = s.production_status ? String(s.production_status).trim().toLowerCase() : null;
+    const entry = {
+      concept: status === null ? null : status === "in-concept",
+      size: normalizeShipSize(s.size),
+      description: truncateText(decodeEntities(s.description)),
+      manufacturer: decodeEntities(s.manufacturer && s.manufacturer.name) || null,
+    };
+    if (entry.concept === null && !entry.size && !entry.description && !entry.manufacturer) {
+      continue;
+    }
+    result[normName(String(s.name))] = entry;
   }
   return Object.keys(result).length ? result : null;
 }
@@ -847,10 +978,36 @@ export function buildDataset(
     }
   }
 
+  /** Entrée Ship Matrix correspondant à un nom de vaisseau, ou null. */
+  function matrixFor(name) {
+    return shipMatrix === null ? null : matchByBareName(name, shipMatrix);
+  }
+
+  // `concept` reste piloté par le Ship Matrix quand il le connaît, et retombe
+  // sur UEX sinon — y compris pour une entrée présente au Ship Matrix mais
+  // sans production_status, désormais conservée pour ses autres champs.
   function conceptFor(name, uexConcept) {
-    if (shipMatrix === null) return uexConcept;
-    const really = matchByBareName(name, shipMatrix);
-    return really === null ? uexConcept : really;
+    const entry = matrixFor(name);
+    return entry && entry.concept !== null ? entry.concept : uexConcept;
+  }
+
+  /**
+   * Champs de fiche d'un vaisseau. Le constructeur vient d'UEX en priorité
+   * (quasi complet) et retombe sur le Ship Matrix ; la taille et la
+   * description ne viennent que du Ship Matrix. Un champ absent vaut null : la
+   * ligne correspondante disparaît de la fiche côté page, plutôt que de
+   * s'afficher avec un tiret orphelin.
+   */
+  function detailsFor(name, uex = {}) {
+    const entry = matrixFor(name);
+    return {
+      imageUrl: uex.imageUrl ?? null,
+      manufacturer: uex.manufacturer || (entry && entry.manufacturer) || null,
+      size: (entry && entry.size) || null,
+      scu: uex.scu ?? null,
+      description: (entry && entry.description) || null,
+      padType: uex.padType ?? null,
+    };
   }
 
   for (const p of pledge) {
@@ -941,6 +1098,7 @@ export function buildDataset(
       auec: best ? best.auec : null,
       loc: best ? best.loc : null,
       ratio: best && pledgePrice ? Math.round((best.auec / pledgePrice) * 100) / 100 : null,
+      ...detailsFor(p.name, p),
     });
   }
 
@@ -960,6 +1118,9 @@ export function buildDataset(
       auec: best.auec,
       loc: best.loc,
       ratio: null,
+      // Vaisseau connu du seul catalogue en jeu : aucune ligne UEX /vehicles à
+      // joindre, on ne dispose que de ce que dit le Ship Matrix.
+      ...detailsFor(ig.name),
     });
   }
 
@@ -1131,10 +1292,13 @@ async function main() {
   const nPkConcierge = ships.filter((s) => s.packageOnly && s.packConcierge).length;
   const nRatio = ships.filter((s) => s.ratio !== null).length;
   const nConcept = ships.filter((s) => s.concept).length;
+  const nPhoto = ships.filter((s) => s.imageUrl).length;
+  const nDesc = ships.filter((s) => s.description).length;
   log(
     `${args.out} généré : ${ships.length} vaisseaux — ${nAv} achetables standalone, ` +
       `${nPk} en pack uniquement (dont ${nPkConcierge} Concierge), ` +
-      `${nRatio} avec ratio calculable, ${nConcept} en concept` +
+      `${nRatio} avec ratio calculable, ${nConcept} en concept, ` +
+      `${nPhoto} avec photo, ${nDesc} avec description` +
       `${gameVersion ? `, patch SC ${gameVersion}` : ", patch SC inconnu"}.`,
   );
 }

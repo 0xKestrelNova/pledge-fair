@@ -67,6 +67,84 @@ export function versionLine({ siteVersion, gameVersion, generatedAt, changelogUr
 }
 
 /* ---------------------------------------------------------------------------
+ * Fiche vaisseau : photo, constructeur, taille, soute, description
+ * ------------------------------------------------------------------------- */
+
+/**
+ * Capacité de soute. 141 vaisseaux sur 280 ont `scu: 0` : ce sont des chasseurs
+ * et des véhicules sans soute, pas des données manquantes. On écrit donc
+ * « aucune soute » plutôt que « 0 SCU », et on ne renvoie null que lorsque
+ * l'information est réellement absente.
+ */
+export function fmtScu(scu) {
+  if (typeof scu !== "number" || Number.isNaN(scu)) return null;
+  return scu === 0 ? "aucune soute" : `${fmtN(scu)} SCU`;
+}
+
+/**
+ * Taille du vaisseau, avec repli sur le type de plateforme d'atterrissage UEX
+ * quand le Ship Matrix ne donne pas de taille. Le repli est libellé
+ * explicitement (« plateforme L ») : ce n'est pas la même information, autant
+ * ne pas la faire passer pour telle.
+ */
+export function shipSize(s) {
+  if (s.size) return s.size;
+  return s.padType ? `plateforme ${s.padType}` : null;
+}
+
+/** « Anvil Aerospace · Large · 456 SCU », sans les segments qu'on ignore. */
+export function shipSpecs(s) {
+  return [s.manufacturer, shipSize(s), fmtScu(s.scu)]
+    .filter(Boolean)
+    .map((part) => esc(part))
+    .join(" · ");
+}
+
+/**
+ * Vignette du vaisseau. 18 vaisseaux sur 280 n'ont pas de photo : ils
+ * reçoivent un placeholder sobre plutôt qu'une icône d'image cassée.
+ *
+ * `width`/`height` fixent le rapport intrinsèque et `aspect-ratio` la boîte,
+ * pour que la place soit réservée avant le chargement — aucun saut de mise en
+ * page. `loading="lazy"` évite de tirer 280 images d'un coup dans les
+ * tableaux.
+ *
+ * `referrerpolicy="no-referrer"` n'est pas cosmétique : les deux hôtes UEX
+ * (256 des 262 photos) protègent leurs images contre le hotlink et renvoient
+ * 403 dès qu'un `Referer` tiers accompagne la requête — sans Referer, ils
+ * servent normalement. C'est aussi la posture la plus discrète : l'URL de la
+ * page consultée n'est pas transmise à UEX.
+ */
+export function shipThumb(s) {
+  if (!s.imageUrl) {
+    return `<div class="thumb thumb--empty" role="img" aria-label="Aucune photo de ${esc(s.name)}"><span>photo indisponible</span></div>`;
+  }
+  return `<img class="thumb" src="${esc(s.imageUrl)}" alt="${esc(s.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="640" height="360" />`;
+}
+
+/**
+ * Corps de la fiche vaisseau : vignette, caractéristiques, description.
+ * Partagé par la carte du vaisseau sélectionné et par la ligne dépliable des
+ * tableaux, pour que les deux affichent exactement la même chose.
+ *
+ * Le texte est regroupé dans un conteneur : la carte de gauche l'empile sous
+ * la vignette, la ligne dépliable le pose à côté, sans que le balisage change
+ * entre les deux.
+ *
+ * Un champ absent fait disparaître sa ligne — jamais de tiret orphelin.
+ */
+export function shipDetails(s) {
+  const specs = shipSpecs(s);
+  const text = [
+    specs ? `<div class="specs mono">${specs}</div>` : "",
+    s.description ? `<p class="shipDesc">${esc(s.description)}</p>` : "",
+  ]
+    .filter(Boolean)
+    .join("");
+  return `${shipThumb(s)}${text ? `<div class="shipText">${text}</div>` : ""}`;
+}
+
+/* ---------------------------------------------------------------------------
  * Étiquettes de statut (En vente / Pack / Pas en vente / Concept)
  * ------------------------------------------------------------------------- */
 
