@@ -14,6 +14,7 @@ import assert from "node:assert/strict";
 import {
   fetchText,
   fetchUexJson,
+  fetchGameVersion,
   fetchStorefrontListing,
   fetchStorefrontStandaloneShips,
   fetchShipMatrix,
@@ -271,5 +272,64 @@ test("fetchRsiStandalone renvoie null quand la sonde initiale échoue", async ()
     async () => {
       assert.equal(await fetchRsiStandalone(), null);
     },
+  );
+});
+
+// ---------------------------------------------------------------------------
+// fetchGameVersion — patch SC courant (source auxiliaire)
+// ---------------------------------------------------------------------------
+
+test("fetchGameVersion renvoie la version LIVE", async () => {
+  await withFetch(
+    async () => resp({ status: "ok", data: { live: "4.9", ptu: "4.10.0" } }),
+    async () => assert.equal(await fetchGameVersion(), "4.9"),
+  );
+});
+
+test("fetchGameVersion interroge bien /game_versions", async () => {
+  let seen = null;
+  await withFetch(
+    async (url) => {
+      seen = String(url);
+      return resp({ status: "ok", data: { live: "4.9" } });
+    },
+    async () => {
+      await fetchGameVersion();
+      assert.match(seen, /\/game_versions$/);
+    },
+  );
+});
+
+test("fetchGameVersion : source injoignable → null, sans lever", async () => {
+  // Source auxiliaire : son indisponibilité ne doit pas faire échouer la
+  // génération, seulement baisser le drapeau meta.gameVersionOk.
+  await withFetch(
+    async () => {
+      throw new Error("réseau coupé");
+    },
+    async () => assert.equal(await fetchGameVersion(), null),
+  );
+});
+
+test("fetchGameVersion : réponse HTTP en erreur → null", async () => {
+  await withFetch(
+    async () => resp("", { ok: false, status: 503 }),
+    async () => assert.equal(await fetchGameVersion(), null),
+  );
+});
+
+test("fetchGameVersion : enveloppe inattendue → null", async () => {
+  await withFetch(
+    async () => resp({ status: "error", data: {} }),
+    async () => assert.equal(await fetchGameVersion(), null),
+  );
+});
+
+test("fetchUexJson refuse toujours un objet là où un tableau est attendu", async () => {
+  // Non-régression : assouplir la validation pour /game_versions ne doit pas
+  // laisser passer une réponse mal formée sur les points d'entrée tableau.
+  await withFetch(
+    async () => resp({ status: "ok", data: { live: "4.9" } }),
+    async () => await assert.rejects(fetchUexJson("vehicles"), /inattendue/),
   );
 });

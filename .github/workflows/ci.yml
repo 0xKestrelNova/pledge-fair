@@ -34,5 +34,11 @@ jobs:
       - name: Format check
         run: npm run format:check
 
+      # docs/version.json est lu par le pied de page du site. Sans ce
+      # contrôle il dériverait silencieusement de package.json, comme le
+      # formatage dérivait avant `format:check`.
+      - name: Version check
+        run: npm run sync-version:check
+
       - name: Test
         run: npm test

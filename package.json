@@ -1,6 +1,6 @@
 {
   "name": "pledge-fair-upgrade-advisor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Génère docs/data.json pour l'app statique Pledge Fair (GitHub Pages).",
   "type": "module",
@@ -9,6 +9,8 @@
   },
   "scripts": {
     "update-data": "node scripts/update-data.mjs",
+    "sync-version": "node scripts/sync-version.mjs",
+    "sync-version:check": "node scripts/sync-version.mjs --check",
     "test": "node --test",
     "lint": "eslint .",
     "format": "prettier --write .",

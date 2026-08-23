@@ -38,6 +38,34 @@ export function formatFreshness(iso) {
   return `${dateStr} à ${timeStr}`;
 }
 
+/** "23/08/2026" à partir d'un timestamp ISO, ou null si la date est illisible. */
+export function formatShortDate(iso) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" });
+}
+
+/**
+ * Ligne de version du pied de page :
+ *   Pledge Fair v1.1.0 · données SC 4.9 · màj 23/08/2026 · changelog
+ *
+ * Chaque segment ne s'affiche que si l'information est là. Une source manquante
+ * fait donc disparaître son segment plutôt que d'écrire « données SC undefined »
+ * ou une date invalide — et le reste de la ligne tient debout tout seul, y
+ * compris quand docs/version.json est illisible.
+ */
+export function versionLine({ siteVersion, gameVersion, generatedAt, changelogUrl } = {}) {
+  const parts = [];
+  if (siteVersion) parts.push(`Pledge Fair v${esc(siteVersion)}`);
+  if (gameVersion) parts.push(`données SC ${esc(gameVersion)}`);
+  const day = formatShortDate(generatedAt);
+  if (day) parts.push(`màj ${day}`);
+  if (changelogUrl) {
+    parts.push(`<a href="${esc(changelogUrl)}" target="_blank" rel="noopener">changelog</a>`);
+  }
+  return parts.join(" · ");
+}
+
 /* ---------------------------------------------------------------------------
  * Étiquettes de statut (En vente / Pack / Pas en vente / Concept)
  * ------------------------------------------------------------------------- */
