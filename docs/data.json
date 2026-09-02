@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-01T06:21:35.500Z",
+    "generatedAt": "2026-09-02T06:26:51.752Z",
     "storefrontOk": false,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -1494,10 +1494,10 @@
     {
       "name": "Aopoa Nox",
       "pledge": 45,
-      "available": true,
-      "packageOnly": false,
-      "packName": null,
-      "packConcierge": false,
+      "available": false,
+      "packageOnly": true,
+      "packName": "Legatus 2953",
+      "packConcierge": true,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Nox",
       "auec": 722925,
@@ -3717,10 +3717,10 @@
     {
       "name": "MISC Hull B",
       "pledge": 280,
-      "available": false,
-      "packageOnly": true,
-      "packName": "Legatus 2953",
-      "packConcierge": true,
+      "available": true,
+      "packageOnly": false,
+      "packName": null,
+      "packConcierge": false,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Hull_B",
       "auec": 7541100,
