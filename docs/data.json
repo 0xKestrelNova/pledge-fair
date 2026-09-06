@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-03T06:23:14.127Z",
+    "generatedAt": "2026-09-06T06:20:25.734Z",
     "storefrontOk": false,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -2919,10 +2919,10 @@
     {
       "name": "Gatac Railen",
       "pledge": 400,
-      "available": true,
-      "packageOnly": false,
-      "packName": null,
-      "packConcierge": false,
+      "available": false,
+      "packageOnly": true,
+      "packName": "Dominus Pack",
+      "packConcierge": true,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Railen",
       "auec": null,
