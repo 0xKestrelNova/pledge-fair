@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-06T06:20:25.734Z",
+    "generatedAt": "2026-09-07T06:24:35.735Z",
     "storefrontOk": false,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -2957,8 +2957,8 @@
     {
       "name": "Gatac Tyilui",
       "pledge": 425,
-      "available": true,
-      "packageOnly": false,
+      "available": false,
+      "packageOnly": true,
       "packName": null,
       "packConcierge": false,
       "concept": false,
