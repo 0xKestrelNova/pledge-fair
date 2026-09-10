@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-07T06:24:35.735Z",
+    "generatedAt": "2026-09-10T06:22:49.716Z",
     "storefrontOk": false,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -2672,10 +2672,10 @@
     {
       "name": "Drake Ironclad Assault",
       "pledge": 650,
-      "available": false,
-      "packageOnly": true,
-      "packName": "Praetorian Pack",
-      "packConcierge": true,
+      "available": true,
+      "packageOnly": false,
+      "packName": null,
+      "packConcierge": false,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Ironclad_Assault",
       "auec": null,
