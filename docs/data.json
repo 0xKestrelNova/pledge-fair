@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generatedAt": "2026-09-10T06:22:49.716Z",
+    "generatedAt": "2026-09-17T11:28:27.080Z",
     "storefrontOk": false,
     "rsiOk": true,
     "shipMatrixOk": true,
     "conciergeWikiOk": true,
     "gameVersionOk": true,
-    "gameVersion": "4.10.0"
+    "gameVersion": "4.10.1"
   },
   "ships": [
     {
@@ -527,8 +527,8 @@
       "pledge": 170,
       "available": false,
       "packageOnly": true,
-      "packName": "Escort Pack",
-      "packConcierge": true,
+      "packName": "Sabre Collection",
+      "packConcierge": false,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Sabre",
       "auec": 4273290,
@@ -583,8 +583,8 @@
       "name": "Aegis Sabre Peregrine",
       "pledge": 185,
       "available": false,
-      "packageOnly": false,
-      "packName": null,
+      "packageOnly": true,
+      "packName": "Sabre Collection",
       "packConcierge": false,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Sabre_Peregrine",
@@ -602,8 +602,8 @@
       "name": "Aegis Sabre Raven",
       "pledge": null,
       "available": false,
-      "packageOnly": false,
-      "packName": null,
+      "packageOnly": true,
+      "packName": "Sabre Collection",
       "packConcierge": false,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Sabre_Raven",
