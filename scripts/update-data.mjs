@@ -30,9 +30,22 @@ const URL_RSI_UPGRADE = "https://robertsspaceindustries.com/pledge-store/api/upg
 const URL_SHIP_MATRIX = "https://robertsspaceindustries.com/ship-matrix/index";
 
 const URL_STOREFRONT_GRAPHQL = "https://robertsspaceindustries.com/graphql";
-const HASH_STANDALONE_SHIPS = "ec372b54cbe912fff0590a28ce1db68f339a3367c8cfa48fd591ef9dc82140cb";
+// Hash du document persisté (APQ) de l'opération `GetBrowseSkusByFilter`. Le
+// storefront n'accepte que des requêtes pré-enregistrées côté serveur,
+// identifiées par ce seul SHA-256 : le texte de la requête n'est jamais
+// envoyé. Une MÊME opération sert les deux listings — seuls le facet et le
+// produit ci-dessous les distinguent.
+//
+// Ce hash est un point de rupture externe, et il a déjà cédé : le 31/08/2026,
+// RSI a retiré de son registre l'opération dédiée
+// `GetBrowseSkusStandaloneShipByFilter` qu'on utilisait pour les vaisseaux.
+// Toutes les exécutions planifiées ont échoué en `PersistedQueryNotFound`
+// pendant trois semaines, sans qu'une ligne du dépôt ait bougé, jusqu'à la
+// bascule sur l'opération générique. Si le symptôme réapparaît, c'est ici
+// qu'il faut regarder : le hash courant se relève dans les requêtes GraphQL
+// émises par le store.
+const HASH_BROWSE_SKUS = "7c00a99d486ed837f63885c2b75122237059ee40e08c4d3012559ed1f983bce1";
 const PRODUCT_ID_STANDALONE_SHIPS = 72;
-const HASH_PACKS = "7c00a99d486ed837f63885c2b75122237059ee40e08c4d3012559ed1f983bce1";
 const PRODUCT_ID_PACKS = 270;
 
 const URL_WIKI_BASE = "https://starcitizen.tools";
@@ -570,8 +583,8 @@ export async function fetchStorefrontStandaloneShips() {
   let resources;
   try {
     resources = await fetchStorefrontListing(
-      "GetBrowseSkusStandaloneShipByFilter",
-      HASH_STANDALONE_SHIPS,
+      "GetBrowseSkusByFilter",
+      HASH_BROWSE_SKUS,
       "extras-standalone-ships",
       PRODUCT_ID_STANDALONE_SHIPS,
       "https://robertsspaceindustries.com/store/pledge/browse/extras/standalone-ships",
@@ -664,7 +677,7 @@ async function fetchStorefrontPacks() {
   try {
     resources = await fetchStorefrontListing(
       "GetBrowseSkusByFilter",
-      HASH_PACKS,
+      HASH_BROWSE_SKUS,
       "extras-packs",
       PRODUCT_ID_PACKS,
       "https://robertsspaceindustries.com/store/pledge/browse/extras/packs",
