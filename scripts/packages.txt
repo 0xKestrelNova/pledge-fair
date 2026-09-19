@@ -15,7 +15,29 @@
 # Pour repérer de nouveaux écarts : le script liste en fin d'exécution les
 # entrées du catalogue Standalone Ships qu'aucun vaisseau du roster ne réclame.
 
-Anvil C8R Pisces Rescue | @store | C8R Pisces
-Greycat PTV             | @store | PTV Buggy
-Grey's Market Shiv      | @store | Shiv
-RSI Ursa                | @store | Ursa Rover
+Anvil C8R Pisces Rescue           | @store | C8R Pisces
+Crusader A2 Hercules Starlifter   | @store | A2 Hercules
+Crusader Ares Inferno Starfighter | @store | Ares Inferno
+Crusader Ares Ion Starfighter     | @store | Ares Ion
+Crusader C2 Hercules Starlifter   | @store | C2 Hercules
+Crusader M2 Hercules Starlifter   | @store | M2 Hercules
+Greycat PTV                       | @store | PTV Buggy
+Grey's Market Basher              | @store | Basher
+Grey's Market Shiv                | @store | Shiv
+RSI Ursa                          | @store | Ursa Rover
+
+# --- Entrées du store volontairement NON appariées --------------------------
+#
+# Le script continue de signaler ces deux entrées en fin d'exécution : c'est
+# attendu. Ce ne sont pas des écarts de nommage, et leur donner un alias
+# fausserait les données — d'où cette note, pour qu'on ne « corrige » pas
+# l'avertissement à tort.
+#
+#   - « Sabre Raven EX » est un vaisseau à part entière, pas une graphie du
+#     « Aegis Sabre Raven » ; le roster UEX ne le liste pas encore. Même cas
+#     que le Mirai Razor EX, distinct du Razor. L'aliaser sur le Sabre Raven
+#     mettrait ce dernier en vente à sa place. À déclarer ici uniquement si
+#     UEX l'ajoute un jour sous un nom différent de celui du store.
+#
+#   - « Nine Tails Shogun Pack » est un pack, pas un vaisseau : il n'a aucune
+#     contrepartie au roster, et ne doit pas en recevoir.

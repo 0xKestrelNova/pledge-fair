@@ -179,6 +179,36 @@ test("fetchStorefrontStandaloneShips mappe prix (centimes /100) et disponibilit�
   );
 });
 
+// Régression du 31/08/2026 : RSI a retiré de son registre le document persisté
+// `GetBrowseSkusStandaloneShipByFilter`, dont le hash était codé en dur ici.
+// Le serveur répondait `PersistedQueryNotFound`, le catalogue basculait en
+// repli, et l'étape « Check for degraded sources » marquait la CI en échec —
+// tous les jours pendant trois semaines, sans qu'une ligne du dépôt ait bougé.
+// L'opération générique `GetBrowseSkusByFilter` sert le même listing et reste
+// enregistrée : c'est le filtre (facet + produit), pas l'opération, qui
+// distingue les standalone ships des packs.
+test("fetchStorefrontStandaloneShips interroge l'opération persistée encore enregistrée chez RSI", async () => {
+  let sent = null;
+  await withFetch(
+    async (url, opts) => {
+      sent = JSON.parse(opts.body)[0];
+      return storefrontEnvelope([{ name: "Anvil Carrack" }], 1);
+    },
+    async () => {
+      await fetchStorefrontStandaloneShips();
+    },
+  );
+  assert.equal(sent.operationName, "GetBrowseSkusByFilter");
+  assert.equal(
+    sent.extensions.persistedQuery.sha256Hash,
+    "7c00a99d486ed837f63885c2b75122237059ee40e08c4d3012559ed1f983bce1",
+  );
+  assert.deepEqual(sent.variables.query.skus.filtersFromTags.facetIdentifiers, [
+    "extras-standalone-ships",
+  ]);
+  assert.deepEqual(sent.variables.query.skus.products, [72]);
+});
+
 test("fetchStorefrontStandaloneShips renvoie null si le catalogue est injoignable", async () => {
   await withFetch(
     async () => {
