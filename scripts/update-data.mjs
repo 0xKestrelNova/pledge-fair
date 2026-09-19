@@ -25,26 +25,19 @@ import { load as cheerioLoad } from "cheerio";
 import { writeFile, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { pathToFileURL } from "node:url";
+import { createHash } from "node:crypto";
+
+import { STOREFRONT_BROWSE_QUERY } from "./storefront-query.mjs";
 
 const URL_RSI_UPGRADE = "https://robertsspaceindustries.com/pledge-store/api/upgrade/graphql";
 const URL_SHIP_MATRIX = "https://robertsspaceindustries.com/ship-matrix/index";
 
 const URL_STOREFRONT_GRAPHQL = "https://robertsspaceindustries.com/graphql";
-// Hash du document persisté (APQ) de l'opération `GetBrowseSkusByFilter`. Le
-// storefront n'accepte que des requêtes pré-enregistrées côté serveur,
-// identifiées par ce seul SHA-256 : le texte de la requête n'est jamais
-// envoyé. Une MÊME opération sert les deux listings — seuls le facet et le
-// produit ci-dessous les distinguent.
-//
-// Ce hash est un point de rupture externe, et il a déjà cédé : le 31/08/2026,
-// RSI a retiré de son registre l'opération dédiée
-// `GetBrowseSkusStandaloneShipByFilter` qu'on utilisait pour les vaisseaux.
-// Toutes les exécutions planifiées ont échoué en `PersistedQueryNotFound`
-// pendant trois semaines, sans qu'une ligne du dépôt ait bougé, jusqu'à la
-// bascule sur l'opération générique. Si le symptôme réapparaît, c'est ici
-// qu'il faut regarder : le hash courant se relève dans les requêtes GraphQL
-// émises par le store.
-const HASH_BROWSE_SKUS = "7c00a99d486ed837f63885c2b75122237059ee40e08c4d3012559ed1f983bce1";
+// Une MÊME opération persistée sert les deux catalogues — seuls le facet et le
+// produit ci-dessous les distinguent. Le document vit dans storefront-query.mjs
+// et le hash APQ en est dérivé (voir `documentHash`), si bien qu'une rotation
+// du registre RSI déclenche désormais un renvoi avec le texte complet au lieu
+// d'un échec.
 const PRODUCT_ID_STANDALONE_SHIPS = 72;
 const PRODUCT_ID_PACKS = 270;
 
@@ -528,9 +521,33 @@ export function storefrontListingFromEnvelope(data, operationName, page) {
   return listing;
 }
 
+// Le hash APQ n'est pas une constante à maintenir : c'est, par définition du
+// protocole, le SHA-256 du document qu'on enverrait en repli. On le dérive
+// donc, ce qui rend impossible la dérive entre les deux — la panne de
+// septembre 2026 venait précisément d'un hash figé à côté d'un document qu'on
+// ne possédait pas. Mémoïsé : la pagination appelle cette fonction par page.
+const hashCache = new Map();
+function documentHash(queryDoc) {
+  let h = hashCache.get(queryDoc);
+  if (h === undefined) {
+    h = createHash("sha256").update(queryDoc).digest("hex");
+    hashCache.set(queryDoc, h);
+  }
+  return h;
+}
+
+// Le storefront répond HTTP 200 avec l'erreur dans le corps quand le hash
+// n'est plus dans son registre. Exporté pour être testé sans réseau.
+export function isPersistedQueryMiss(data) {
+  const errors = Array.isArray(data) ? data[0]?.errors : null;
+  return (
+    Array.isArray(errors) && errors.some((e) => String(e?.message) === "PersistedQueryNotFound")
+  );
+}
+
 export async function fetchStorefrontListing(
   operationName,
-  sha256,
+  queryDoc,
   facet,
   productId,
   referer,
@@ -540,8 +557,10 @@ export async function fetchStorefrontListing(
   let page = 1;
   let total = null;
   while (total === null || resources.length < total) {
-    const payload = [
-      {
+    // `avecTexte` : le chemin normal n'envoie que le hash (payload léger, une
+    // requête par page). On ne joint les 2 Ko du document qu'au renvoi.
+    const envoyer = (avecTexte) => {
+      const requete = {
         operationName,
         variables: {
           storeFront: "pledge",
@@ -555,18 +574,26 @@ export async function fetchStorefrontListing(
             sort: { field: "name", direction: "asc" },
           },
         },
-        extensions: { persistedQuery: { version: 1, sha256Hash: sha256 } },
-      },
-    ];
-    const data = await fetchJson(URL_STOREFRONT_GRAPHQL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Referer: referer,
-        Origin: "https://robertsspaceindustries.com",
-      },
-      body: JSON.stringify(payload),
-    });
+        extensions: { persistedQuery: { version: 1, sha256Hash: documentHash(queryDoc) } },
+      };
+      // Le hash reste joint au renvoi : c'est ce qui permet au serveur de
+      // réenregistrer le document et de reprendre le chemin rapide ensuite.
+      if (avecTexte) requete.query = queryDoc;
+      return fetchJson(URL_STOREFRONT_GRAPHQL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Referer: referer,
+          Origin: "https://robertsspaceindustries.com",
+        },
+        body: JSON.stringify([requete]),
+      });
+    };
+    let data = await envoyer(false);
+    // Un seul renvoi : si le document complet est refusé lui aussi, le
+    // problème n'est plus le registre (schéma changé, panne) et l'erreur doit
+    // remonter pour déclencher le repli UEX/RSI plutôt que de boucler.
+    if (isPersistedQueryMiss(data)) data = await envoyer(true);
     const listing = storefrontListingFromEnvelope(data, operationName, page);
     const batch = listing.resources;
     if (batch.length === 0) break;
@@ -584,7 +611,7 @@ export async function fetchStorefrontStandaloneShips() {
   try {
     resources = await fetchStorefrontListing(
       "GetBrowseSkusByFilter",
-      HASH_BROWSE_SKUS,
+      STOREFRONT_BROWSE_QUERY,
       "extras-standalone-ships",
       PRODUCT_ID_STANDALONE_SHIPS,
       "https://robertsspaceindustries.com/store/pledge/browse/extras/standalone-ships",
@@ -677,7 +704,7 @@ async function fetchStorefrontPacks() {
   try {
     resources = await fetchStorefrontListing(
       "GetBrowseSkusByFilter",
-      HASH_BROWSE_SKUS,
+      STOREFRONT_BROWSE_QUERY,
       "extras-packs",
       PRODUCT_ID_PACKS,
       "https://robertsspaceindustries.com/store/pledge/browse/extras/packs",

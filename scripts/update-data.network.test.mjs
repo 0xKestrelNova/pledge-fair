@@ -10,6 +10,7 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 
 import {
   fetchText,
@@ -50,6 +51,18 @@ function storefrontEnvelope(resources, totalCount) {
 }
 
 const requestedPage = (opts) => JSON.parse(opts.body)[0].variables.query.page;
+
+// Document GraphQL bidon : le contenu n'a pas d'importance pour ces tests,
+// seul compte le fait que le hash en soit dérivé et que le repli le renvoie.
+const DOC = "query Op { store { listing { resources { name } totalCount } } }";
+const SHA_DOC = createHash("sha256").update(DOC).digest("hex");
+
+// Réponse du storefront quand le hash n'est plus dans son registre : HTTP 200,
+// l'erreur est dans le corps. C'est exactement ce qui a fait échouer 19
+// exécutions planifiées en septembre 2026.
+function persistedQueryNotFound() {
+  return resp([{ errors: [{ message: "PersistedQueryNotFound" }] }]);
+}
 
 // ---------------------------------------------------------------------------
 // fetchText
@@ -128,7 +141,7 @@ test("fetchStorefrontListing agrège plusieurs pages puis s'arrête à totalCoun
       : storefrontEnvelope([{ name: "C" }], 3);
   };
   await withFetch(stub, async () => {
-    const r = await fetchStorefrontListing("Op", "hash", "facet", 1, "ref", 2);
+    const r = await fetchStorefrontListing("Op", DOC, "facet", 1, "ref", 2);
     assert.deepEqual(
       r.map((x) => x.name),
       ["A", "B", "C"],
@@ -141,7 +154,7 @@ test("fetchStorefrontListing s'arrête sur une page vide", async () => {
   await withFetch(
     async () => storefrontEnvelope([], 10),
     async () => {
-      assert.deepEqual(await fetchStorefrontListing("Op", "hash", "facet", 1, "ref"), []);
+      assert.deepEqual(await fetchStorefrontListing("Op", DOC, "facet", 1, "ref"), []);
     },
   );
 });
@@ -155,10 +168,74 @@ test("fetchStorefrontListing respecte le garde-fou anti-boucle (page > 20)", asy
     return storefrontEnvelope([{ name: `p${requestedPage(opts)}` }], 1000);
   };
   await withFetch(stub, async () => {
-    const r = await fetchStorefrontListing("Op", "hash", "facet", 1, "ref");
+    const r = await fetchStorefrontListing("Op", DOC, "facet", 1, "ref");
     assert.equal(r.length, 20);
     assert.equal(calls, 20);
   });
+});
+
+// ---------------------------------------------------------------------------
+// fetchStorefrontListing — repli APQ (texte complet sur PersistedQueryNotFound)
+// ---------------------------------------------------------------------------
+
+test("fetchStorefrontListing envoie d'abord le hash seul, sans le texte de la requête", async () => {
+  let premier = null;
+  await withFetch(
+    async (url, opts) => {
+      premier ??= JSON.parse(opts.body)[0];
+      return storefrontEnvelope([{ name: "A" }], 1);
+    },
+    async () => {
+      await fetchStorefrontListing("Op", DOC, "facet", 1, "ref");
+    },
+  );
+  // Le chemin normal reste léger : on n'envoie pas 2 Ko de requête à chaque page.
+  assert.equal(premier.query, undefined);
+  // Et le hash envoyé est bien celui du document, pas une constante indépendante.
+  assert.equal(premier.extensions.persistedQuery.sha256Hash, SHA_DOC);
+});
+
+test("fetchStorefrontListing rejoue avec le texte complet sur PersistedQueryNotFound", async () => {
+  const envois = [];
+  await withFetch(
+    async (url, opts) => {
+      envois.push(JSON.parse(opts.body)[0]);
+      return envois.length === 1
+        ? persistedQueryNotFound()
+        : storefrontEnvelope([{ name: "A" }], 1);
+    },
+    async () => {
+      const r = await fetchStorefrontListing("Op", DOC, "facet", 1, "ref");
+      assert.deepEqual(
+        r.map((x) => x.name),
+        ["A"],
+      );
+    },
+  );
+  assert.equal(envois.length, 2);
+  assert.equal(envois[0].query, undefined);
+  assert.equal(envois[1].query, DOC);
+  // Le hash reste joint au renvoi : c'est ce qui permet au serveur de
+  // réenregistrer le document et de reprendre le chemin rapide ensuite.
+  assert.equal(envois[1].extensions.persistedQuery.sha256Hash, SHA_DOC);
+});
+
+test("fetchStorefrontListing ne rejoue qu'une fois, puis laisse l'erreur remonter", async () => {
+  let appels = 0;
+  await withFetch(
+    async () => {
+      appels += 1;
+      return persistedQueryNotFound();
+    },
+    async () => {
+      await assert.rejects(
+        () => fetchStorefrontListing("Op", DOC, "facet", 1, "ref"),
+        /PersistedQueryNotFound/,
+      );
+    },
+  );
+  // Pas de boucle : un seul renvoi, puis on laisse le repli UEX/RSI jouer.
+  assert.equal(appels, 2);
 });
 
 // ---------------------------------------------------------------------------
