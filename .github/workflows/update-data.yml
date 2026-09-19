@@ -17,7 +17,13 @@ concurrency:
 
 jobs:
   update-data:
-    runs-on: ubuntu-latest
+    # Image épinglée plutôt que `ubuntu-latest` : ce label migre vers Ubuntu 26
+    # à partir du 19/10/2026. Une bascule d'image silencieuse est exactement le
+    # genre de changement externe qu'on préfère déclencher soi-même plutôt que
+    # découvrir par un job rouge — le catalogue Standalone Ships en a déjà fait
+    # la démonstration. À repasser sur une image plus récente une fois la
+    # migration validée : c'est un mot à changer.
+    runs-on: ubuntu-24.04
     # Filet de dernier recours : le script a ses propres timeouts par requête,
     # mais si l'un d'eux venait à manquer, le job courrait jusqu'au plafond
     # GitHub de 6 h — en bloquant au passage les exécutions suivantes via
@@ -25,10 +31,10 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
