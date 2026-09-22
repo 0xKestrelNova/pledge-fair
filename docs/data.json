@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-19T02:14:24.570Z",
+    "generatedAt": "2026-09-22T11:24:10.039Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -615,6 +615,25 @@
       "size": "Small",
       "scu": 0,
       "description": "Part of Aegis Dynamics’ Phase Two of new ship models, the Sabre was designed as a space superiority fighter for those situations where you need to leave a lighter footprint. They have raised the bar…",
+      "padType": "S"
+    },
+    {
+      "name": "Aegis Sabre Raven EX",
+      "pledge": 185,
+      "available": true,
+      "packageOnly": false,
+      "packName": null,
+      "packConcierge": false,
+      "concept": false,
+      "wikiUrl": "https://starcitizen.tools/Sabre_Raven_EX",
+      "auec": null,
+      "loc": null,
+      "ratio": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/290/c297c9b6441a5d8e392e2bc72633482c3c2f3757.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "Drawing from the strike capability of the Sabre and the Raven’s silhouette, the latest in Aegis's legendary line of space superiority fighters is engineered to intercept and incapacitate. Once your…",
       "padType": "S"
     },
     {
