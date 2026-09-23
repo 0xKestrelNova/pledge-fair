@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-22T11:24:10.039Z",
+    "generatedAt": "2026-09-23T11:20:59.157Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -630,6 +630,25 @@
       "loc": null,
       "ratio": null,
       "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/290/c297c9b6441a5d8e392e2bc72633482c3c2f3757.jpg",
+      "manufacturer": "Aegis Dynamics",
+      "size": "Small",
+      "scu": 0,
+      "description": "Drawing from the strike capability of the Sabre and the Raven’s silhouette, the latest in Aegis's legendary line of space superiority fighters is engineered to intercept and incapacitate. Once your…",
+      "padType": "S"
+    },
+    {
+      "name": "Aegis Sabre Raven EX",
+      "pledge": 185,
+      "available": true,
+      "packageOnly": false,
+      "packName": null,
+      "packConcierge": false,
+      "concept": false,
+      "wikiUrl": "https://starcitizen.tools/Sabre_Raven_EX",
+      "auec": null,
+      "loc": null,
+      "ratio": null,
+      "imageUrl": "https://robertsspaceindustries.com/i/473653b116f3b0f91ff5939891d99e6bce70ce95/resize(910,512,cover,ADdPNihJzmPbNuTnFsH1DqUeqBRpXdSXVVtgJTyDDgscGKrzJuoFjReskeshYE8rvU1G8c1HuSDbmWhWxJRz4XjVg)/source.webp",
       "manufacturer": "Aegis Dynamics",
       "size": "Small",
       "scu": 0,
@@ -3004,7 +3023,7 @@
       "auec": null,
       "loc": null,
       "ratio": null,
-      "imageUrl": null,
+      "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/289/caba8a911e18438ab69929869549667dac1fe0e6.jpg",
       "manufacturer": "Grey's Market",
       "size": null,
       "scu": 0,
@@ -4453,7 +4472,7 @@
       "size": "Large",
       "scu": 32,
       "description": "A life-saving ship with enhanced armor and missile racks, capable of responding to calls in the heaviest combat. A product of RSI’s proven history in critical aid, the Medivac provides robust…",
-      "padType": null
+      "padType": "L"
     },
     {
       "name": "RSI Apollo Triage",
@@ -4472,7 +4491,7 @@
       "size": "Large",
       "scu": 32,
       "description": "A life-saving ship for rapid response and emergency medical assistance. A product of RSI’s proven history in critical aid, the Triage delivers highly configurable, professional-level medical care…",
-      "padType": null
+      "padType": "L"
     },
     {
       "name": "RSI Arrastra",
