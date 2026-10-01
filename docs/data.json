@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-29T12:38:01.936Z",
+    "generatedAt": "2026-10-01T12:58:35.227Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -4515,7 +4515,7 @@
     {
       "name": "RSI Aurora Mk I CL",
       "pledge": 45,
-      "available": true,
+      "available": false,
       "packageOnly": false,
       "packName": null,
       "packConcierge": false,
@@ -4534,7 +4534,7 @@
     {
       "name": "RSI Aurora Mk I ES",
       "pledge": 20,
-      "available": true,
+      "available": false,
       "packageOnly": false,
       "packName": null,
       "packConcierge": false,
@@ -4553,7 +4553,7 @@
     {
       "name": "RSI Aurora Mk I LN",
       "pledge": 40,
-      "available": true,
+      "available": false,
       "packageOnly": false,
       "packName": null,
       "packConcierge": false,
@@ -4572,7 +4572,7 @@
     {
       "name": "RSI Aurora Mk I LX",
       "pledge": 35,
-      "available": true,
+      "available": false,
       "packageOnly": false,
       "packName": null,
       "packConcierge": false,
@@ -4591,7 +4591,7 @@
     {
       "name": "RSI Aurora Mk I MR",
       "pledge": 30,
-      "available": true,
+      "available": false,
       "packageOnly": false,
       "packName": null,
       "packConcierge": false,
