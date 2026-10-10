@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generatedAt": "2026-10-01T12:58:35.227Z",
+    "generatedAt": "2026-10-10T12:19:25.720Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
     "conciergeWikiOk": true,
     "gameVersionOk": true,
-    "gameVersion": "4.10.1"
+    "gameVersion": "4.10.2"
   },
   "ships": [
     {
@@ -4648,10 +4648,10 @@
     {
       "name": "RSI Constellation Andromeda",
       "pledge": 240,
-      "available": true,
-      "packageOnly": false,
-      "packName": null,
-      "packConcierge": false,
+      "available": false,
+      "packageOnly": true,
+      "packName": "Legatus 2953",
+      "packConcierge": true,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Constellation_Andromeda",
       "auec": 9652610,
@@ -4659,18 +4659,18 @@
       "ratio": 40219.21,
       "imageUrl": "https://assets.uexcorp.space/img/vehicles/45/images/1a7621d2fe871c391177cda91e1dcc37e652ec01.jpg",
       "manufacturer": "Roberts Space Industries",
-      "size": "Large",
+      "size": null,
       "scu": 96,
-      "description": "The Constellation Andromeda, a multi-person freighter, is the most popular ship in RSI's current production array. Constellations are beloved by smugglers and merchants alike because they are…",
+      "description": null,
       "padType": "M"
     },
     {
       "name": "RSI Constellation Aquila",
       "pledge": 315,
-      "available": true,
-      "packageOnly": false,
-      "packName": null,
-      "packConcierge": false,
+      "available": false,
+      "packageOnly": true,
+      "packName": "Legatus 2953",
+      "packConcierge": true,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Constellation_Aquila",
       "auec": 11577400,
@@ -4678,9 +4678,9 @@
       "ratio": 36753.65,
       "imageUrl": "https://assets.uexcorp.space/img/vehicles/46/images/7ce480d210108c02b1fdf4545313c3b603e27598.jpg",
       "manufacturer": "Roberts Space Industries",
-      "size": "Large",
+      "size": null,
       "scu": 96,
-      "description": "Explore any distant horizons! The Constellation Aquila features a redesigned cockpit for maximum visibility, advanced sensors and an onboard Ursa rover for planetary exploration. Let’s see what’s out…",
+      "description": null,
       "padType": "M"
     },
     {
@@ -4697,9 +4697,9 @@
       "ratio": 40219.14,
       "imageUrl": "https://assets.uexcorp.space/img/vehicles/47/images/1434e6d7e7d8856f65598e86641a0beed0a8d496.jpg",
       "manufacturer": "Roberts Space Industries",
-      "size": "Large",
+      "size": null,
       "scu": 80,
-      "description": "A dedicated luxury spacecraft for the discerning star captain. The Constellation Phoenix can be operated as an organization command ship and features a luxurious redesigned interior. The Phoenix…",
+      "description": null,
       "padType": "M"
     },
     {
@@ -4716,18 +4716,18 @@
       "ratio": null,
       "imageUrl": "https://assets.uexcorp.space/img/vehicles/48/images/6d388c04488cf00e2115fe1d12afca64645f031f.jpg",
       "manufacturer": "Roberts Space Industries",
-      "size": "Large",
+      "size": null,
       "scu": 80,
-      "description": "Whether you are a discerning socialite or a freewheeling party animal, the Constellation Phoenix Emerald is your personal passport to entertainment. With a swank interior cabin designed specifically…",
+      "description": null,
       "padType": "M"
     },
     {
       "name": "RSI Constellation Taurus",
       "pledge": 200,
-      "available": true,
-      "packageOnly": false,
-      "packName": null,
-      "packConcierge": false,
+      "available": false,
+      "packageOnly": true,
+      "packName": "Legatus 2953",
+      "packConcierge": true,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Constellation_Taurus",
       "auec": 7641650,
@@ -4735,9 +4735,9 @@
       "ratio": 38208.25,
       "imageUrl": "https://assets.uexcorp.space/img/vehicles/49/images/3d8f2325dad1901aada35cfb9b49c71d4248e7fa.jpg",
       "manufacturer": "Roberts Space Industries",
-      "size": "Large",
+      "size": null,
       "scu": 174,
-      "description": "Enjoy the adventure of a multi-crew Constellation on a budget! The Constellation Taurus is a dedicated freighter. Fully configurable but without all the bells-and-whistles, the Taurus is a great way…",
+      "description": null,
       "padType": "M"
     },
     {
