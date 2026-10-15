@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-10-14T11:38:16.409Z",
+    "generatedAt": "2026-10-15T11:16:35.721Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -4742,21 +4742,21 @@
     },
     {
       "name": "RSI Constellation Mk V Centaurus",
-      "pledge": null,
-      "available": false,
+      "pledge": 275,
+      "available": true,
       "packageOnly": false,
       "packName": null,
       "packConcierge": false,
-      "concept": true,
+      "concept": false,
       "wikiUrl": "https://starcitizen.tools/Constellation_Mk_V_Centaurus",
       "auec": null,
       "loc": null,
       "ratio": null,
       "imageUrl": null,
       "manufacturer": "Roberts Space Industries",
-      "size": null,
+      "size": "Large",
       "scu": 0,
-      "description": null,
+      "description": "A convention-defying ship that takes on cargo, combat, and more. This multi-role, multi-crew ship brings RSI’s legacy of experience to the next generation with this impressive evolution of one of its…",
       "padType": null
     },
     {
