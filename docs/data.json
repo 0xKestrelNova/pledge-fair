@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-11-10T14:43:46.061Z",
+    "generatedAt": "2026-11-11T13:58:45.889Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -4382,7 +4382,7 @@
     {
       "name": "Origin M80",
       "pledge": 300,
-      "available": true,
+      "available": false,
       "packageOnly": false,
       "packName": null,
       "packConcierge": false,
@@ -4895,10 +4895,10 @@
     {
       "name": "RSI Meteor",
       "pledge": 260,
-      "available": false,
-      "packageOnly": true,
-      "packName": "Escort Pack",
-      "packConcierge": true,
+      "available": true,
+      "packageOnly": false,
+      "packName": null,
+      "packConcierge": false,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Meteor",
       "auec": 4309200,
