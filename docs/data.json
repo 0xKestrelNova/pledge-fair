@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generatedAt": "2026-11-11T13:58:45.889Z",
+    "generatedAt": "2026-11-13T14:25:51.005Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
     "conciergeWikiOk": true,
     "gameVersionOk": true,
-    "gameVersion": "4.10.2"
+    "gameVersion": "4.10.3"
   },
   "ships": [
     {
@@ -1372,7 +1372,7 @@
       "ratio": null,
       "imageUrl": "https://assets.uexcorp.space/img/vehicles/115/images/df7bf40914447aee31f01819b9d332de54b11416.jpg",
       "manufacturer": "Anvil Aerospace",
-      "size": "Large",
+      "size": "Capital",
       "scu": 400,
       "description": "Anvil continues its tradition of excellence with the Liberator, an open-air vehicle carrier that applies the tradition of long-range transport to a smaller scale. Designed with the same quantum drive…",
       "padType": "M"
@@ -2413,7 +2413,7 @@
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/Clipper",
       "auec": 3619730,
-      "loc": "New Deal Lorville",
+      "loc": "Buy and Fly Ruin Station",
       "ratio": 24131.53,
       "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/268/ffe77901b8cbc87ed01ec814e7b6abe43dba4252.jpg",
       "manufacturer": "Drake Interplanetary",
@@ -3058,9 +3058,9 @@
       "packConcierge": true,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/MDC",
-      "auec": 127575,
+      "auec": 121197,
       "loc": "Buy and Fly Ruin Station",
-      "ratio": 2551.5,
+      "ratio": 2423.94,
       "imageUrl": "https://cdn.uexcorp.space/uid2/resources/vehicles/270/3b7178db400277eed84d962a5fea474c08a246bc.jpg",
       "manufacturer": "Greycat Industrial",
       "size": "Vehicle",
@@ -3077,9 +3077,9 @@
       "packConcierge": true,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/MTC",
-      "auec": 75600,
-      "loc": "New Deal Lorville",
-      "ratio": 1512,
+      "auec": 71820,
+      "loc": "Buy and Fly Checkmate",
+      "ratio": 1436.4,
       "imageUrl": "https://cdn.uexcorp.space/vehicles/256/cover/5532e4f20e378664ae46b00ea8b57b8493f17d91.jpg",
       "manufacturer": "Greycat Industrial",
       "size": "Medium",
