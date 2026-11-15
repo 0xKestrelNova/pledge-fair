@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Page statique, sans script ni ressource externe : la CSP n'autorise
+     que la feuille de style servie à côté. Pas de police distante non plus —
+     une politique de confidentialité ne devrait rien charger chez un tiers. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self'; base-uri 'none'; form-action 'none'"
+    />
+    <title>Pledge Fair — Hangar : politique de confidentialité</title>
+    <meta
+      name="description"
+      content="Politique de confidentialité de l'extension Pledge Fair — Hangar : aucune donnée collectée, rien ne quitte le navigateur."
+    />
+    <link rel="stylesheet" href="./page.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Pledge Fair <b>// Hangar</b></h1>
+        <p class="sub">Politique de confidentialité · Privacy policy</p>
+      </header>
+
+      <p class="updated">
+        Dernière mise à jour : 15 novembre 2026 · <a href="#en">English version</a>
+      </p>
+
+      <section lang="fr">
+        <h2>En bref</h2>
+        <p>
+          <strong>Pledge Fair — Hangar ne collecte aucune donnée.</strong> L'extension lit ton
+          hangar Star Citizen sur le site RSI pour en calculer la valeur de fonte. Tout se passe
+          dans ton navigateur : rien n'est envoyé à l'auteur de l'extension ni à un tiers.
+        </p>
+
+        <h2>Ce que l'extension lit</h2>
+        <p>
+          L'extension ne s'active que sur les pages de ton hangar
+          (<code>robertsspaceindustries.com/account/pledges</code>). Elle y lit, pour chaque pledge
+          : son identifiant, son nom, sa date de création, sa valeur de fonte, les articles qu'il
+          contient, et la présence des boutons « Gift » et « Exchange ».
+        </p>
+        <p>
+          Pour parcourir les pages suivantes du hangar, elle envoie au site RSI les mêmes requêtes
+          que ta propre navigation, avec la session déjà ouverte dans l'onglet. Elle n'envoie de
+          requête à aucun autre site.
+        </p>
+
+        <h2>Ce que l'extension ne fait pas</h2>
+        <ul>
+          <li>
+            Elle ne lit, ne stocke et ne transmet ni mot de passe, ni cookie, ni jeton de session.
+          </li>
+          <li>Elle ne déclenche aucune action sur ton compte : ni fonte, ni cadeau, ni achat.</li>
+          <li>Elle ne contient ni mesure d'audience, ni publicité, ni code chargé à distance.</li>
+          <li>Elle ne demande aucune permission du navigateur et n'a accès à aucun autre site.</li>
+          <li>Elle ne vend ni ne transfère aucune donnée, puisqu'elle n'en reçoit aucune.</li>
+        </ul>
+
+        <h2>Ce qui est conservé, et où</h2>
+        <p>
+          Pour que le total reste affiché quand tu recharges la page, le dernier résultat de lecture
+          est gardé dans le stockage de session de l'onglet du hangar. Il ne quitte pas ton
+          navigateur, n'est lisible que par le site RSI (dont ces données proviennent), et il est
+          effacé à la fermeture de l'onglet ou par le bouton « Effacer » du panneau.
+        </p>
+        <p>
+          Les fichiers CSV et JSON sont fabriqués dans ton navigateur, à ta demande, et enregistrés
+          dans ton dossier de téléchargements. Ce que tu en fais ensuite ne dépend que de toi.
+        </p>
+
+        <h2>Code source et contact</h2>
+        <p>
+          Le code de l'extension est public :
+          <a href="https://github.com/0xKestrelNova/pledge-fair/tree/main/extension"
+            >github.com/0xKestrelNova/pledge-fair</a
+          >. Pour toute question, ouvre un ticket sur
+          <a href="https://github.com/0xKestrelNova/pledge-fair/issues"
+            >la page « Issues » du dépôt</a
+          >.
+        </p>
+
+        <h2>Évolutions de cette politique</h2>
+        <p>
+          Si l'extension venait à traiter des données autrement, cette page serait mise à jour avant
+          la publication de la version concernée, et la date ci-dessus modifiée.
+        </p>
+      </section>
+
+      <section lang="en" id="en">
+        <h2>In short</h2>
+        <p>
+          <strong>Pledge Fair — Hangar collects no data.</strong> The extension reads your Star
+          Citizen hangar on the RSI website to compute its melt value. Everything happens inside
+          your browser: nothing is sent to the extension's author or to any third party.
+        </p>
+
+        <h2>What the extension reads</h2>
+        <p>
+          The extension only runs on your hangar pages
+          (<code>robertsspaceindustries.com/account/pledges</code>). For each pledge it reads the
+          identifier, name, creation date, melt value, contained items, and whether the “Gift” and
+          “Exchange” buttons are shown.
+        </p>
+        <p>
+          To go through the other pages of the hangar, it sends the RSI website the same requests as
+          your own browsing, using the session already open in the tab. It sends no request to any
+          other site.
+        </p>
+
+        <h2>What the extension does not do</h2>
+        <ul>
+          <li>It does not read, store or transmit any password, cookie or session token.</li>
+          <li>It triggers no action on your account: no melt, no gift, no purchase.</li>
+          <li>It contains no analytics, no advertising and no remotely loaded code.</li>
+          <li>It requests no browser permission and has no access to any other site.</li>
+          <li>It does not sell or transfer any data, since it receives none.</li>
+        </ul>
+
+        <h2>What is kept, and where</h2>
+        <p>
+          So that the total stays visible when you reload the page, the latest result is kept in the
+          session storage of the hangar tab. It never leaves your browser, can only be read by the
+          RSI website (where the data comes from), and is erased when the tab is closed or when you
+          click the panel's “Effacer” (Clear) button.
+        </p>
+        <p>
+          CSV and JSON files are generated in your browser, at your request, and saved to your
+          downloads folder. What you do with them afterwards is up to you.
+        </p>
+
+        <h2>Source code and contact</h2>
+        <p>
+          The extension's code is public:
+          <a href="https://github.com/0xKestrelNova/pledge-fair/tree/main/extension"
+            >github.com/0xKestrelNova/pledge-fair</a
+          >. For any question, open a ticket on
+          <a href="https://github.com/0xKestrelNova/pledge-fair/issues"
+            >the repository's Issues page</a
+          >.
+        </p>
+
+        <h2>Changes to this policy</h2>
+        <p>
+          Should the extension ever handle data differently, this page would be updated before the
+          corresponding version is published, and the date above changed.
+        </p>
+      </section>
+
+      <footer>
+        Outil de fan non officiel, sans lien avec le groupe Cloud Imperium. Star Citizen®, Roberts
+        Space Industries® et Cloud Imperium® sont des marques déposées de Cloud Imperium Rights LLC.
+        <br />
+        Unofficial fan-made tool, not affiliated with the Cloud Imperium group of companies. Star
+        Citizen®, Roberts Space Industries® and Cloud Imperium® are registered trademarks of Cloud
+        Imperium Rights LLC.
+      </footer>
+    </main>
+  </body>
+</html>

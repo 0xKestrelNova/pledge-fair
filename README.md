@@ -14,17 +14,22 @@ docs/                          Le site publié (GitHub Pages)
 ├── core.js                    Logique pure du front-end (calculs, formatage, échappement)
 ├── core.test.mjs              Tests (node --test) de core.js, sans navigateur
 ├── data.json                  Données générées — ne pas éditer à la main
-└── version.json               Version du site, générée — ne pas éditer à la main
+├── version.json               Version du site, générée — ne pas éditer à la main
+└── extension/                 Politique de confidentialité de l'extension Hangar (page statique)
 scripts/
 ├── update-data.mjs            Génère docs/data.json (tourne dans la GitHub Action)
 ├── update-data.test.mjs       Tests (node --test) des fonctions pures du script
 ├── sync-version.mjs           Recopie la version de package.json dans docs/version.json
 ├── sync-version.test.mjs      Tests (node --test) des fonctions pures du script
+├── package-extension.mjs      Fabrique l'archive .zip de l'extension pour le Chrome Web Store
+├── package-extension.test.mjs Tests (node --test) : contenu de l'archive, écriture du ZIP
 ├── packages.txt.example       Gabarit commenté des corrections manuelles
 └── packages.txt               (optionnel, à créer) corrections manuelles de classification
 extension/                     Extension Chrome/Edge : valeur de fonte du hangar RSI, export CSV / JSON
 ├── manifest.json              Manifest V3, aucune permission (hangar RSI uniquement)
 ├── src/                       Modules purs (extraction, valeur, CSV, JSON, collecte) + panneau, et leurs tests
+├── icons/                     Icône de l'extension (SVG source et PNG)
+├── store/                     Fiche du Chrome Web Store : textes, capture, vignette
 └── fixtures/                  Pages de hangar anonymisées pour les tests
 .github/workflows/
 ├── ci.yml                     Lint + tests + cohérence de version à chaque push / PR
@@ -135,6 +140,10 @@ navigateur. Installation, utilisation et limites :
 
 Elle n'a pas de numéro de version commun avec le site : la sienne est dans
 [`extension/manifest.json`](extension/manifest.json).
+
+`npm run package-extension` fabrique l'archive à téléverser sur le Chrome Web
+Store (`dist/`, non suivi par Git). Sa politique de confidentialité est servie
+avec le site : [`docs/extension/confidentialite.html`](docs/extension/confidentialite.html).
 
 ## Mise à jour des données (`scripts/update-data.mjs`)
 

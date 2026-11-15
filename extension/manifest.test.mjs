@@ -50,6 +50,7 @@ test("manifeste — les fichiers référencés existent", () => {
   for (const file of [
     ...manifest.content_scripts[0].js,
     ...manifest.web_accessible_resources[0].resources,
+    ...Object.values(manifest.icons),
   ]) {
     assert.ok(read(file).length > 0, file);
   }

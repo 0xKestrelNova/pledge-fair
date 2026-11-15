@@ -190,6 +190,7 @@ site.
 extension/
 ├── manifest.json        Manifest V3 : un script de contenu, aucune permission
 ├── loader.js            Script de contenu : charge src/panel.js par import dynamique
+├── icons/               Icône de l'extension : source SVG et PNG 16 / 32 / 48 / 128
 ├── src/
 │   ├── panel.js         Le panneau : réseau, stockage de session, téléchargements
 │   ├── rows.js          L'étiquette « Fonte » posée sur chaque ligne du hangar
@@ -204,6 +205,7 @@ extension/
 ├── fixtures/
 │   ├── hangar-page-*.html   Pages de hangar anonymisées (structure RSI, données fictives)
 │   └── dom.mjs              Adaptateur cheerio → mini API DOM, pour les tests
+├── store/               Fiche du Chrome Web Store : textes, capture, vignette
 └── manifest.test.mjs    Garde-fous sur les permissions du manifeste
 ```
 
@@ -211,6 +213,26 @@ Comme pour le site (`docs/core.js` contre `docs/app.js`), la logique est
 séparée de la page : `extract.js`, `value.js`, `csv.js`, `json.js`,
 `filename.js`, `store.js` et `collect.js` sont purs et testés par `npm test`, sans navigateur. `panel.js` se contente de
 brancher ces modules sur la page.
+
+### Publier sur le Chrome Web Store
+
+```bash
+npm run package-extension
+```
+
+crée `dist/pledge-fair-hangar-<version>.zip`, l'archive à téléverser. Elle ne
+contient que ce que le manifeste référence (manifeste, script de contenu,
+modules de `src/`, icônes) : ni tests, ni fixtures, ni documentation.
+
+Les textes de la fiche, les réponses de l'onglet « Pratiques de
+confidentialité », la capture d'écran et la vignette sont dans
+[`store/`](store/) — voir
+[`store/fiche-chrome-web-store.md`](store/fiche-chrome-web-store.md). La
+politique de confidentialité est publiée avec le site :
+[`docs/extension/confidentialite.html`](../docs/extension/confidentialite.html).
+
+Les PNG de `icons/` sont des rendus de [`icons/icon.svg`](icons/icon.svg) : si
+l'icône change, les régénérer aux quatre tailles.
 
 ### Si RSI change la structure du hangar
 
