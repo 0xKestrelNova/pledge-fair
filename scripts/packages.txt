@@ -22,6 +22,8 @@ Crusader Ares Ion Starfighter     | @store | Ares Ion
 Crusader C2 Hercules Starlifter   | @store | C2 Hercules
 Crusader M2 Hercules Starlifter   | @store | M2 Hercules
 Greycat PTV                       | @store | PTV Buggy
+Origin G12-A                      | @store | G12a
+Origin G12-R                      | @store | G12r
 Grey's Market Basher              | @store | Basher
 Grey's Market Shiv                | @store | Shiv
 RSI Ursa                          | @store | Ursa Rover

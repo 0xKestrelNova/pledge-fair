@@ -297,7 +297,10 @@ export function storefrontAliases(name) {
   // Edition - 2 Year » reste apparié.
   for (const stripped of [n.replace(EDITION_SUFFIX, ""), n.replace(INSURANCE_SUFFIX, "")]) {
     const bare = stripped.replace(EDITION_SUFFIX, "").replace(INSURANCE_SUFFIX, "").trim();
-    if (bare.length >= 3) aliases.add(bare);
+    // Plancher à 2 et non 3 : il n'écarte que les restes vides ou d'une lettre,
+    // pas un vrai nom court. « X1 - 10 Year » doit rester atteignable sous
+    // « x1 », exactement comme le SKU « X1 » l'est sans suffixe.
+    if (bare.length >= 2) aliases.add(bare);
   }
   return aliases;
 }
