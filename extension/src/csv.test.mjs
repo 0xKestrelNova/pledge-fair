@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { BOM, HEADERS, csvCell, toCsv, pledgeRow, hangarCsv, csvFileName } from "./csv.js";
+import { BOM, HEADERS, csvCell, toCsv, pledgeRow, hangarCsv } from "./csv.js";
 import { extractPage } from "./extract.js";
 import { loadFixture } from "../fixtures/dom.mjs";
 
@@ -147,9 +147,4 @@ test("hangarCsv — séparateur « , » : les virgules des cellules sont protég
 
 test("hangarCsv — hangar vide : en-têtes seuls", () => {
   assert.equal(hangarCsv([]), BOM + HEADERS.join(";") + "\r\n");
-});
-
-test("csvFileName — date locale, mois et jour sur deux chiffres", () => {
-  assert.equal(csvFileName(new Date(2026, 10, 15)), "hangar-rsi-2026-11-15.csv");
-  assert.equal(csvFileName(new Date(2027, 0, 5)), "hangar-rsi-2027-01-05.csv");
 });

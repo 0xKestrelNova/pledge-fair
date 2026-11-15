@@ -1,23 +1,32 @@
 // Pledge Fair — Hangar : le panneau ajouté à la page du hangar RSI.
 //
-// C'est le seul fichier de l'extension qui touche à la page et au réseau.
-// Tout le reste est pur et testé sans navigateur : extract.js (lecture du
-// HTML), value.js (montants et total), csv.js (fichier CSV), collect.js
-// (enchaînement des pages).
+// C'est le seul fichier de l'extension qui touche au réseau et au stockage ;
+// avec rows.js (l'étiquette de fonte sur chaque ligne), le seul qui touche à
+// la page. Tout le reste est pur et testé sans navigateur : extract.js
+// (lecture du HTML), value.js (montants et total), csv.js et json.js (fichiers
+// exportés), filename.js (leur nom), collect.js (enchaînement des pages),
+// store.js (forme du résultat mémorisé).
 //
 // Ce que fait ce fichier, et rien d'autre :
 //   - il ajoute un panneau au-dessus de la liste du hangar ;
 //   - au clic, il lit les pages /account/pledges?page=N par des requêtes GET
 //     vers la même origine, avec la session déjà ouverte dans l'onglet ;
-//   - il affiche le total et fabrique le CSV dans le navigateur.
+//   - il affiche le total et fabrique le CSV ou le JSON dans le navigateur ;
+//   - il mémorise le dernier résultat dans le sessionStorage de l'onglet, pour
+//     le réafficher après un rechargement ou un changement de page du hangar.
 //
 // Ce qu'il ne fait jamais : lire ou transmettre des identifiants, cliquer sur
 // un bouton du site (fonte, cadeau, achat), envoyer une requête à un autre
-// hôte que celui de la page, stocker quoi que ce soit.
+// hôte que celui de la page, écrire ailleurs que dans le stockage de session
+// de l'onglet (effacé à sa fermeture, ou par le bouton « Effacer »).
 
 import { collectHangar, HangarError } from "./collect.js";
 import { summarize, formatMoney } from "./value.js";
-import { hangarCsv, csvFileName, SEPARATORS } from "./csv.js";
+import { hangarCsv, SEPARATORS } from "./csv.js";
+import { hangarJson } from "./json.js";
+import { exportFileName } from "./filename.js";
+import { STORAGE_KEY, serializeResult, parseStored } from "./store.js";
+import { watchRows } from "./rows.js";
 
 const HOST_ID = "pledge-fair-hangar";
 
@@ -97,16 +106,48 @@ async function fetchHangarPage(page) {
 const pause = () => new Promise((resolve) => setTimeout(resolve, PAGE_PAUSE_MS));
 
 /* ---------------------------------------------------------------------------
- * Téléchargement local du CSV
+ * Téléchargement local des exports
  * ------------------------------------------------------------------------- */
 
-function downloadCsv(pledges, separator) {
-  const blob = new Blob([hangarCsv(pledges, separator)], { type: "text/csv;charset=utf-8" });
+/** Fait télécharger un texte fabriqué sur place, sans passer par le réseau. */
+function download(content, type, extension) {
+  const blob = new Blob([content], { type: `${type};charset=utf-8` });
   const url = URL.createObjectURL(blob);
-  const link = el("a", { href: url, download: csvFileName() });
+  const link = el("a", { href: url, download: exportFileName(extension) });
   link.click();
   // Laisse au navigateur le temps de démarrer le téléchargement.
   setTimeout(() => URL.revokeObjectURL(url), 10_000);
+}
+
+/* ---------------------------------------------------------------------------
+ * Mémoire de l'onglet : le dernier résultat survit aux rechargements
+ * ------------------------------------------------------------------------- */
+
+// sessionStorage peut être indisponible ou plein (navigation privée stricte,
+// quota) : dans ce cas le panneau fonctionne simplement sans mémoire.
+
+function loadStored() {
+  try {
+    return parseStored(sessionStorage.getItem(STORAGE_KEY));
+  } catch {
+    return null;
+  }
+}
+
+function saveStored(result) {
+  try {
+    sessionStorage.setItem(STORAGE_KEY, serializeResult(result, result.readAt));
+  } catch {
+    // Pas de mémoire cette fois : le résultat reste affiché jusqu'au rechargement.
+  }
+}
+
+function clearStored() {
+  try {
+    sessionStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // Rien à effacer si le stockage est inaccessible.
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -115,10 +156,18 @@ function downloadCsv(pledges, separator) {
 
 const plural = (n, word) => `${n} ${word}${n > 1 ? "s" : ""}`;
 
-/** Phrase de résultat : nombre de pledges, total(s), réserves éventuelles. */
-function summaryNodes({ pledges, truncated }) {
+/** "15/11 à 10:30" : le moment de la lecture, pour juger si elle a vieilli. */
+function formatReadAt(readAt) {
+  const day = readAt.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit" });
+  const time = readAt.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+  return `${day} à ${time}`;
+}
+
+/** Phrase de résultat : nombre de pledges, total(s), réserves, date de lecture. */
+function summaryNodes({ pledges, truncated, readAt }) {
   const { count, unreadable, totals } = summarize(pledges);
-  if (count === 0) return ["Aucun pledge trouvé dans ce hangar."];
+  const when = ` · lu le ${formatReadAt(readAt)}`;
+  if (count === 0) return ["Aucun pledge trouvé dans ce hangar" + when + "."];
 
   const total = totals.map(({ cents, currency }) => formatMoney(cents, currency)).join(" + ");
   const nodes = [
@@ -130,17 +179,18 @@ function summaryNodes({ pledges, truncated }) {
       ` · ${plural(unreadable, "montant")} illisible${unreadable > 1 ? "s" : ""}, hors total`,
     );
   if (truncated) nodes.push(" · lecture interrompue : hangar trop long, total partiel");
+  nodes.push(when);
   return nodes;
 }
 
+const IDLE_STATUS = "Calcule la valeur de fonte de ton hangar.";
+const READ_LABEL = "Calculer la valeur du hangar";
+
 function buildPanel() {
-  const status = el("div", {
-    className: "status",
-    textContent: "Calcule la valeur de fonte de ton hangar.",
-  });
+  const status = el("div", { className: "status", textContent: IDLE_STATUS });
   status.setAttribute("role", "status");
 
-  const readButton = el("button", { type: "button", textContent: "Calculer la valeur du hangar" });
+  const readButton = el("button", { type: "button", textContent: READ_LABEL });
   const separator = el(
     "select",
     {},
@@ -152,6 +202,21 @@ function buildPanel() {
     textContent: "Télécharger le CSV",
     hidden: true,
   });
+  const jsonButton = el("button", {
+    type: "button",
+    textContent: "Télécharger le JSON",
+    hidden: true,
+  });
+  const forgetButton = el("button", {
+    type: "button",
+    textContent: "Effacer",
+    title: "Efface le résultat mémorisé dans cet onglet",
+    hidden: true,
+  });
+  // Les exports n'apparaissent qu'une fois le hangar lu, et s'il n'est pas vide.
+  const setExportsHidden = (hidden) => {
+    separatorLabel.hidden = csvButton.hidden = jsonButton.hidden = hidden;
+  };
 
   let result = null;
 
@@ -160,22 +225,43 @@ function buildPanel() {
     status.classList.toggle("error", isError);
   };
 
+  /** Affiche un résultat, qu'il vienne d'être lu ou qu'il sorte de la mémoire. */
+  const showResult = (shown) => {
+    result = shown;
+    setStatus(summaryNodes(result));
+    setExportsHidden(result.pledges.length === 0);
+    forgetButton.hidden = false;
+    readButton.textContent = "Relire le hangar";
+  };
+
+  /** Revient au panneau de départ. */
+  const showIdle = () => {
+    result = null;
+    setStatus([IDLE_STATUS]);
+    setExportsHidden(true);
+    forgetButton.hidden = true;
+    readButton.textContent = READ_LABEL;
+  };
+
   readButton.addEventListener("click", async () => {
     readButton.disabled = true;
-    separatorLabel.hidden = csvButton.hidden = true;
+    setExportsHidden(true);
+    forgetButton.hidden = true;
     setStatus(["Lecture de la page 1…"]);
     try {
-      result = await collectHangar({
+      const collected = await collectHangar({
         fetchPage: fetchHangarPage,
         pause,
         onProgress: ({ page, count }) =>
           setStatus([`Lecture de la page ${page + 1}… (${plural(count, "pledge")} jusqu'ici)`]),
       });
-      setStatus(summaryNodes(result));
-      separatorLabel.hidden = csvButton.hidden = result.pledges.length === 0;
-      readButton.textContent = "Relire le hangar";
+      showResult({ ...collected, readAt: new Date() });
+      saveStored(result);
     } catch (error) {
-      result = null;
+      // Une lecture ratée ne laisse pas un ancien résultat se faire passer
+      // pour le nouveau : on oublie tout.
+      showIdle();
+      clearStored();
       // Les HangarError sont rédigées pour l'utilisateur ; le reste est un bug.
       const message =
         error instanceof HangarError
@@ -188,19 +274,46 @@ function buildPanel() {
   });
 
   csvButton.addEventListener("click", () => {
-    if (result) downloadCsv(result.pledges, separator.value);
+    if (result) download(hangarCsv(result.pledges, separator.value), "text/csv", "csv");
   });
+
+  jsonButton.addEventListener("click", () => {
+    if (!result) return;
+    const json = hangarJson(result.pledges, {
+      readAt: result.readAt,
+      truncated: result.truncated,
+    });
+    download(json, "application/json", "json");
+  });
+
+  forgetButton.addEventListener("click", () => {
+    clearStored();
+    showIdle();
+  });
+
+  // Résultat mémorisé par une lecture précédente dans cet onglet : on le
+  // réaffiche tel quel, avec sa date, sans relire le hangar.
+  const stored = loadStored();
+  if (stored) showResult(stored);
 
   return el("div", { className: "panel" }, [
     el("span", { className: "brand", textContent: "Pledge Fair — Hangar" }),
     status,
-    el("div", { className: "controls" }, [readButton, separatorLabel, csvButton]),
+    el("div", { className: "controls" }, [
+      readButton,
+      separatorLabel,
+      csvButton,
+      jsonButton,
+      forgetButton,
+    ]),
   ]);
 }
 
-/** Ajoute le panneau à la page, une seule fois. */
+/** Ajoute le panneau à la page, une seule fois, et étiquette les lignes. */
 export function start() {
   if (document.getElementById(HOST_ID)) return;
+
+  watchRows();
 
   const host = el("div", { id: HOST_ID });
   const shadow = host.attachShadow({ mode: "open" });

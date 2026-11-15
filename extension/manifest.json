@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Pledge Fair — Hangar",
-  "version": "0.1.0",
-  "description": "Calcule la valeur de fonte de ton hangar Star Citizen et l'exporte en CSV. Lecture seule, tout reste dans le navigateur.",
+  "version": "0.3.0",
+  "description": "Calcule la valeur de fonte de ton hangar Star Citizen et l'exporte en CSV ou en JSON. Lecture seule, tout reste dans le navigateur.",
   "minimum_chrome_version": "102",
   "content_scripts": [
     {
@@ -21,7 +21,11 @@
         "src/collect.js",
         "src/extract.js",
         "src/value.js",
-        "src/csv.js"
+        "src/csv.js",
+        "src/json.js",
+        "src/filename.js",
+        "src/store.js",
+        "src/rows.js"
       ],
       "matches": ["https://robertsspaceindustries.com/*"]
     }

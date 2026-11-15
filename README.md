@@ -22,9 +22,9 @@ scripts/
 ├── sync-version.test.mjs      Tests (node --test) des fonctions pures du script
 ├── packages.txt.example       Gabarit commenté des corrections manuelles
 └── packages.txt               (optionnel, à créer) corrections manuelles de classification
-extension/                     Extension Chrome/Edge : valeur de fonte du hangar RSI + export CSV
+extension/                     Extension Chrome/Edge : valeur de fonte du hangar RSI, export CSV / JSON
 ├── manifest.json              Manifest V3, aucune permission (hangar RSI uniquement)
-├── src/                       Modules purs (extraction, valeur, CSV, collecte) + panneau, et leurs tests
+├── src/                       Modules purs (extraction, valeur, CSV, JSON, collecte) + panneau, et leurs tests
 └── fixtures/                  Pages de hangar anonymisées pour les tests
 .github/workflows/
 ├── ci.yml                     Lint + tests + cohérence de version à chaque push / PR
@@ -128,8 +128,8 @@ seraient cassées une fois le site publié.
 ## L'extension Hangar (`extension/`)
 
 Une petite extension pour Chrome et Edge, indépendante du site : sur la page
-de ton hangar RSI, elle calcule la **valeur de fonte** de tes pledges et
-l'exporte en **CSV**. Lecture seule, aucune permission, rien ne quitte le
+de ton hangar RSI, elle calcule la **valeur de fonte** de tes pledges,
+l'affiche sur chaque ligne et l'exporte en **CSV** ou en **JSON**. Lecture seule, aucune permission, rien ne quitte le
 navigateur. Installation, utilisation et limites :
 [`extension/README.md`](extension/README.md).
 
@@ -308,7 +308,7 @@ automatiquement et ne font **aucun appel réseau réel** :
 - [`extension/src/*.test.mjs`](extension/src) — modules purs de l'extension
   Hangar : extraction des pledges sur des fixtures HTML anonymisées
   ([`extension/fixtures/`](extension/fixtures)), total en centimes, génération
-  du CSV (échappement, BOM, séparateurs) et collecte multi-pages avec un
+  du CSV (échappement, BOM, séparateurs) et du JSON, et collecte multi-pages avec un
   `fetch` injecté. [`extension/manifest.test.mjs`](extension/manifest.test.mjs)
   verrouille l'absence de permission dans le manifeste.
 

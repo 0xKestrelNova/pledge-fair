@@ -86,9 +86,3 @@ export function pledgeRow(pledge, separator = ";") {
 export function hangarCsv(pledges, separator = ";") {
   return toCsv([HEADERS, ...pledges.map((pledge) => pledgeRow(pledge, separator))], separator);
 }
-
-/** Nom du fichier téléchargé : hangar-rsi-2026-11-15.csv (date locale). */
-export function csvFileName(now = new Date()) {
-  const pad = (n) => String(n).padStart(2, "0");
-  return `hangar-rsi-${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}.csv`;
-}

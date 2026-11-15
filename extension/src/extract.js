@@ -19,7 +19,7 @@ import { parseMoney } from "./value.js";
  * Sélecteurs — structure observée sur RSI en novembre 2026
  * ------------------------------------------------------------------------- */
 
-const SEL = {
+export const SEL = {
   // Liste des pledges de la page. Son absence signifie que la page n'est pas
   // le hangar (session expirée, page d'erreur, refonte du site).
   list: "ul.list-items",
@@ -31,6 +31,9 @@ const SEL = {
   // .js-pledge-configuration-value, qui diffère pour les pledges upgradés.
   value: ".js-pledge-value",
   title: "h3",
+  // Bloc d'informations d'une ligne (titre, date, contenu) : rows.js y ajoute
+  // l'étiquette de valeur de fonte.
+  rowInfo: ".wrapper-col",
   date: ".date-col",
   status: ".availability",
   upgraded: "h3.upgraded, span.upgraded",
