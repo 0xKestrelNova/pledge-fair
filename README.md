@@ -14,14 +14,23 @@ docs/                          Le site publié (GitHub Pages)
 ├── core.js                    Logique pure du front-end (calculs, formatage, échappement)
 ├── core.test.mjs              Tests (node --test) de core.js, sans navigateur
 ├── data.json                  Données générées — ne pas éditer à la main
-└── version.json               Version du site, générée — ne pas éditer à la main
+├── version.json               Version du site, générée — ne pas éditer à la main
+└── extension/                 Politique de confidentialité de l'extension Hangar (page statique)
 scripts/
 ├── update-data.mjs            Génère docs/data.json (tourne dans la GitHub Action)
 ├── update-data.test.mjs       Tests (node --test) des fonctions pures du script
 ├── sync-version.mjs           Recopie la version de package.json dans docs/version.json
 ├── sync-version.test.mjs      Tests (node --test) des fonctions pures du script
+├── package-extension.mjs      Fabrique l'archive .zip de l'extension pour le Chrome Web Store
+├── package-extension.test.mjs Tests (node --test) : contenu de l'archive, écriture du ZIP
 ├── packages.txt.example       Gabarit commenté des corrections manuelles
 └── packages.txt               (optionnel, à créer) corrections manuelles de classification
+extension/                     Extension Chrome/Edge : valeur de fonte du hangar RSI, export CSV / JSON
+├── manifest.json              Manifest V3, aucune permission (hangar RSI uniquement)
+├── src/                       Modules purs (extraction, valeur, CSV, JSON, collecte) + panneau, et leurs tests
+├── icons/                     Icône de l'extension (SVG source et PNG)
+├── store/                     Fiche du Chrome Web Store : textes, capture, vignette
+└── fixtures/                  Pages de hangar anonymisées pour les tests
 .github/workflows/
 ├── ci.yml                     Lint + tests + cohérence de version à chaque push / PR
 └── update-data.yml            Action planifiée : régénère et commite data.json
@@ -120,6 +129,21 @@ détail de confidentialité : les deux hôtes UEX, qui servent 256 des 262 photo
 protègent leurs images contre le hotlink et renvoient **403 dès qu'un `Referer`
 tiers accompagne la requête**. Sans cet attribut, la quasi-totalité des photos
 seraient cassées une fois le site publié.
+
+## L'extension Hangar (`extension/`)
+
+Une petite extension pour Chrome et Edge, indépendante du site : sur la page
+de ton hangar RSI, elle calcule la **valeur de fonte** de tes pledges,
+l'affiche sur chaque ligne et l'exporte en **CSV** ou en **JSON**. Lecture seule, aucune permission, rien ne quitte le
+navigateur. Installation, utilisation et limites :
+[`extension/README.md`](extension/README.md).
+
+Elle n'a pas de numéro de version commun avec le site : la sienne est dans
+[`extension/manifest.json`](extension/manifest.json).
+
+`npm run package-extension` fabrique l'archive à téléverser sur le Chrome Web
+Store (`dist/`, non suivi par Git). Sa politique de confidentialité est servie
+avec le site : [`docs/extension/confidentialite.html`](docs/extension/confidentialite.html).
 
 ## Mise à jour des données (`scripts/update-data.mjs`)
 
@@ -290,6 +314,12 @@ automatiquement et ne font **aucun appel réseau réel** :
   répartition en groupes, ratios, tri/filtre), mode catalogue et échappement
   HTML. `core.js`
   ne touche jamais au DOM, d'où des tests sans jsdom ni navigateur.
+- [`extension/src/*.test.mjs`](extension/src) — modules purs de l'extension
+  Hangar : extraction des pledges sur des fixtures HTML anonymisées
+  ([`extension/fixtures/`](extension/fixtures)), total en centimes, génération
+  du CSV (échappement, BOM, séparateurs) et du JSON, et collecte multi-pages avec un
+  `fetch` injecté. [`extension/manifest.test.mjs`](extension/manifest.test.mjs)
+  verrouille l'absence de permission dans le manifeste.
 
 La CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) rejoue
 `npm run lint`, `npm run format:check`, `npm run sync-version:check` puis

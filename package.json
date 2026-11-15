@@ -11,6 +11,7 @@
     "update-data": "node scripts/update-data.mjs",
     "sync-version": "node scripts/sync-version.mjs",
     "sync-version:check": "node scripts/sync-version.mjs --check",
+    "package-extension": "node scripts/package-extension.mjs",
     "test": "node --test",
     "lint": "eslint .",
     "format": "prettier --write .",

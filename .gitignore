@@ -4,6 +4,9 @@
 # Dépendances
 node_modules/
 
+# Archive de l'extension pour le Chrome Web Store (npm run package-extension)
+dist/
+
 # Exports / captures de travail (pas partie du site public)
 *.xlsx
 Star_Citizen_*.csv

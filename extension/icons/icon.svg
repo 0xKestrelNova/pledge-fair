@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Icône de l'extension Pledge Fair — Hangar, aux couleurs du site
+       (fond #0a0f14, ambre #f2a33c, turquoise #37c99e) : un vaisseau sous
+       l'arche d'un hangar. Source des PNG icon-16/32/48/128. -->
+  <rect width="128" height="128" rx="24" fill="#0a0f14" />
+  <rect x="3" y="3" width="122" height="122" rx="21" fill="none" stroke="#1d2c3a" stroke-width="6" />
+  <path
+    d="M26 100 V62 A38 38 0 0 1 102 62 V100"
+    fill="none"
+    stroke="#f2a33c"
+    stroke-width="12"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path d="M64 54 L84 98 L64 87 L44 98 Z" fill="#37c99e" />
+</svg>
