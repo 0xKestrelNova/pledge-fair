@@ -11,6 +11,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, writeFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import {
   normName,
@@ -326,6 +327,21 @@ test("le retrait d'assurance ne déborde pas sur un nom qui finit par un mot pro
   // « Aurora Mk I LN » ne doit pas perdre son suffixe : LN n'est pas LTI, et
   // aucun nombre ne précède. Un retrait trop gourmand fusionnerait des variantes.
   assert.deepEqual([...storefrontAliases("Aurora Mk I LN")], ["aurora mk i ln"]);
+});
+
+// Non-régression : l'Origin X1 est passé « pas en vente » le jour où le store
+// l'a renommé « X1 - 10 Year » pour l'IAE 2026. Sans suffixe, « X1 » était
+// indexé tel quel ; avec, le nom nu « x1 » (2 caractères) était écarté par un
+// plancher de longueur pensé pour les restes vides, pas pour un vrai nom court.
+test("buildStorefrontIndex rend un nom de 2 caractères atteignable malgré le suffixe", () => {
+  const index = buildStorefrontIndex([
+    { name: "X1 - 10 Year", stock: { available: true }, nativePrice: { amount: 4500 } },
+  ]);
+  const hit = matchByBareName("Origin X1", index);
+  assert.equal(hit.available, true);
+  assert.equal(hit.price, 45);
+  // Les variantes restent des vaisseaux distincts.
+  assert.equal(matchByBareName("Origin X1 Force", index), null);
 });
 
 test("buildStorefrontIndex rend le Carrack atteignable depuis le nom UEX", () => {
@@ -1335,4 +1351,36 @@ test("loadPackagesFile renvoie une table vide pour un chemin absent ou nul", asy
   assert.deepEqual(Object.keys(await loadPackagesFile(join(tmpdir(), "n-existe-pas-1.txt"))), []);
   assert.deepEqual(Object.keys(await loadPackagesFile(null)), []);
   assert.equal(Object.getPrototypeOf(await loadPackagesFile(null)), null);
+});
+
+// ---------------------------------------------------------------------------
+// scripts/packages.txt — le fichier réel, contre un catalogue contrôlé
+// ---------------------------------------------------------------------------
+//
+// Non-régression : le store écrit « G12a » et « G12r » là où UEX écrit
+// « Origin G12-A » et « Origin G12-R ». Le tiret devient une espace à la
+// normalisation (« g12 a »), donc aucune règle automatique ne relie les deux
+// graphies : ces vaisseaux restaient « pas en vente » pendant l'IAE 2026 alors
+// qu'ils étaient vendus seuls. On charge ici le vrai packages.txt — c'est lui
+// qui porte la correspondance — et on vérifie l'effet sur le jeu de données.
+test("packages.txt relie les G12-A et G12-R du roster aux SKU G12a et G12r", async () => {
+  const manual = await loadPackagesFile(fileURLToPath(new URL("./packages.txt", import.meta.url)));
+  const index = buildStorefrontIndex([
+    { name: "G12 - 10 Year", stock: { available: false }, nativePrice: { amount: 6000 } },
+    { name: "G12a - 10 Year", stock: { available: true }, nativePrice: { amount: 6500 } },
+    { name: "G12r - 10 Year", stock: { available: true }, nativePrice: { amount: 6000 } },
+  ]);
+  const pledge = [
+    { key: "1", name: "Origin G12", pledge: 60, available: false, concept: false },
+    { key: "2", name: "Origin G12-A", pledge: 65, available: false, concept: false },
+    { key: "3", name: "Origin G12-R", pledge: 60, available: false, concept: false },
+  ];
+  const ships = buildDataset({}, pledge, index, null, null, null, null, manual);
+  const available = Object.fromEntries(ships.map((s) => [s.name, s.available]));
+  assert.deepEqual(available, {
+    "Origin G12": false, // le G12 de base ne doit pas hériter des variantes
+    "Origin G12-A": true,
+    "Origin G12-R": true,
+  });
+  assert.deepEqual(unmatchedStorefrontNames(index, pledge, manual), []);
 });
