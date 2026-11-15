@@ -3,3 +3,6 @@ docs/data.json
 # Dépendances et lock.
 node_modules/
 package-lock.json
+# Fixtures HTML de l'extension : elles reproduisent le balisage servi par RSI,
+# le reformater les en éloignerait.
+extension/fixtures/*.html

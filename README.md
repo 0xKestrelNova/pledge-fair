@@ -22,6 +22,10 @@ scripts/
 ├── sync-version.test.mjs      Tests (node --test) des fonctions pures du script
 ├── packages.txt.example       Gabarit commenté des corrections manuelles
 └── packages.txt               (optionnel, à créer) corrections manuelles de classification
+extension/                     Extension Chrome/Edge : valeur de fonte du hangar RSI + export CSV
+├── manifest.json              Manifest V3, aucune permission (hangar RSI uniquement)
+├── src/                       Modules purs (extraction, valeur, CSV, collecte) + panneau, et leurs tests
+└── fixtures/                  Pages de hangar anonymisées pour les tests
 .github/workflows/
 ├── ci.yml                     Lint + tests + cohérence de version à chaque push / PR
 └── update-data.yml            Action planifiée : régénère et commite data.json
@@ -120,6 +124,17 @@ détail de confidentialité : les deux hôtes UEX, qui servent 256 des 262 photo
 protègent leurs images contre le hotlink et renvoient **403 dès qu'un `Referer`
 tiers accompagne la requête**. Sans cet attribut, la quasi-totalité des photos
 seraient cassées une fois le site publié.
+
+## L'extension Hangar (`extension/`)
+
+Une petite extension pour Chrome et Edge, indépendante du site : sur la page
+de ton hangar RSI, elle calcule la **valeur de fonte** de tes pledges et
+l'exporte en **CSV**. Lecture seule, aucune permission, rien ne quitte le
+navigateur. Installation, utilisation et limites :
+[`extension/README.md`](extension/README.md).
+
+Elle n'a pas de numéro de version commun avec le site : la sienne est dans
+[`extension/manifest.json`](extension/manifest.json).
 
 ## Mise à jour des données (`scripts/update-data.mjs`)
 
@@ -290,6 +305,12 @@ automatiquement et ne font **aucun appel réseau réel** :
   répartition en groupes, ratios, tri/filtre), mode catalogue et échappement
   HTML. `core.js`
   ne touche jamais au DOM, d'où des tests sans jsdom ni navigateur.
+- [`extension/src/*.test.mjs`](extension/src) — modules purs de l'extension
+  Hangar : extraction des pledges sur des fixtures HTML anonymisées
+  ([`extension/fixtures/`](extension/fixtures)), total en centimes, génération
+  du CSV (échappement, BOM, séparateurs) et collecte multi-pages avec un
+  `fetch` injecté. [`extension/manifest.test.mjs`](extension/manifest.test.mjs)
+  verrouille l'absence de permission dans le manifeste.
 
 La CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) rejoue
 `npm run lint`, `npm run format:check`, `npm run sync-version:check` puis
