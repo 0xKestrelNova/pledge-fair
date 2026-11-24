@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-11-22T14:26:16.111Z",
+    "generatedAt": "2026-11-24T17:26:44.549Z",
     "storefrontOk": true,
     "rsiOk": true,
     "shipMatrixOk": true,
@@ -2102,10 +2102,10 @@
     {
       "name": "C.O. Pioneer",
       "pledge": 925,
-      "available": false,
-      "packageOnly": true,
-      "packName": "Praetorian Pack",
-      "packConcierge": true,
+      "available": true,
+      "packageOnly": false,
+      "packName": null,
+      "packConcierge": false,
       "concept": true,
       "wikiUrl": "https://starcitizen.tools/Pioneer",
       "auec": null,
@@ -4306,10 +4306,10 @@
     {
       "name": "Origin 890 Jump",
       "pledge": 950,
-      "available": false,
-      "packageOnly": true,
-      "packName": "Praetorian Pack",
-      "packConcierge": true,
+      "available": true,
+      "packageOnly": false,
+      "packName": null,
+      "packConcierge": false,
       "concept": false,
       "wikiUrl": "https://starcitizen.tools/890_Jump",
       "auec": 62088400,
